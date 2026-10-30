@@ -1,0 +1,147 @@
+# ---------------------------------------------------------------------------
+# Reusable MkDocs + Material template.
+# To start a new subject, edit: site identity, `nav`, and (optionally) palette.
+# ---------------------------------------------------------------------------
+
+# --- Site identity (EDIT PER SUBJECT) --------------------------------------
+site_name: Belajar JavaScript dan Node.js
+site_description: Materi belajar JavaScript dan Node.js bagi pemula, dari konsep dasar hingga praktik.
+# Alamat kanonik situs (domain kustom GitHub Pages). Dipakai untuk sitemap dan tautan kanonik.
+site_url: https://topekox.my.id/mkdocs-template/
+
+# --- Theme (shared) --------------------------------------------------------
+theme:
+  name: material
+  language: id
+  font: false # system fonts; no Google Fonts request
+  features:
+    - navigation.indexes
+    - navigation.path # breadcrumbs
+    - navigation.footer # previous / next links
+    - navigation.top
+    - navigation.tracking
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+  # Native three-state switcher: System -> Light -> Dark.
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: "Theme: system (click for light)"
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: "Theme: light (click for dark)"
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: "Theme: dark (click for system)"
+
+# --- Navigation (EDIT PER SUBJECT) -----------------------------------------
+nav:
+  - Home: index.md
+  - JavaScript Dasar:
+      - javascript/index.md
+      - Variables: javascript/01-variables.md
+      - Operators & Expressions: javascript/02-operators.md
+      - Strings & Numbers: javascript/03-strings-numbers.md
+      - Conditionals: javascript/04-conditionals.md
+      - Loops: javascript/05-loops.md
+      - Functions: javascript/06-functions.md
+      - Scope & Hoisting: javascript/07-scope-hoisting.md
+      - Arrays: javascript/08-arrays.md
+      - Objects: javascript/09-objects.md
+      - Error Handling & Debugging: javascript/10-error-handling.md
+      - Modules: javascript/11-modules.md
+      - Asynchronous JavaScript: javascript/12-asynchronous.md
+      - Classes & OOP Dasar: javascript/13-classes.md
+      - Proyek Akhir: javascript/14-proyek-akhir.md
+  - Node.js:
+      - nodejs/index.md
+      - Pengenalan Node.js: nodejs/15-pengenalan.md
+      - npm dan package.json: nodejs/16-npm.md
+      - Modul Bawaan Inti: nodejs/17-modul-bawaan.md
+      - Proses dan Lingkungan: nodejs/18-proses-lingkungan.md
+      - Events dan Streams: nodejs/19-events-streams.md
+      - Server HTTP Dasar: nodejs/20-http.md
+      - Express: nodejs/21-express.md
+      - REST API dan Pengujian: nodejs/22-rest-api-tes.md
+      - Proyek Akhir: nodejs/23-proyek-akhir.md
+
+# Template reference pages: still built and linkable, but hidden from the sidebar.
+not_in_nav: |
+  /getting-started/
+  /curriculum/
+  /authoring/
+  /examples/
+
+# --- Plugins ----------------------------------------------------------------
+plugins:
+  - search
+
+# --- Markdown extensions (shared) ------------------------------------------
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.snippets:
+      base_path: [examples]
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+# --- Custom assets (shared) -------------------------------------------------
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+  # Vendored, pinned Mermaid 11.17.2 (docs/assets/vendor/mermaid/VERSION.txt).
+  # Material uses this global instead of fetching Mermaid from unpkg.
+  # Keep it BEFORE the MathJax CDN script so a slow CDN cannot delay diagrams.
+  - assets/vendor/mermaid/mermaid.min.js
+  - javascripts/mermaid-config.js
+  - javascripts/mathjax.js
+  # Pinned MathJax; requires network access (CDN). See README for vendoring.
+  - https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js
+
+# --- Validation: broken links/anchors fail `mkdocs build --strict` ----------
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn

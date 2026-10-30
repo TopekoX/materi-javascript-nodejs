@@ -1,0 +1,2667 @@
+
+<!doctype html>
+<html lang="id" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Materi belajar JavaScript dan Node.js bagi pemula, dari konsep dasar hingga praktik.">
+      
+      
+      
+        <link rel="canonical" href="https://topekox.my.id/mkdocs-template/javascript/09-objects/">
+      
+      
+        <link rel="prev" href="../08-arrays/">
+      
+      
+        <link rel="next" href="../10-error-handling/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Objects - Belajar JavaScript dan Node.js</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tujuan-pembelajaran" class="md-skip">
+          Lewati ke isi
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Belajar JavaScript dan Node.js" class="md-header__button md-logo" aria-label="Belajar JavaScript dan Node.js" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Belajar JavaScript dan Node.js
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Objects
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: system (click for light)"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Theme: system (click for light)" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: light (click for dark)"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Theme: light (click for dark)" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: dark (click for system)"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Theme: dark (click for system)" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cari" placeholder="Cari" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cari">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Kosongkan" aria-label="Kosongkan" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Mempersiapkan pencarian
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigasi" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Belajar JavaScript dan Node.js" class="md-nav__button md-logo" aria-label="Belajar JavaScript dan Node.js" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Belajar JavaScript dan Node.js
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JavaScript Dasar
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JavaScript Dasar
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operators & Expressions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-strings-numbers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings & Numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-conditionals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-scope-hoisting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scope & Hoisting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objects
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tujuan-pembelajaran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tujuan pembelajaran
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pendahuluan-data-yang-punya-nama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pendahuluan: data yang punya nama
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#membuat-dan-mengakses-objek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Membuat dan mengakses objek
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Membuat dan mengakses objek">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kapan-memakai-notasi-kurung-siku" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kapan memakai notasi kurung siku?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#singkatan-penulisan-properti" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Singkatan penulisan properti
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objek-bersarang-dan-optional-chaining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objek bersarang dan optional chaining
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-dan-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method dan this
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#destructuring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Destructuring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spread" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spread
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#const-dan-objek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        const dan objek
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#menelusuri-isi-objek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menelusuri isi objek
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#array-berisi-objek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array berisi objek
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-objek-sebagai-teks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON: objek sebagai teks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contoh-praktis-rekening-bank" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contoh praktis: rekening bank
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kesalahan-umum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kesalahan umum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kesalahan umum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-memakai-titik-untuk-key-yang-disimpan-di-variabel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Memakai titik untuk key yang disimpan di variabel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-membaca-properti-dari-undefined" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Membaca properti dari undefined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-salah-ketik-nama-properti" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Salah ketik nama properti
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-mengira-const-b-a-menyalin-objek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Mengira const b = a menyalin objek
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-spread-bukan-salinan-mendalam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Spread bukan salinan mendalam
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-method-ditulis-sebagai-arrow-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Method ditulis sebagai arrow function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-membandingkan-objek-dengan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Membandingkan objek dengan ===
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ringkasan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ringkasan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latihan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latihan-1-prediksi-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 1: Prediksi output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-2-perbaiki-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 2: Perbaiki error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-3-objek-buku" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 3: Objek buku
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-4-destructuring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 4: Destructuring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-5-gabungkan-pengaturan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 5: Gabungkan pengaturan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-6-daftar-produk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 6: Daftar produk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-7-rekening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 7: Rekening
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-error-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Handling & Debugging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-asynchronous/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asynchronous JavaScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes & OOP Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-proyek-akhir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyek Akhir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../nodejs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node.js
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Node.js
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/15-pengenalan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pengenalan Node.js
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/16-npm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    npm dan package.json
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/17-modul-bawaan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modul Bawaan Inti
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/18-proses-lingkungan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proses dan Lingkungan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/19-events-streams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events dan Streams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/20-http/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server HTTP Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/21-express/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Express
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/22-rest-api-tes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST API dan Pengujian
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/23-proyek-akhir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyek Akhir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tujuan-pembelajaran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tujuan pembelajaran
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pendahuluan-data-yang-punya-nama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pendahuluan: data yang punya nama
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#membuat-dan-mengakses-objek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Membuat dan mengakses objek
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Membuat dan mengakses objek">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kapan-memakai-notasi-kurung-siku" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kapan memakai notasi kurung siku?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#singkatan-penulisan-properti" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Singkatan penulisan properti
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objek-bersarang-dan-optional-chaining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objek bersarang dan optional chaining
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-dan-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method dan this
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#destructuring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Destructuring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spread" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spread
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#const-dan-objek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        const dan objek
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#menelusuri-isi-objek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menelusuri isi objek
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#array-berisi-objek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array berisi objek
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-objek-sebagai-teks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON: objek sebagai teks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contoh-praktis-rekening-bank" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contoh praktis: rekening bank
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kesalahan-umum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kesalahan umum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kesalahan umum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-memakai-titik-untuk-key-yang-disimpan-di-variabel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Memakai titik untuk key yang disimpan di variabel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-membaca-properti-dari-undefined" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Membaca properti dari undefined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-salah-ketik-nama-properti" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Salah ketik nama properti
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-mengira-const-b-a-menyalin-objek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Mengira const b = a menyalin objek
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-spread-bukan-salinan-mendalam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Spread bukan salinan mendalam
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-method-ditulis-sebagai-arrow-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Method ditulis sebagai arrow function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-membandingkan-objek-dengan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Membandingkan objek dengan ===
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ringkasan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ringkasan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latihan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latihan-1-prediksi-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 1: Prediksi output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-2-perbaiki-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 2: Perbaiki error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-3-objek-buku" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 3: Objek buku
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-4-destructuring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 4: Destructuring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-5-gabungkan-pengaturan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 5: Gabungkan pengaturan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-6-daftar-produk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 6: Daftar produk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-7-rekening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 7: Rekening
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigasi" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    JavaScript Dasar
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Objects</h1>
+
+<h2 id="tujuan-pembelajaran">Tujuan pembelajaran<a class="headerlink" href="#tujuan-pembelajaran" title="Permanent link">&para;</a></h2>
+<p>Setelah mempelajari bab ini, kamu dapat:</p>
+<ul>
+<li>Menjelaskan apa itu objek dan kapan memakainya dibanding array.</li>
+<li>Membuat objek, membaca, mengubah, menambah, dan menghapus propertinya.</li>
+<li>Menulis <em>method</em> dan memahami <code>this</code> secara dasar.</li>
+<li>Memakai objek bersarang dan <em>optional chaining</em> (<code>?.</code>).</li>
+<li>Memakai <em>destructuring</em> dan <em>spread</em> pada objek dan array.</li>
+<li>Memproses array berisi objek dengan <code>map</code>, <code>filter</code>, dan <code>reduce</code>.</li>
+<li>Menjelaskan mengapa <code>const</code> tidak membuat objek terkunci, dan cara menyalinnya.</li>
+<li>Mengubah objek menjadi teks JSON dan sebaliknya.</li>
+</ul>
+<p>Bab ini memakai materi bab 1 sampai 8, terutama fungsi dan array. Jalankan setiap contoh dengan <code>node nama-file.js</code>.</p>
+<h2 id="pendahuluan-data-yang-punya-nama">Pendahuluan: data yang punya nama<a class="headerlink" href="#pendahuluan-data-yang-punya-nama" title="Permanent link">&para;</a></h2>
+<p>Array cocok untuk daftar nilai yang sejenis dan berurutan, misalnya <code>[80, 65, 90]</code>. Namun bagaimana menyimpan data <strong>satu siswa</strong>: namanya, umurnya, kelasnya, apakah masih aktif? Dengan array kita harus mengingat bahwa indeks 0 adalah nama, indeks 1 adalah umur, dan seterusnya. Itu mudah keliru.</p>
+<p>Bayangkan sebuah <strong>kartu identitas</strong>. Setiap isian punya <strong>label</strong>: <em>Nama</em>, <em>Umur</em>, <em>Kelas</em>. Kita mencari data lewat labelnya, bukan lewat nomor urut.</p>
+<p><strong>Objek</strong> (<em>object</em>) bekerja seperti kartu itu: kumpulan pasangan <strong>label dan nilai</strong>. Label disebut <strong>key</strong> (kunci), nilainya disebut <strong>value</strong>, dan sepasang key-value disebut <strong>properti</strong>.</p>
+<h2 id="membuat-dan-mengakses-objek">Membuat dan mengakses objek<a class="headerlink" href="#membuat-dan-mengakses-objek" title="Permanent link">&para;</a></h2>
+<p>Objek ditulis dengan kurung kurawal <code>{ }</code>, berisi pasangan <code>key: value</code> yang dipisah koma. Simpan sebagai <code>objek-dasar.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">siswa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="o">:</span><span class="w"> </span><span class="mf">17</span><span class="p">,</span><span class="w"> </span><span class="nx">aktif</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">siswa</span><span class="p">);</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">siswa</span><span class="p">.</span><span class="nx">nama</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">siswa</span><span class="p">[</span><span class="s2">"umur"</span><span class="p">]);</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">siswa</span><span class="p">.</span><span class="nx">alamat</span><span class="p">);</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nx">siswa</span><span class="p">.</span><span class="nx">umur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">18</span><span class="p">;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nx">siswa</span><span class="p">.</span><span class="nx">kelas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"XII"</span><span class="p">;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="ow">delete</span><span class="w"> </span><span class="nx">siswa</span><span class="p">.</span><span class="nx">aktif</span><span class="p">;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">siswa</span><span class="p">);</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"nama"</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">siswa</span><span class="p">,</span><span class="w"> </span><span class="s2">"aktif"</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">siswa</span><span class="p">);</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">siswa</span><span class="p">,</span><span class="w"> </span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">siswa</span><span class="p">));</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{ nama: 'Budi', umur: 17, aktif: true }
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Budi
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>17
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>undefined
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>{ nama: 'Budi', umur: 18, kelas: 'XII' }
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>true false
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>object false
+</span></code></pre></div>
+<p>Penjelasan:</p>
+<table>
+<thead>
+<tr>
+<th>Kode</th>
+<th>Artinya</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{ nama: "Budi", umur: 17 }</code></td>
+<td>Objek dengan dua properti. Key biasanya ditulis tanpa tanda kutip</td>
+</tr>
+<tr>
+<td><code>siswa.nama</code></td>
+<td><strong>Notasi titik</strong>: ambil nilai properti <code>nama</code></td>
+</tr>
+<tr>
+<td><code>siswa["umur"]</code></td>
+<td><strong>Notasi kurung siku</strong>: sama, tetapi key ditulis sebagai string</td>
+</tr>
+<tr>
+<td><code>siswa.alamat</code></td>
+<td>Properti yang tidak ada menghasilkan <code>undefined</code>, bukan error</td>
+</tr>
+<tr>
+<td><code>siswa.umur = 18</code></td>
+<td>Mengubah nilai properti yang sudah ada</td>
+</tr>
+<tr>
+<td><code>siswa.kelas = "XII"</code></td>
+<td>Menambah properti baru</td>
+</tr>
+<tr>
+<td><code>delete siswa.aktif</code></td>
+<td>Menghapus properti</td>
+</tr>
+<tr>
+<td><code>"nama" in siswa</code></td>
+<td>Memeriksa apakah key ada di objek</td>
+</tr>
+</tbody>
+</table>
+<p>Objek tidak punya indeks dan tidak punya urutan nomor, sehingga tidak ada <code>length</code>.</p>
+<h3 id="kapan-memakai-notasi-kurung-siku">Kapan memakai notasi kurung siku?<a class="headerlink" href="#kapan-memakai-notasi-kurung-siku" title="Permanent link">&para;</a></h3>
+<p>Notasi kurung siku diperlukan jika key-nya disimpan di variabel atau mengandung karakter khusus. Simpan sebagai <code>kunci-dinamis.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">siswa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="o">:</span><span class="w"> </span><span class="mf">17</span><span class="p">,</span><span class="w"> </span><span class="s2">"nama lengkap"</span><span class="o">:</span><span class="w"> </span><span class="s2">"Budi Santoso"</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">kunci</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"umur"</span><span class="p">;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">siswa</span><span class="p">[</span><span class="nx">kunci</span><span class="p">]);</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">siswa</span><span class="p">.</span><span class="nx">kunci</span><span class="p">);</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">siswa</span><span class="p">[</span><span class="s2">"nama lengkap"</span><span class="p">]);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>17
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>undefined
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Budi Santoso
+</span></code></pre></div>
+<ul>
+<li><code>siswa[kunci]</code> memakai <strong>isi variabel</strong> <code>kunci</code> (yaitu <code>"umur"</code>), sehingga menghasilkan 17.</li>
+<li><code>siswa.kunci</code> mencari properti yang bernama harfiah <code>kunci</code>, yang tidak ada.</li>
+<li>Key yang mengandung spasi hanya bisa diakses dengan kurung siku.</li>
+</ul>
+<h3 id="singkatan-penulisan-properti">Singkatan penulisan properti<a class="headerlink" href="#singkatan-penulisan-properti" title="Permanent link">&para;</a></h3>
+<p>Jika nama variabel sama dengan nama key, cukup tulis sekali. Simpan sebagai <code>singkatan.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">nama</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Budi"</span><span class="p">;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">umur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">17</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">siswa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">siswa</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>{ nama: 'Budi', umur: 17 }
+</span></code></pre></div>
+<p><code>{ nama, umur }</code> sama dengan <code>{ nama: nama, umur: umur }</code>.</p>
+<h2 id="objek-bersarang-dan-optional-chaining">Objek bersarang dan optional chaining<a class="headerlink" href="#objek-bersarang-dan-optional-chaining" title="Permanent link">&para;</a></h2>
+<p>Nilai properti boleh berupa objek lain atau array. Simpan sebagai <code>bersarang.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">toko</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Toko Kita"</span><span class="p">,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nx">alamat</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">kota</span><span class="o">:</span><span class="w"> </span><span class="s2">"Bandung"</span><span class="p">,</span><span class="w"> </span><span class="nx">kodePos</span><span class="o">:</span><span class="w"> </span><span class="s2">"40111"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nx">jamBuka</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">8</span><span class="p">,</span><span class="w"> </span><span class="mf">17</span><span class="p">],</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">};</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">toko</span><span class="p">.</span><span class="nx">alamat</span><span class="p">.</span><span class="nx">kota</span><span class="p">);</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">toko</span><span class="p">.</span><span class="nx">jamBuka</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">toko</span><span class="p">.</span><span class="nx">kontak</span><span class="o">?</span><span class="p">.</span><span class="nx">telepon</span><span class="p">);</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">toko</span><span class="p">.</span><span class="nx">kontak</span><span class="p">.</span><span class="nx">telepon</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output (dipersingkat):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Bandung
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>8
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>undefined
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>TypeError: Cannot read properties of undefined (reading 'telepon')
+</span></code></pre></div>
+<p>Penjelasan:</p>
+<ol>
+<li><code>toko.alamat.kota</code> membaca dua tingkat: objek <code>alamat</code> dulu, lalu <code>kota</code> di dalamnya.</li>
+<li><code>toko.kontak</code> tidak ada, nilainya <code>undefined</code>. Membaca <code>.telepon</code> dari <code>undefined</code> menyebabkan <code>TypeError</code> (baris terakhir).</li>
+<li>Tanda <strong><code>?.</code></strong> (<em>optional chaining</em>) berarti "jika bagian sebelumnya ada, lanjut. Jika <code>undefined</code> atau <code>null</code>, berhenti dan hasilkan <code>undefined</code>". Jadi <code>toko.kontak?.telepon</code> aman.</li>
+</ol>
+<p>Gunakan <code>?.</code> ketika data mungkin tidak lengkap, misalnya data dari pengguna atau dari server.</p>
+<h2 id="method-dan-this">Method dan <code>this</code><a class="headerlink" href="#method-dan-this" title="Permanent link">&para;</a></h2>
+<p>Nilai properti boleh berupa fungsi. Fungsi yang menjadi properti objek disebut <strong>method</strong>. Simpan sebagai <code>method.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">kucing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Mimi"</span><span class="p">,</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nx">suara</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">nama</span><span class="si">}</span><span class="sb">: meong`</span><span class="p">;</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="nx">ganti</span><span class="p">(</span><span class="nx">namaBaru</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">nama</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">namaBaru</span><span class="p">;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="p">};</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">kucing</span><span class="p">.</span><span class="nx">suara</span><span class="p">());</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="nx">kucing</span><span class="p">.</span><span class="nx">ganti</span><span class="p">(</span><span class="s2">"Tom"</span><span class="p">);</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">kucing</span><span class="p">.</span><span class="nx">suara</span><span class="p">());</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Mimi: meong
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Tom: meong
+</span></code></pre></div>
+<p>Penjelasan:</p>
+<ul>
+<li><code>suara() { ... }</code> adalah cara singkat menulis method.</li>
+<li><strong><code>this</code></strong> di dalam method berarti <strong>objek yang memanggil method itu</strong>. Saat <code>kucing.suara()</code> dipanggil, <code>this</code> adalah <code>kucing</code>, sehingga <code>this.nama</code> adalah <code>"Mimi"</code>.</li>
+<li><code>kucing.ganti("Tom")</code> mengubah <code>this.nama</code> menjadi <code>"Tom"</code>, dan pemanggilan <code>suara()</code> berikutnya ikut berubah.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Tulis method dengan sintaks biasa</p>
+<p>Di dalam objek, tulis method seperti <code>suara() { ... }</code>, bukan sebagai arrow function (<code>suara: () =&gt; ...</code>). Arrow function tidak punya <code>this</code> milik objek, sehingga <code>this.nama</code> tidak akan merujuk ke objek tersebut. Pembahasan <code>this</code> yang lebih dalam datang di bab Classes.</p>
+</div>
+<h2 id="destructuring">Destructuring<a class="headerlink" href="#destructuring" title="Permanent link">&para;</a></h2>
+<p><strong>Destructuring</strong> adalah cara mengambil beberapa nilai dari objek atau array sekaligus ke dalam variabel. Simpan sebagai <code>destructuring.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">siswa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Sari"</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="nx">kota</span><span class="o">:</span><span class="w"> </span><span class="s2">"Medan"</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">siswa</span><span class="p">;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nama</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="p">);</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">kota</span><span class="o">:</span><span class="w"> </span><span class="nx">asal</span><span class="p">,</span><span class="w"> </span><span class="nx">kelas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"belum ada"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">siswa</span><span class="p">;</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">asal</span><span class="p">,</span><span class="w"> </span><span class="nx">kelas</span><span class="p">);</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="kd">const</span><span class="w"> </span><span class="nx">warna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"merah"</span><span class="p">,</span><span class="w"> </span><span class="s2">"hijau"</span><span class="p">,</span><span class="w"> </span><span class="s2">"biru"</span><span class="p">];</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">pertama</span><span class="p">,</span><span class="w"> </span><span class="nx">kedua</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">warna</span><span class="p">;</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pertama</span><span class="p">,</span><span class="w"> </span><span class="nx">kedua</span><span class="p">);</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Apel"</span><span class="p">;</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="kd">let</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Jeruk"</span><span class="p">;</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="p">[</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">b</span><span class="p">,</span><span class="w"> </span><span class="nx">a</span><span class="p">];</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">);</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="kd">function</span><span class="w"> </span><span class="nx">perkenalan</span><span class="p">({</span><span class="w"> </span><span class="nx">nama</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">nama</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">umur</span><span class="si">}</span><span class="sb"> tahun`</span><span class="p">;</span>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="p">}</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">perkenalan</span><span class="p">(</span><span class="nx">siswa</span><span class="p">));</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Sari 20
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Medan belum ada
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>merah hijau
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>Jeruk Apel
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>Sari, 20 tahun
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Bentuk</th>
+<th>Artinya</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>const { nama, umur } = siswa</code></td>
+<td>Buat variabel <code>nama</code> dan <code>umur</code> dari properti yang bernama sama</td>
+</tr>
+<tr>
+<td><code>{ kota: asal }</code></td>
+<td>Ambil <code>kota</code>, tetapi simpan ke variabel bernama <code>asal</code></td>
+</tr>
+<tr>
+<td><code>{ kelas = "belum ada" }</code></td>
+<td>Jika properti tidak ada (<code>undefined</code>), pakai nilai default</td>
+</tr>
+<tr>
+<td><code>const [pertama, kedua] = warna</code></td>
+<td>Untuk array, pengambilan berdasarkan <strong>urutan</strong></td>
+</tr>
+<tr>
+<td><code>[a, b] = [b, a]</code></td>
+<td>Menukar dua variabel tanpa variabel sementara (bandingkan latihan bab 1)</td>
+</tr>
+<tr>
+<td><code>function perkenalan({ nama, umur })</code></td>
+<td>Destructuring langsung pada parameter fungsi</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Titik koma sebelum <code>[</code></p>
+<p>Baris yang diawali <code>[</code> bisa dianggap sambungan dari baris sebelumnya jika baris itu tidak diakhiri titik koma. Itu sebabnya contoh ini menulis <code>;</code> di akhir setiap baris.</p>
+</div>
+<h2 id="spread">Spread<a class="headerlink" href="#spread" title="Permanent link">&para;</a></h2>
+<p>Tiga titik <code>...</code> (<strong>spread</strong>) "menebar" isi array atau objek ke tempat lain. Simpan sebagai <code>spread.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">];</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">];</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">salinan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">a</span><span class="p">];</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nx">salinan</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mf">99</span><span class="p">);</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">,</span><span class="w"> </span><span class="nx">salinan</span><span class="p">);</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="kd">const</span><span class="w"> </span><span class="nx">siswa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="o">:</span><span class="w"> </span><span class="mf">17</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="kd">const</span><span class="w"> </span><span class="nx">baru</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nx">siswa</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="o">:</span><span class="w"> </span><span class="mf">18</span><span class="p">,</span><span class="w"> </span><span class="nx">kelas</span><span class="o">:</span><span class="w"> </span><span class="s2">"XII"</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">baru</span><span class="p">);</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">siswa</span><span class="p">);</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="kd">const</span><span class="w"> </span><span class="nx">bawaan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tema</span><span class="o">:</span><span class="w"> </span><span class="s2">"terang"</span><span class="p">,</span><span class="w"> </span><span class="nx">bahasa</span><span class="o">:</span><span class="w"> </span><span class="s2">"id"</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="kd">const</span><span class="w"> </span><span class="nx">pilihan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tema</span><span class="o">:</span><span class="w"> </span><span class="s2">"gelap"</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">({</span><span class="w"> </span><span class="p">...</span><span class="nx">bawaan</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">pilihan</span><span class="w"> </span><span class="p">});</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>[ 1, 2 ] [ 1, 2, 3, 4 ] [ 1, 2, 99 ]
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>{ nama: 'Budi', umur: 18, kelas: 'XII' }
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>{ nama: 'Budi', umur: 17 }
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>{ tema: 'gelap', bahasa: 'id' }
+</span></code></pre></div>
+<p>Penjelasan:</p>
+<ul>
+<li><code>[...a, 3, 4]</code> membuat array baru yang berisi isi <code>a</code> lalu 3 dan 4. <code>[...a]</code> adalah cara lain membuat salinan array (alternatif <code>slice()</code> dari bab 8).</li>
+<li><code>{ ...siswa, umur: 18 }</code> menyalin semua properti <code>siswa</code> ke objek baru, lalu <code>umur</code> ditimpa. <code>siswa</code> yang asli tidak berubah.</li>
+<li>Jika ada key yang sama, <strong>yang ditulis belakangan menang</strong>. Pada <code>{ ...bawaan, ...pilihan }</code>, <code>tema</code> dari <code>pilihan</code> menimpa yang dari <code>bawaan</code>.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Salinan dangkal</p>
+<p>Spread hanya menyalin satu tingkat (<em>shallow copy</em>). Jika sebuah properti berisi objek atau array lain, salinannya masih menunjuk ke objek yang sama dengan aslinya.</p>
+</div>
+<h2 id="const-dan-objek"><code>const</code> dan objek<a class="headerlink" href="#const-dan-objek" title="Permanent link">&para;</a></h2>
+<p>Seperti array di bab 8, <code>const</code> pada objek hanya mengunci nama variabelnya, bukan isinya. Objek juga disimpan sebagai referensi. Simpan sebagai <code>const-objek.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nx">a</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nx">a</span><span class="p">.</span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="kd">const</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">a</span><span class="p">;</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="nx">b</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="kd">const</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nx">a</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="nx">c</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="p">);</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">({}</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="p">{});</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>{ x: 2, y: 3 }
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>{ x: 100, y: 3 }
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>{ x: 100, y: 3 } { x: 0, y: 3 }
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>false
+</span></code></pre></div>
+<ul>
+<li><code>a.x = 2</code> boleh walaupun <code>a</code> dibuat dengan <code>const</code>. Yang dilarang adalah <code>a = { ... }</code> (mengisi ulang variabelnya).</li>
+<li><code>const b = a</code> bukan salinan: <code>b.x = 100</code> ikut mengubah <code>a</code>.</li>
+<li><code>{ ...a }</code> membuat salinan sungguhan, sehingga mengubah <code>c</code> tidak memengaruhi <code>a</code>.</li>
+<li><code>{} === {}</code> bernilai <code>false</code>, karena dua objek berbeda tidak pernah dianggap sama.</li>
+</ul>
+<h2 id="menelusuri-isi-objek">Menelusuri isi objek<a class="headerlink" href="#menelusuri-isi-objek" title="Permanent link">&para;</a></h2>
+<p>Simpan sebagai <code>telusuri.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">harga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">apel</span><span class="o">:</span><span class="w"> </span><span class="mf">5000</span><span class="p">,</span><span class="w"> </span><span class="nx">jeruk</span><span class="o">:</span><span class="w"> </span><span class="mf">8000</span><span class="p">,</span><span class="w"> </span><span class="nx">mangga</span><span class="o">:</span><span class="w"> </span><span class="mf">12000</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">harga</span><span class="p">));</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">harga</span><span class="p">));</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">harga</span><span class="p">));</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">nama</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">harga</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">nama</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">harga</span><span class="p">[</span><span class="nx">nama</span><span class="p">]</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="p">}</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">nama</span><span class="p">,</span><span class="w"> </span><span class="nx">h</span><span class="p">]</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">harga</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">nama</span><span class="si">}</span><span class="sb"> -&gt; </span><span class="si">${</span><span class="nx">h</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="p">}</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="kd">const</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">harga</span><span class="p">).</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">total</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>[ 'apel', 'jeruk', 'mangga' ]
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>[ 5000, 8000, 12000 ]
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>[ [ 'apel', 5000 ], [ 'jeruk', 8000 ], [ 'mangga', 12000 ] ]
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>apel: 5000
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>jeruk: 8000
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>mangga: 12000
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>apel -&gt; 5000
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>jeruk -&gt; 8000
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>mangga -&gt; 12000
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>25000
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Perintah</th>
+<th>Hasil</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Object.keys(obj)</code></td>
+<td>Array berisi semua key</td>
+</tr>
+<tr>
+<td><code>Object.values(obj)</code></td>
+<td>Array berisi semua value</td>
+</tr>
+<tr>
+<td><code>Object.entries(obj)</code></td>
+<td>Array berisi pasangan <code>[key, value]</code></td>
+</tr>
+<tr>
+<td><code>for (const k in obj)</code></td>
+<td>Perulangan atas <strong>key</strong></td>
+</tr>
+</tbody>
+</table>
+<p><code>Object.entries</code> dipadukan dengan destructuring <code>[nama, h]</code> menghasilkan perulangan yang rapi. Setelah menjadi array, objek bisa diproses dengan <code>map</code>, <code>filter</code>, dan <code>reduce</code> dari bab 8.</p>
+<h2 id="array-berisi-objek">Array berisi objek<a class="headerlink" href="#array-berisi-objek" title="Permanent link">&para;</a></h2>
+<p>Bentuk data yang paling sering ditemui adalah array yang berisi banyak objek, seperti tabel dengan satu objek untuk tiap baris. Simpan sebagai <code>array-objek.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">daftar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="nx">nilai</span><span class="o">:</span><span class="w"> </span><span class="mf">80</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Sari"</span><span class="p">,</span><span class="w"> </span><span class="nx">nilai</span><span class="o">:</span><span class="w"> </span><span class="mf">92</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Andi"</span><span class="p">,</span><span class="w"> </span><span class="nx">nilai</span><span class="o">:</span><span class="w"> </span><span class="mf">65</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="p">];</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="kd">const</span><span class="w"> </span><span class="nx">namaSaja</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">daftar</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">nama</span><span class="p">);</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="kd">const</span><span class="w"> </span><span class="nx">lulus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">daftar</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">nilai</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">70</span><span class="p">);</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="kd">const</span><span class="w"> </span><span class="nx">andi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">daftar</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">nama</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"Andi"</span><span class="p">);</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="kd">const</span><span class="w"> </span><span class="nx">rata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">daftar</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">jumlah</span><span class="p">,</span><span class="w"> </span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">jumlah</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">nilai</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">daftar</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="kd">const</span><span class="w"> </span><span class="nx">urut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">daftar</span><span class="p">.</span><span class="nx">slice</span><span class="p">().</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">nilai</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">nilai</span><span class="p">);</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">namaSaja</span><span class="p">);</span>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lulus</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">nama</span><span class="p">));</span>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">andi</span><span class="p">);</span>
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rata</span><span class="p">);</span>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">urut</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">s</span><span class="p">.</span><span class="nx">nama</span><span class="si">}</span><span class="sb"> (</span><span class="si">${</span><span class="nx">s</span><span class="p">.</span><span class="nx">nilai</span><span class="si">}</span><span class="sb">)`</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s2">", "</span><span class="p">));</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>[ 'Budi', 'Sari', 'Andi' ]
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>[ 'Budi', 'Sari' ]
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>{ nama: 'Andi', nilai: 65 }
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>79
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>Sari (92), Budi (80), Andi (65)
+</span></code></pre></div>
+<p>Pola ini sama dengan bab 8, hanya elemennya sekarang berupa objek, sehingga callback membaca propertinya (<code>s.nilai</code>). Untuk mengurutkan berdasarkan properti, pembandingnya mengurangkan properti itu: <code>b.nilai - a.nilai</code> untuk urutan turun.</p>
+<h2 id="json-objek-sebagai-teks">JSON: objek sebagai teks<a class="headerlink" href="#json-objek-sebagai-teks" title="Permanent link">&para;</a></h2>
+<p>Untuk menyimpan objek ke file atau mengirimnya lewat jaringan, objek diubah menjadi teks dengan format <strong>JSON</strong> (<em>JavaScript Object Notation</em>). Simpan sebagai <code>json.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">siswa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="o">:</span><span class="w"> </span><span class="mf">18</span><span class="p">,</span><span class="w"> </span><span class="nx">kelas</span><span class="o">:</span><span class="w"> </span><span class="s2">"XII"</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">teks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">siswa</span><span class="p">);</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">teks</span><span class="p">);</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">teks</span><span class="p">);</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">siswa</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="kd">const</span><span class="w"> </span><span class="nx">kembali</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">teks</span><span class="p">);</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">kembali</span><span class="p">.</span><span class="nx">nama</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>{"nama":"Budi","umur":18,"kelas":"XII"}
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>string
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>{
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>  "nama": "Budi",
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>  "umur": 18,
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>  "kelas": "XII"
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>}
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>Budi
+</span></code></pre></div>
+<ul>
+<li><code>JSON.stringify(objek)</code> mengubah objek menjadi string JSON.</li>
+<li><code>JSON.stringify(objek, null, 2)</code> menghasilkan JSON yang rapi dengan indentasi dua spasi. Dua argumen tambahan itu cukup kamu hafalkan untuk sekarang.</li>
+<li><code>JSON.parse(teks)</code> mengubah string JSON kembali menjadi objek.</li>
+</ul>
+<p>Di JSON, key selalu memakai tanda kutip ganda. Format ini akan sering kamu temui saat membaca file dan memanggil API di bagian Node.js.</p>
+<h2 id="contoh-praktis-rekening-bank">Contoh praktis: rekening bank<a class="headerlink" href="#contoh-praktis-rekening-bank" title="Permanent link">&para;</a></h2>
+<p>Method dan <code>this</code> sangat cocok untuk benda yang punya data sekaligus perilaku. Simpan sebagai <code>rekening.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">rekening</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span><span class="nx">pemilik</span><span class="o">:</span><span class="w"> </span><span class="s2">"Budi"</span><span class="p">,</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span><span class="nx">saldo</span><span class="o">:</span><span class="w"> </span><span class="mf">100000</span><span class="p">,</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">  </span><span class="nx">setor</span><span class="p">(</span><span class="nx">jumlah</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">saldo</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">jumlah</span><span class="p">;</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">  </span><span class="nx">tarik</span><span class="p">(</span><span class="nx">jumlah</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">jumlah</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">saldo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="s2">"Saldo tidak cukup"</span><span class="p">;</span>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">saldo</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="nx">jumlah</span><span class="p">;</span>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s2">"Berhasil"</span><span class="p">;</span>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="w">  </span><span class="nx">ringkasan</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">pemilik</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">saldo</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="p">};</span>
+</span><span id="__span-22-18"><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a>
+</span><span id="__span-22-19"><a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="nx">rekening</span><span class="p">.</span><span class="nx">setor</span><span class="p">(</span><span class="mf">50000</span><span class="p">);</span>
+</span><span id="__span-22-20"><a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rekening</span><span class="p">.</span><span class="nx">ringkasan</span><span class="p">());</span>
+</span><span id="__span-22-21"><a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rekening</span><span class="p">.</span><span class="nx">tarik</span><span class="p">(</span><span class="mf">200000</span><span class="p">));</span>
+</span><span id="__span-22-22"><a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rekening</span><span class="p">.</span><span class="nx">tarik</span><span class="p">(</span><span class="mf">30000</span><span class="p">));</span>
+</span><span id="__span-22-23"><a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rekening</span><span class="p">.</span><span class="nx">ringkasan</span><span class="p">());</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Budi: 150000
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>Saldo tidak cukup
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>Berhasil
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>Budi: 120000
+</span></code></pre></div>
+<p>Proses eksekusinya:</p>
+<ol>
+<li><code>setor(50000)</code> menambah <code>this.saldo</code> dari 100000 menjadi 150000.</li>
+<li><code>tarik(200000)</code>: 200000 lebih besar dari saldo 150000, sehingga <code>return</code> pertama dijalankan. Saldo tidak berubah.</li>
+<li><code>tarik(30000)</code>: cukup, saldo menjadi 120000, dan hasilnya <code>"Berhasil"</code>.</li>
+</ol>
+<h2 id="kesalahan-umum">Kesalahan umum<a class="headerlink" href="#kesalahan-umum" title="Permanent link">&para;</a></h2>
+<h3 id="1-memakai-titik-untuk-key-yang-disimpan-di-variabel">1. Memakai titik untuk key yang disimpan di variabel<a class="headerlink" href="#1-memakai-titik-untuk-key-yang-disimpan-di-variabel" title="Permanent link">&para;</a></h3>
+<p><code>siswa.kunci</code> mencari properti bernama <code>kunci</code>. Pakai <code>siswa[kunci]</code>. Contohnya ada di <code>kunci-dinamis.js</code>.</p>
+<h3 id="2-membaca-properti-dari-undefined">2. Membaca properti dari <code>undefined</code><a class="headerlink" href="#2-membaca-properti-dari-undefined" title="Permanent link">&para;</a></h3>
+<p><code>toko.kontak.telepon</code> menghasilkan <code>TypeError</code> jika <code>kontak</code> tidak ada. Pakai <code>toko.kontak?.telepon</code>, atau pastikan datanya ada lebih dulu.</p>
+<h3 id="3-salah-ketik-nama-properti">3. Salah ketik nama properti<a class="headerlink" href="#3-salah-ketik-nama-properti" title="Permanent link">&para;</a></h3>
+<p>Simpan sebagai <code>salah-ketik.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">produk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Pulpen"</span><span class="p">,</span><span class="w"> </span><span class="nx">harga</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">produk</span><span class="p">.</span><span class="nx">Harga</span><span class="p">);</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">produk</span><span class="p">.</span><span class="nx">harga</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">produk</span><span class="p">.</span><span class="nx">Harga</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>undefined
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>6000
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>NaN
+</span></code></pre></div>
+<p>Key bersifat <em>case-sensitive</em>. <code>produk.Harga</code> bukan <code>produk.harga</code>, dan JavaScript tidak memberi error, hanya <code>undefined</code>. Hasil perhitungannya <code>NaN</code> (dari bab 3).</p>
+<h3 id="4-mengira-const-b-a-menyalin-objek">4. Mengira <code>const b = a</code> menyalin objek<a class="headerlink" href="#4-mengira-const-b-a-menyalin-objek" title="Permanent link">&para;</a></h3>
+<p>Sudah terlihat di <code>const-objek.js</code>. <strong>Perbaikan:</strong> <code>const b = { ...a };</code>.</p>
+<h3 id="5-spread-bukan-salinan-mendalam">5. Spread bukan salinan mendalam<a class="headerlink" href="#5-spread-bukan-salinan-mendalam" title="Permanent link">&para;</a></h3>
+<p>Simpan sebagai <code>salinan-dangkal.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">asli</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="nx">alamat</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">kota</span><span class="o">:</span><span class="w"> </span><span class="s2">"Bandung"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">salinan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nx">asli</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nx">salinan</span><span class="p">.</span><span class="nx">alamat</span><span class="p">.</span><span class="nx">kota</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Medan"</span><span class="p">;</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">asli</span><span class="p">.</span><span class="nx">alamat</span><span class="p">.</span><span class="nx">kota</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>Medan
+</span></code></pre></div>
+<p>Objek <code>alamat</code> di dalamnya masih dibagi bersama oleh <code>asli</code> dan <code>salinan</code>. Untuk mengubah properti bersarang tanpa memengaruhi aslinya, salin juga tingkat dalamnya: <code>{ ...asli, alamat: { ...asli.alamat, kota: "Medan" } }</code>.</p>
+<h3 id="6-method-ditulis-sebagai-arrow-function">6. Method ditulis sebagai arrow function<a class="headerlink" href="#6-method-ditulis-sebagai-arrow-function" title="Permanent link">&para;</a></h3>
+<p><code>suara: () =&gt; this.nama</code> tidak memakai <code>this</code> milik objek. Tulis method dengan sintaks <code>suara() { ... }</code>.</p>
+<h3 id="7-membandingkan-objek-dengan">7. Membandingkan objek dengan <code>===</code><a class="headerlink" href="#7-membandingkan-objek-dengan" title="Permanent link">&para;</a></h3>
+<p><code>{ a: 1 } === { a: 1 }</code> bernilai <code>false</code>. Untuk membandingkan isi, bandingkan propertinya satu per satu, atau bandingkan hasil <code>JSON.stringify</code> (hanya jika urutan propertinya pasti sama).</p>
+<h2 id="ringkasan">Ringkasan<a class="headerlink" href="#ringkasan" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Objek</strong> adalah kumpulan pasangan <code>key: value</code>, ditulis <code>{ ... }</code>. Akses dengan <code>obj.key</code> atau <code>obj["key"]</code>.</li>
+<li>Properti bisa diubah, ditambah (<code>obj.baru = ...</code>), dan dihapus (<code>delete obj.key</code>). Properti yang tidak ada menghasilkan <code>undefined</code>.</li>
+<li>Gunakan kurung siku jika key ada di variabel atau mengandung spasi.</li>
+<li><code>?.</code> membaca properti dengan aman dari data yang mungkin tidak ada.</li>
+<li><strong>Method</strong> adalah fungsi di dalam objek, dan <code>this</code> merujuk ke objek yang memanggilnya.</li>
+<li><strong>Destructuring</strong> (<code>const { a, b } = obj</code>, <code>const [x, y] = arr</code>) mengambil banyak nilai sekaligus.</li>
+<li><strong>Spread</strong> (<code>{ ...obj }</code>, <code>[...arr]</code>) menyalin dan menggabung. Hasilnya salinan dangkal, dan key yang belakangan menimpa yang depan.</li>
+<li><code>const</code> hanya mengunci nama variabel. Objek adalah referensi, jadi salin dengan spread.</li>
+<li><code>Object.keys</code>, <code>Object.values</code>, dan <code>Object.entries</code> mengubah objek menjadi array agar bisa diproses.</li>
+<li><code>JSON.stringify</code> mengubah objek menjadi teks, dan <code>JSON.parse</code> mengembalikannya.</li>
+</ul>
+<h2 id="latihan">Latihan<a class="headerlink" href="#latihan" title="Permanent link">&para;</a></h2>
+<p>Kerjakan sendiri dulu sebelum melihat jawaban.</p>
+<h3 id="latihan-1-prediksi-output">Latihan 1: Prediksi output<a class="headerlink" href="#latihan-1-prediksi-output" title="Permanent link">&para;</a></h3>
+<p>Apa yang tampil?</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">a</span><span class="p">;</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="nx">b</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span>
+</span></code></pre></div>
+<details class="success">
+<summary>Jawaban</summary>
+<p>Output: <code>5</code>. <code>b</code> hanyalah nama kedua untuk objek yang sama, sehingga mengubah <code>b.x</code> mengubah <code>a.x</code>.</p>
+</details>
+<h3 id="latihan-2-perbaiki-error">Latihan 2: Perbaiki error<a class="headerlink" href="#latihan-2-perbaiki-error" title="Permanent link">&para;</a></h3>
+<p>Kode ini menghasilkan <code>TypeError</code>. Perbaiki agar menampilkan <code>undefined</code> tanpa error:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">pengguna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Ani"</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pengguna</span><span class="p">.</span><span class="nx">alamat</span><span class="p">.</span><span class="nx">kota</span><span class="p">);</span>
+</span></code></pre></div>
+<details class="success">
+<summary>Jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">pengguna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Ani"</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pengguna</span><span class="p">.</span><span class="nx">alamat</span><span class="o">?</span><span class="p">.</span><span class="nx">kota</span><span class="p">);</span>
+</span></code></pre></div>
+Output: <code>undefined</code>. Tanda <code>?.</code> menghentikan pembacaan ketika <code>alamat</code> tidak ada.</p>
+</details>
+<h3 id="latihan-3-objek-buku">Latihan 3: Objek buku<a class="headerlink" href="#latihan-3-objek-buku" title="Permanent link">&para;</a></h3>
+<p>Buat objek <code>buku</code> dengan properti <code>judul</code>, <code>penulis</code>, dan <code>tahun</code>, serta method <code>deskripsi()</code> yang mengembalikan teks <code>Judul oleh Penulis (Tahun)</code>.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">buku</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">  </span><span class="nx">judul</span><span class="o">:</span><span class="w"> </span><span class="s2">"Laskar Pelangi"</span><span class="p">,</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">  </span><span class="nx">penulis</span><span class="o">:</span><span class="w"> </span><span class="s2">"Andrea Hirata"</span><span class="p">,</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="w">  </span><span class="nx">tahun</span><span class="o">:</span><span class="w"> </span><span class="mf">2005</span><span class="p">,</span>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="w">  </span><span class="nx">deskripsi</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">judul</span><span class="si">}</span><span class="sb"> oleh </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">penulis</span><span class="si">}</span><span class="sb"> (</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">tahun</span><span class="si">}</span><span class="sb">)`</span><span class="p">;</span>
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="p">};</span>
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>
+</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">buku</span><span class="p">.</span><span class="nx">deskripsi</span><span class="p">());</span>
+</span></code></pre></div>
+Output: <code>Laskar Pelangi oleh Andrea Hirata (2005)</code></p>
+</details>
+<h3 id="latihan-4-destructuring">Latihan 4: Destructuring<a class="headerlink" href="#latihan-4-destructuring" title="Permanent link">&para;</a></h3>
+<p>Dari <code>{ nama: "Sari", umur: 20, kota: "Medan" }</code>, ambil <code>nama</code> dan <code>kota</code> dengan destructuring, lalu tampilkan <code>Sari dari Medan</code>.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">siswa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Sari"</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="nx">kota</span><span class="o">:</span><span class="w"> </span><span class="s2">"Medan"</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="p">,</span><span class="w"> </span><span class="nx">kota</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">siswa</span><span class="p">;</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">nama</span><span class="si">}</span><span class="sb"> dari </span><span class="si">${</span><span class="nx">kota</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></code></pre></div>
+Output: <code>Sari dari Medan</code></p>
+</details>
+<h3 id="latihan-5-gabungkan-pengaturan">Latihan 5: Gabungkan pengaturan<a class="headerlink" href="#latihan-5-gabungkan-pengaturan" title="Permanent link">&para;</a></h3>
+<p>Pengaturan bawaan adalah <code>{ tema: "terang", bahasa: "id", ukuran: 14 }</code>. Pengguna memilih <code>{ tema: "gelap" }</code>. Buat pengaturan akhir tanpa mengubah pengaturan bawaan.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">bawaan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tema</span><span class="o">:</span><span class="w"> </span><span class="s2">"terang"</span><span class="p">,</span><span class="w"> </span><span class="nx">bahasa</span><span class="o">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w"> </span><span class="nx">ukuran</span><span class="o">:</span><span class="w"> </span><span class="mf">14</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">pilihan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tema</span><span class="o">:</span><span class="w"> </span><span class="s2">"gelap"</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">akhir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nx">bawaan</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">pilihan</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">akhir</span><span class="p">);</span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bawaan</span><span class="p">);</span>
+</span></code></pre></div>
+Output:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>{ tema: 'gelap', bahasa: 'id', ukuran: 14 }
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>{ tema: 'terang', bahasa: 'id', ukuran: 14 }
+</span></code></pre></div></p>
+</details>
+<h3 id="latihan-6-daftar-produk">Latihan 6: Daftar produk<a class="headerlink" href="#latihan-6-daftar-produk" title="Permanent link">&para;</a></h3>
+<p>Diberikan produk berikut:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">produk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Pensil"</span><span class="p">,</span><span class="w"> </span><span class="nx">harga</span><span class="o">:</span><span class="w"> </span><span class="mf">2000</span><span class="p">,</span><span class="w"> </span><span class="nx">stok</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Buku"</span><span class="p">,</span><span class="w"> </span><span class="nx">harga</span><span class="o">:</span><span class="w"> </span><span class="mf">8000</span><span class="p">,</span><span class="w"> </span><span class="nx">stok</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Pulpen"</span><span class="p">,</span><span class="w"> </span><span class="nx">harga</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="p">,</span><span class="w"> </span><span class="nx">stok</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="p">];</span>
+</span></code></pre></div>
+<p>Tampilkan nama produk yang stoknya masih ada, lalu hitung total nilai seluruh stok (jumlah harga × stok).</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">tersedia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">produk</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">p</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">p</span><span class="p">.</span><span class="nx">stok</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">).</span><span class="nx">map</span><span class="p">((</span><span class="nx">p</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">p</span><span class="p">.</span><span class="nx">nama</span><span class="p">);</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">nilaiStok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">produk</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">jumlah</span><span class="p">,</span><span class="w"> </span><span class="nx">p</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">jumlah</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">p</span><span class="p">.</span><span class="nx">harga</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">p</span><span class="p">.</span><span class="nx">stok</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tersedia</span><span class="p">);</span>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nilaiStok</span><span class="p">);</span>
+</span></code></pre></div>
+Output:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>[ 'Pensil', 'Pulpen' ]
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>35000
+</span></code></pre></div>
+Nilai stok: 2000 × 10 + 8000 × 0 + 3000 × 5 = 35000.</p>
+</details>
+<h3 id="latihan-7-rekening">Latihan 7: Rekening<a class="headerlink" href="#latihan-7-rekening" title="Permanent link">&para;</a></h3>
+<p>Memakai objek <code>rekening</code> dari contoh praktis (saldo awal 100000), panggil <code>setor(50000)</code>, coba <code>tarik(200000)</code>, lalu <code>tarik(30000)</code>. Tampilkan hasil tiap <code>tarik</code> dan saldo akhir.</p>
+<details class="success">
+<summary>Jawaban</summary>
+<p>Output: <code>Saldo tidak cukup</code> untuk penarikan 200000, <code>Berhasil</code> untuk 30000, dan saldo akhir <code>120000</code>. Prosesnya: 100000 + 50000 = 150000, penarikan pertama ditolak, lalu 150000 - 30000 = 120000.</p>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Kembali ke atas
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../08-arrays/" class="md-footer__link md-footer__link--prev" aria-label="Sebelumnya: Arrays">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Sebelumnya
+              </span>
+              <div class="md-ellipsis">
+                Arrays
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../10-error-handling/" class="md-footer__link md-footer__link--next" aria-label="Selanjutnya: Error Handling &amp; Debugging">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Selanjutnya
+              </span>
+              <div class="md-ellipsis">
+                Error Handling & Debugging
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.path", "navigation.footer", "navigation.top", "navigation.tracking", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Tersalin ke clipboard", "clipboard.copy": "Salin ke clipboard", "search.result.more.one": "1 lagi di halaman ini", "search.result.more.other": "# lagi di halaman ini", "search.result.none": "Tidak ada dokumen yang sesuai", "search.result.one": "1 dokumen ditemukan", "search.result.other": "# dokumen ditemukan", "search.result.placeholder": "Ketik untuk mulai pencarian", "search.result.term.missing": "Tidak ada", "select.version": "Pilih versi"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/vendor/mermaid/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-config.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3021 @@
+
+<!doctype html>
+<html lang="id" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Materi belajar JavaScript dan Node.js bagi pemula, dari konsep dasar hingga praktik.">
+      
+      
+      
+        <link rel="canonical" href="https://topekox.my.id/mkdocs-template/nodejs/17-modul-bawaan/">
+      
+      
+        <link rel="prev" href="../16-npm/">
+      
+      
+        <link rel="next" href="../18-proses-lingkungan/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Modul Bawaan Inti - Belajar JavaScript dan Node.js</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tujuan-pembelajaran" class="md-skip">
+          Lewati ke isi
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Belajar JavaScript dan Node.js" class="md-header__button md-logo" aria-label="Belajar JavaScript dan Node.js" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Belajar JavaScript dan Node.js
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modul Bawaan Inti
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: system (click for light)"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Theme: system (click for light)" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: light (click for dark)"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Theme: light (click for dark)" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: dark (click for system)"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Theme: dark (click for system)" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cari" placeholder="Cari" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cari">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Kosongkan" aria-label="Kosongkan" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Mempersiapkan pencarian
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigasi" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Belajar JavaScript dan Node.js" class="md-nav__button md-logo" aria-label="Belajar JavaScript dan Node.js" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Belajar JavaScript dan Node.js
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../javascript/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JavaScript Dasar
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JavaScript Dasar
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/01-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/02-operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operators & Expressions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/03-strings-numbers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings & Numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/04-conditionals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/05-loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/06-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/07-scope-hoisting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scope & Hoisting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/08-arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/09-objects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/10-error-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Handling & Debugging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/11-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/12-asynchronous/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asynchronous JavaScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/13-classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes & OOP Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/14-proyek-akhir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyek Akhir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node.js
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Node.js
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-pengenalan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pengenalan Node.js
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-npm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    npm dan package.json
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modul Bawaan Inti
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modul Bawaan Inti
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tujuan-pembelajaran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tujuan pembelajaran
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pendahuluan-baterai-sudah-termasuk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pendahuluan: baterai sudah termasuk
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nodepath-mengolah-alamat-berkas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        node:path: mengolah alamat berkas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="node:path: mengolah alamat berkas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alamat-berkas-di-dalam-proyek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alamat berkas di dalam proyek
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#url-dan-urlsearchparams-alamat-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URL dan URLSearchParams: alamat web
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="URL dan URLSearchParams: alamat web">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#membuat-query-dan-alamat-relatif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Membuat query dan alamat relatif
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nodeos-informasi-sistem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        node:os: informasi sistem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nodeutil-alat-bantu-serba-guna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        node:util: alat bantu serba guna
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="node:util: alat bantu serba guna">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memformat-teks-dan-melihat-isi-objek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memformat teks dan melihat isi objek
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mengubah-callback-menjadi-promise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mengubah callback menjadi Promise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parseargs-membaca-argumen-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        parseArgs: membaca argumen terminal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nodecrypto-hash-dan-angka-acak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        node:crypto: hash dan angka acak
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="node:crypto: hash dan angka acak">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#menyimpan-kata-sandi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menyimpan kata sandi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buffer-data-biner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buffer: data biner
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structuredclone-salinan-sungguhan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        structuredClone: salinan sungguhan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contoh-praktis-ringkasan-sebuah-berkas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contoh praktis: ringkasan sebuah berkas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#menemukan-modul-yang-kamu-butuhkan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menemukan modul yang kamu butuhkan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kesalahan-umum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kesalahan umum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kesalahan umum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-menyambung-alamat-berkas-dengan-tanda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Menyambung alamat berkas dengan tanda +
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-memakai-__dirname-di-es-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Memakai __dirname di ES Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-alamat-berkas-yang-relatif-ke-folder-kerja" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Alamat berkas yang relatif ke folder kerja
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-memecah-url-secara-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Memecah URL secara manual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-lupa-bahwa-nilai-query-selalu-teks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Lupa bahwa nilai query selalu teks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-memakai-mathrandom-atau-hash-polos-untuk-keamanan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Memakai Math.random() atau hash polos untuk keamanan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-mengira-panjang-buffer-sama-dengan-panjang-teks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Mengira panjang Buffer sama dengan panjang teks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-menyalin-objek-bersarang-dengan-spread" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Menyalin objek bersarang dengan spread
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-memasang-paket-untuk-sesuatu-yang-sudah-bawaan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Memasang paket untuk sesuatu yang sudah bawaan
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ringkasan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ringkasan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latihan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latihan-1-memecah-alamat-berkas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 1: Memecah alamat berkas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-2-query-dari-alamat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 2: Query dari alamat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-3-memformat-dengan-utilformat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 3: Memformat dengan util.format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-4-parseargs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 4: parseArgs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-5-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 5: Hash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-6-base64-bolak-balik" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 6: Base64 bolak-balik
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-7-salinan-mendalam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 7: Salinan mendalam
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-proses-lingkungan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proses dan Lingkungan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-events-streams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events dan Streams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-http/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server HTTP Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-express/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Express
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../22-rest-api-tes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST API dan Pengujian
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../23-proyek-akhir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyek Akhir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tujuan-pembelajaran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tujuan pembelajaran
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pendahuluan-baterai-sudah-termasuk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pendahuluan: baterai sudah termasuk
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nodepath-mengolah-alamat-berkas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        node:path: mengolah alamat berkas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="node:path: mengolah alamat berkas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alamat-berkas-di-dalam-proyek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alamat berkas di dalam proyek
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#url-dan-urlsearchparams-alamat-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URL dan URLSearchParams: alamat web
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="URL dan URLSearchParams: alamat web">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#membuat-query-dan-alamat-relatif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Membuat query dan alamat relatif
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nodeos-informasi-sistem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        node:os: informasi sistem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nodeutil-alat-bantu-serba-guna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        node:util: alat bantu serba guna
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="node:util: alat bantu serba guna">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memformat-teks-dan-melihat-isi-objek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memformat teks dan melihat isi objek
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mengubah-callback-menjadi-promise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mengubah callback menjadi Promise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parseargs-membaca-argumen-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        parseArgs: membaca argumen terminal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nodecrypto-hash-dan-angka-acak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        node:crypto: hash dan angka acak
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="node:crypto: hash dan angka acak">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#menyimpan-kata-sandi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menyimpan kata sandi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buffer-data-biner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buffer: data biner
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structuredclone-salinan-sungguhan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        structuredClone: salinan sungguhan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contoh-praktis-ringkasan-sebuah-berkas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contoh praktis: ringkasan sebuah berkas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#menemukan-modul-yang-kamu-butuhkan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menemukan modul yang kamu butuhkan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kesalahan-umum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kesalahan umum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kesalahan umum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-menyambung-alamat-berkas-dengan-tanda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Menyambung alamat berkas dengan tanda +
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-memakai-__dirname-di-es-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Memakai __dirname di ES Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-alamat-berkas-yang-relatif-ke-folder-kerja" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Alamat berkas yang relatif ke folder kerja
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-memecah-url-secara-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Memecah URL secara manual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-lupa-bahwa-nilai-query-selalu-teks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Lupa bahwa nilai query selalu teks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-memakai-mathrandom-atau-hash-polos-untuk-keamanan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Memakai Math.random() atau hash polos untuk keamanan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-mengira-panjang-buffer-sama-dengan-panjang-teks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Mengira panjang Buffer sama dengan panjang teks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-menyalin-objek-bersarang-dengan-spread" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Menyalin objek bersarang dengan spread
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-memasang-paket-untuk-sesuatu-yang-sudah-bawaan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Memasang paket untuk sesuatu yang sudah bawaan
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ringkasan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ringkasan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latihan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latihan-1-memecah-alamat-berkas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 1: Memecah alamat berkas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-2-query-dari-alamat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 2: Query dari alamat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-3-memformat-dengan-utilformat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 3: Memformat dengan util.format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-4-parseargs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 4: parseArgs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-5-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 5: Hash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-6-base64-bolak-balik" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 6: Base64 bolak-balik
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-7-salinan-mendalam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 7: Salinan mendalam
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigasi" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Node.js
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Modul Bawaan Inti</h1>
+
+<h2 id="tujuan-pembelajaran">Tujuan pembelajaran<a class="headerlink" href="#tujuan-pembelajaran" title="Permanent link">&para;</a></h2>
+<p>Setelah mempelajari bab ini, kamu dapat:</p>
+<ul>
+<li>Menjelaskan apa itu modul bawaan Node.js dan mengapa ditulis dengan awalan <code>node:</code>.</li>
+<li>Mengolah alamat berkas dengan <code>node:path</code> dan memakai <code>import.meta.dirname</code>.</li>
+<li>Mengurai dan membuat alamat web dengan <code>URL</code> dan <code>URLSearchParams</code>.</li>
+<li>Memakai <code>node:util</code> untuk memformat teks, mengubah callback menjadi Promise, dan membaca argumen terminal dengan <code>parseArgs</code>.</li>
+<li>Membuat hash dan angka acak yang aman dengan <code>node:crypto</code>.</li>
+<li>Memahami <code>Buffer</code> dan penyandian teks (hex, base64).</li>
+<li>Memakai <code>node:timers/promises</code> dan <code>structuredClone</code>.</li>
+<li>Menemukan modul bawaan yang dibutuhkan dari dokumentasi.</li>
+</ul>
+<p>Bab ini memakai materi bab 11 (modul), bab 12 (Promise), bab 14 (argumen terminal), dan bab 15 (folder <code>node-belajar</code>). Semua contoh dijalankan dari folder <code>node-belajar</code>.</p>
+<h2 id="pendahuluan-baterai-sudah-termasuk">Pendahuluan: baterai sudah termasuk<a class="headerlink" href="#pendahuluan-baterai-sudah-termasuk" title="Permanent link">&para;</a></h2>
+<p>Di bab 16 kamu belajar memasang paket dari luar. Tetapi sebelum mencari paket, selalu periksa dulu apa yang <strong>sudah disediakan Node.js</strong>. Node.js datang dengan puluhan modul bawaan untuk berkas, alamat, sistem operasi, kriptografi, jaringan, dan banyak lagi. Memakainya lebih aman (tidak ada paket tambahan yang bisa bermasalah), lebih ringan, dan tidak perlu <code>npm install</code>.</p>
+<p>Modul bawaan diimpor dengan awalan <strong><code>node:</code></strong>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">path</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:path"</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">readFile</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:fs/promises"</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Awalan <code>node:</code> menandakan dengan jelas bahwa ini modul bawaan, bukan paket di <code>node_modules</code>. Tanpa awalan itu pun biasanya tetap bekerja (<code>import fs from "fs"</code>), tetapi awalan <code>node:</code> adalah kebiasaan yang disarankan, dan beberapa modul baru <strong>hanya</strong> bisa dipakai dengan awalan itu.</p>
+<p>Di bab-bab sebelumnya kamu sudah memakai <code>node:fs/promises</code>, <code>node:path</code>, dan <code>node:assert</code>. Bab ini memperkenalkan modul lain yang paling sering dibutuhkan.</p>
+<h2 id="nodepath-mengolah-alamat-berkas"><code>node:path</code>: mengolah alamat berkas<a class="headerlink" href="#nodepath-mengolah-alamat-berkas" title="Permanent link">&para;</a></h2>
+<p>Alamat berkas ditulis berbeda di tiap sistem operasi: Windows memakai <code>\</code> (<code>data\laporan\x.json</code>), sedangkan macOS dan Linux memakai <code>/</code> (<code>data/laporan/x.json</code>). Menyambung alamat dengan tanda <code>+</code> dan <code>"/"</code> bisa rusak di salah satunya. Modul <code>path</code> mengatasi itu. Simpan sebagai <code>path-dasar.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">path-dasar.js</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">path</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:path"</span><span class="p">;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">posix</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span><span class="w"> </span><span class="s2">"laporan"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2025"</span><span class="p">,</span><span class="w"> </span><span class="s2">"maret.json"</span><span class="p">));</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">win32</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span><span class="w"> </span><span class="s2">"laporan"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2025"</span><span class="p">,</span><span class="w"> </span><span class="s2">"maret.json"</span><span class="p">));</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">posix</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">"/a/b"</span><span class="p">,</span><span class="w"> </span><span class="s2">"../c"</span><span class="p">,</span><span class="w"> </span><span class="s2">"./d.txt"</span><span class="p">));</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">posix</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s2">"/proyek"</span><span class="p">,</span><span class="w"> </span><span class="s2">"src"</span><span class="p">,</span><span class="w"> </span><span class="s2">"../data"</span><span class="p">,</span><span class="w"> </span><span class="s2">"x.json"</span><span class="p">));</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kd">const</span><span class="w"> </span><span class="nx">alamat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/proyek/src/app.js"</span><span class="p">;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">posix</span><span class="p">.</span><span class="nx">dirname</span><span class="p">(</span><span class="nx">alamat</span><span class="p">));</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">posix</span><span class="p">.</span><span class="nx">basename</span><span class="p">(</span><span class="nx">alamat</span><span class="p">));</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">posix</span><span class="p">.</span><span class="nx">extname</span><span class="p">(</span><span class="nx">alamat</span><span class="p">));</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">posix</span><span class="p">.</span><span class="nx">basename</span><span class="p">(</span><span class="nx">alamat</span><span class="p">,</span><span class="w"> </span><span class="s2">".js"</span><span class="p">));</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">posix</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">alamat</span><span class="p">));</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">posix</span><span class="p">.</span><span class="nx">isAbsolute</span><span class="p">(</span><span class="s2">"/a"</span><span class="p">),</span><span class="w"> </span><span class="nx">path</span><span class="p">.</span><span class="nx">posix</span><span class="p">.</span><span class="nx">isAbsolute</span><span class="p">(</span><span class="s2">"a/b"</span><span class="p">));</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>node<span class="w"> </span>path-dasar.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>data/laporan/2025/maret.json
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>data\laporan\2025\maret.json
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>/a/c/d.txt
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>/proyek/data/x.json
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>/proyek/src
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>app.js
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>.js
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>app
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>{
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>  root: '/',
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  dir: '/proyek/src',
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>  base: 'app.js',
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>  ext: '.js',
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>  name: 'app'
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>}
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>true false
+</span></code></pre></div>
+<p><code>path</code> punya dua "dialek": <code>path.posix</code> (gaya <code>/</code>) dan <code>path.win32</code> (gaya <code>\</code>). Biasanya kamu cukup menulis <code>path.join(...)</code> dan Node.js memilih dialek sesuai sistem operasimu. Contoh di atas sengaja memakai dialek tertentu supaya hasilnya sama di semua komputer.</p>
+<table>
+<thead>
+<tr>
+<th>Fungsi</th>
+<th>Hasil</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>join(a, b, ...)</code></td>
+<td>Menyambung bagian alamat dengan pemisah yang benar, sekaligus merapikan <code>..</code> dan <code>.</code></td>
+</tr>
+<tr>
+<td><code>resolve(a, b, ...)</code></td>
+<td>Membentuk alamat <strong>absolut</strong>. Jika bagiannya tidak absolut, dihitung dari folder kerja</td>
+</tr>
+<tr>
+<td><code>dirname(alamat)</code></td>
+<td>Folder tempat berkas berada</td>
+</tr>
+<tr>
+<td><code>basename(alamat)</code></td>
+<td>Nama berkas (opsional: buang ekstensi dengan argumen kedua)</td>
+</tr>
+<tr>
+<td><code>extname(alamat)</code></td>
+<td>Ekstensi, termasuk titik</td>
+</tr>
+<tr>
+<td><code>parse(alamat)</code></td>
+<td>Memecah menjadi objek <code>root</code>, <code>dir</code>, <code>base</code>, <code>ext</code>, <code>name</code></td>
+</tr>
+<tr>
+<td><code>isAbsolute(alamat)</code></td>
+<td>Apakah alamat dimulai dari akar (<code>/</code> atau <code>C:\</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="alamat-berkas-di-dalam-proyek">Alamat berkas di dalam proyek<a class="headerlink" href="#alamat-berkas-di-dalam-proyek" title="Permanent link">&para;</a></h3>
+<p>Di bab 14 ada kesalahan umum: alamat relatif seperti <code>data/pengeluaran.json</code> dihitung dari <strong>folder tempat perintah <code>node</code> dijalankan</strong>, bukan dari lokasi file kodemu. Cara memperbaikinya di ES Modules adalah <strong><code>import.meta.dirname</code></strong>, yang berisi folder tempat file kode itu berada (<code>import.meta.filename</code> berisi alamat lengkap file itu sendiri). Keduanya menggantikan <code>__dirname</code> dan <code>__filename</code> milik CommonJS.</p>
+<p>Buat folder <code>demo</code> berisi tiga file:</p>
+<div class="language-json highlight"><span class="filename">demo/data.json</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span><span class="w"> </span><span class="nt">"nama"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Budi"</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-javascript highlight"><span class="filename">demo/salah.js</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">readFile</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:fs/promises"</span><span class="p">;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">readFile</span><span class="p">(</span><span class="s2">"data.json"</span><span class="p">,</span><span class="w"> </span><span class="s2">"utf8"</span><span class="p">)));</span>
+</span></code></pre></div>
+<div class="language-javascript highlight"><span class="filename">demo/benar.js</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">readFile</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:fs/promises"</span><span class="p">;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">join</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:path"</span><span class="p">;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">alamat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">join</span><span class="p">(</span><span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">dirname</span><span class="p">,</span><span class="w"> </span><span class="s2">"data.json"</span><span class="p">);</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">readFile</span><span class="p">(</span><span class="nx">alamat</span><span class="p">,</span><span class="w"> </span><span class="s2">"utf8"</span><span class="p">)));</span>
+</span></code></pre></div>
+<p>Jalankan keduanya <strong>dari dalam</strong> folder <code>demo</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>demo
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>node<span class="w"> </span>salah.js
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>node<span class="w"> </span>benar.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>{ nama: 'Budi' }
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>{ nama: 'Budi' }
+</span></code></pre></div>
+<p>Keduanya berhasil, karena folder kerjanya kebetulan sama dengan lokasi file. Sekarang kembali ke folder <code>node-belajar</code> dan jalankan dari sana:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span>..
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>node<span class="w"> </span>demo/benar.js
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>node<span class="w"> </span>demo/salah.js
+</span></code></pre></div>
+<p>Output (dipersingkat):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>{ nama: 'Budi' }
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Error: ENOENT: no such file or directory, open
+</span></code></pre></div>
+<p><code>benar.js</code> tetap bekerja dari folder mana pun, karena alamatnya dihitung dari lokasi file (<code>import.meta.dirname</code>). <code>salah.js</code> gagal dengan <code>ENOENT</code> karena mencari <code>data.json</code> di folder kerja. <strong>Kebiasaan yang baik:</strong> untuk berkas yang menjadi bagian proyek, bentuk alamatnya dengan <code>path.join(import.meta.dirname, ...)</code>.</p>
+<div class="admonition note">
+<p class="admonition-title"><code>import.meta.url</code></p>
+<p>Selain <code>dirname</code> dan <code>filename</code>, ada <code>import.meta.url</code>, yaitu alamat file ini dalam bentuk URL (<code>file:///...</code>). Fungsi <code>fileURLToPath</code> dari <code>node:url</code> mengubahnya menjadi alamat biasa. <code>import.meta.dirname</code> dan <code>import.meta.filename</code> sudah mencakup kebutuhan itu di Node.js versi terbaru.</p>
+</div>
+<h2 id="url-dan-urlsearchparams-alamat-web"><code>URL</code> dan <code>URLSearchParams</code>: alamat web<a class="headerlink" href="#url-dan-urlsearchparams-alamat-web" title="Permanent link">&para;</a></h2>
+<p>Alamat web seperti <code>https://toko.id:8080/produk/pensil?kategori=alat#ulasan</code> punya banyak bagian. Memecahnya dengan <code>split</code> atau <code>slice</code> rawan salah. Kelas bawaan <strong><code>URL</code></strong> (tersedia global, tanpa <code>import</code>) melakukannya dengan benar. Simpan sebagai <code>url-dasar.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">url-dasar.js</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">URL</span><span class="p">(</span><span class="s2">"https://toko.id:8080/produk/pensil?kategori=alat&amp;urut=harga&amp;urut=nama#ulasan"</span><span class="p">);</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">protocol</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="p">.</span><span class="nx">hostname</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="p">.</span><span class="nx">port</span><span class="p">);</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">pathname</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="p">.</span><span class="nx">search</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">origin</span><span class="p">);</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"kategori"</span><span class="p">));</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">getAll</span><span class="p">(</span><span class="s2">"urut"</span><span class="p">));</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"tidak-ada"</span><span class="p">));</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="s2">"urut"</span><span class="p">));</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="nx">url</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">"halaman"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2"</span><span class="p">);</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="nx">url</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="ow">delete</span><span class="p">(</span><span class="s2">"urut"</span><span class="p">);</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">href</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>node<span class="w"> </span>url-dasar.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>https: toko.id 8080
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>/produk/pensil ?kategori=alat&amp;urut=harga&amp;urut=nama #ulasan
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>https://toko.id:8080
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>alat
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>[ 'harga', 'nama' ]
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>null
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>true
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>https://toko.id:8080/produk/pensil?kategori=alat&amp;halaman=2#ulasan
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Properti</th>
+<th>Isi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>protocol</code>, <code>hostname</code>, <code>port</code></td>
+<td>Skema, nama host, dan nomor port</td>
+</tr>
+<tr>
+<td><code>pathname</code>, <code>search</code>, <code>hash</code></td>
+<td>Jalur, bagian query (setelah <code>?</code>), dan bagian setelah <code>#</code></td>
+</tr>
+<tr>
+<td><code>origin</code></td>
+<td>Gabungan protokol, host, dan port</td>
+</tr>
+<tr>
+<td><code>searchParams</code></td>
+<td>Objek <code>URLSearchParams</code> untuk membaca dan mengubah query</td>
+</tr>
+<tr>
+<td><code>href</code></td>
+<td>Seluruh alamat sebagai teks</td>
+</tr>
+</tbody>
+</table>
+<p>Pada <code>searchParams</code>, <code>get</code> mengambil satu nilai (atau <code>null</code> jika tidak ada), <code>getAll</code> mengambil semua nilai untuk satu nama, dan <code>set</code>, <code>delete</code>, <code>has</code> bekerja seperti namanya. Setiap perubahan langsung tercermin di <code>url.href</code>.</p>
+<h3 id="membuat-query-dan-alamat-relatif">Membuat query dan alamat relatif<a class="headerlink" href="#membuat-query-dan-alamat-relatif" title="Permanent link">&para;</a></h3>
+<p>Simpan sebagai <code>url-lanjut.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">url-lanjut.js</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">URLSearchParams</span><span class="p">({</span><span class="w"> </span><span class="nx">q</span><span class="o">:</span><span class="w"> </span><span class="s2">"kopi susu"</span><span class="p">,</span><span class="w"> </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">q</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([...</span><span class="nx">q</span><span class="p">]);</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">fromEntries</span><span class="p">(</span><span class="nx">q</span><span class="p">));</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">URL</span><span class="p">(</span><span class="s2">"/api/pengguna?id=5"</span><span class="p">,</span><span class="w"> </span><span class="s2">"http://localhost:3000"</span><span class="p">).</span><span class="nx">href</span><span class="p">);</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">  </span><span class="ow">new</span><span class="w"> </span><span class="nx">URL</span><span class="p">(</span><span class="s2">"bukan url"</span><span class="p">);</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">code</span><span class="p">);</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>node<span class="w"> </span>url-lanjut.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>q=kopi+susu&amp;min=1000
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>[ [ 'q', 'kopi susu' ], [ 'min', '1000' ] ]
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>{ q: 'kopi susu', min: '1000' }
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>http://localhost:3000/api/pengguna?id=5
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>TypeError ERR_INVALID_URL
+</span></code></pre></div>
+<ul>
+<li><code>URLSearchParams</code> menulis spasi sebagai <code>+</code> dan karakter khusus lainnya dengan aman (<em>URL encoding</em>). Nilainya selalu <strong>teks</strong>, jadi <code>min</code> tetap <code>"1000"</code> dan perlu <code>Number(...)</code> jika ingin dihitung.</li>
+<li><code>[...q]</code> mengubahnya menjadi array pasangan, dan <code>Object.fromEntries</code> menjadi objek biasa (bab 9).</li>
+<li><code>new URL(alamatRelatif, alamatDasar)</code> menyambung alamat relatif dengan alamat dasar.</li>
+<li>Alamat yang tidak valid melempar <code>TypeError</code>. Bungkus dengan <code>try...catch</code> jika alamatnya berasal dari pengguna.</li>
+</ul>
+<p>Kamu akan memakai <code>URL</code> dan query ini lagi saat membuat server di bab 20.</p>
+<h2 id="nodeos-informasi-sistem"><code>node:os</code>: informasi sistem<a class="headerlink" href="#nodeos-informasi-sistem" title="Permanent link">&para;</a></h2>
+<p>Modul <code>os</code> menjawab pertanyaan tentang komputer yang menjalankan programmu. Simpan sebagai <code>os-dasar.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">os-dasar.js</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">os</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:os"</span><span class="p">;</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Sistem:"</span><span class="p">,</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">type</span><span class="p">(),</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">platform</span><span class="p">(),</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">arch</span><span class="p">());</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Jumlah inti CPU:"</span><span class="p">,</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">cpus</span><span class="p">().</span><span class="nx">length</span><span class="p">);</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Memori total (MB):"</span><span class="p">,</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">totalmem</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1024</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1024</span><span class="p">));</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Folder rumah:"</span><span class="p">,</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">homedir</span><span class="p">());</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Folder sementara:"</span><span class="p">,</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">tmpdir</span><span class="p">());</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Pemisah baris:"</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">EOL</span><span class="p">));</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>node<span class="w"> </span>os-dasar.js
+</span></code></pre></div>
+<p>Output (contoh, berbeda di setiap komputer):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Sistem: Windows_NT win32 x64
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Jumlah inti CPU: 8
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>Memori total (MB): 16109
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>Folder rumah: C:\Users\kamu
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>Folder sementara: C:\Users\kamu\AppData\Local\Temp
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>Pemisah baris: "\r\n"
+</span></code></pre></div>
+<p><code>os.EOL</code> adalah pemisah baris sistem: <code>"\r\n"</code> di Windows dan <code>"\n"</code> di macOS dan Linux. Kamu akan sering memakai <code>os.tmpdir()</code> untuk menaruh berkas sementara.</p>
+<h2 id="nodeutil-alat-bantu-serba-guna"><code>node:util</code>: alat bantu serba guna<a class="headerlink" href="#nodeutil-alat-bantu-serba-guna" title="Permanent link">&para;</a></h2>
+<h3 id="memformat-teks-dan-melihat-isi-objek">Memformat teks dan melihat isi objek<a class="headerlink" href="#memformat-teks-dan-melihat-isi-objek" title="Permanent link">&para;</a></h3>
+<p>Simpan sebagai <code>util-dasar.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">util-dasar.js</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">format</span><span class="p">,</span><span class="w"> </span><span class="nx">inspect</span><span class="p">,</span><span class="w"> </span><span class="nx">isDeepStrictEqual</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:util"</span><span class="p">;</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">format</span><span class="p">(</span><span class="s2">"Halo %s, umur %d tahun, data %j"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">}));</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">format</span><span class="p">(</span><span class="s2">"%s%%"</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">));</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="kd">const</span><span class="w"> </span><span class="nx">dalam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">c</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">d</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">inspect</span><span class="p">(</span><span class="nx">dalam</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">depth</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="p">}));</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">inspect</span><span class="p">(</span><span class="nx">dalam</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">depth</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">}));</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isDeepStrictEqual</span><span class="p">({</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">]</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">]</span><span class="w"> </span><span class="p">}));</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isDeepStrictEqual</span><span class="p">([</span><span class="mf">1</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">"1"</span><span class="p">]));</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>node<span class="w"> </span>util-dasar.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Halo Budi, umur 20 tahun, data {"a":1}
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>50%
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>{ a: [Object] }
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>{
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>  a: { b: { c: { d: 1 } } }
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>}
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>true
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>false
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Fungsi</th>
+<th>Kegunaan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>format(teks, ...nilai)</code></td>
+<td>Menyisipkan nilai ke dalam penanda: <code>%s</code> teks, <code>%d</code> angka, <code>%j</code> JSON, <code>%%</code> tanda persen</td>
+</tr>
+<tr>
+<td><code>inspect(objek, opsi)</code></td>
+<td>Mengubah objek menjadi teks seperti yang dicetak <code>console.log</code>. Opsi <code>depth</code> mengatur kedalaman objek bersarang yang ditampilkan (<code>null</code> berarti semua)</td>
+</tr>
+<tr>
+<td><code>isDeepStrictEqual(a, b)</code></td>
+<td>Membandingkan <strong>isi</strong> dua objek atau array, bukan referensinya (ingat <code>{} === {}</code> bernilai <code>false</code> di bab 9)</td>
+</tr>
+</tbody>
+</table>
+<p><code>console.log</code> ternyata memotong objek yang bersarang lebih dari dua tingkat menjadi <code>[Object]</code>. Itulah gunanya <code>inspect(..., { depth: null })</code> saat men-debug.</p>
+<h3 id="mengubah-callback-menjadi-promise">Mengubah callback menjadi Promise<a class="headerlink" href="#mengubah-callback-menjadi-promise" title="Permanent link">&para;</a></h3>
+<p>Banyak kode lama memakai callback gaya Node.js (error lebih dulu, bab 12). <code>promisify</code> mengubah fungsi seperti itu menjadi fungsi yang mengembalikan Promise, sehingga bisa dipakai dengan <code>await</code>. Simpan sebagai <code>util-promisify.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">util-promisify.js</span><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">promisify</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:util"</span><span class="p">;</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">setTimeout</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">tunggu</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:timers/promises"</span><span class="p">;</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="kd">function</span><span class="w"> </span><span class="nx">gandakan</span><span class="p">(</span><span class="nx">angka</span><span class="p">,</span><span class="w"> </span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">angka</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">      </span><span class="nx">callback</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">"negatif"</span><span class="p">));</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="w">      </span><span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nx">angka</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="p">}</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="kd">const</span><span class="w"> </span><span class="nx">gandakanAsync</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">promisify</span><span class="p">(</span><span class="nx">gandakan</span><span class="p">);</span>
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>
+</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">gandakanAsync</span><span class="p">(</span><span class="mf">21</span><span class="p">));</span>
+</span><span id="__span-23-17"><a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a>
+</span><span id="__span-23-18"><a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-19"><a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a><span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">gandakanAsync</span><span class="p">(</span><span class="o">-</span><span class="mf">1</span><span class="p">);</span>
+</span><span id="__span-23-20"><a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-21"><a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"gagal:"</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span id="__span-23-22"><a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a><span class="p">}</span>
+</span><span id="__span-23-23"><a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a>
+</span><span id="__span-23-24"><a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a><span class="kd">const</span><span class="w"> </span><span class="nx">mulai</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+</span><span id="__span-23-25"><a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a><span class="k">await</span><span class="w"> </span><span class="nx">tunggu</span><span class="p">(</span><span class="mf">50</span><span class="p">);</span>
+</span><span id="__span-23-26"><a id="__codelineno-23-26" name="__codelineno-23-26" href="#__codelineno-23-26"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"menunggu selesai:"</span><span class="p">,</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">mulai</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">45</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>node<span class="w"> </span>util-promisify.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>42
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>gagal: negatif
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>menunggu selesai: true
+</span></code></pre></div>
+<p>Modul <strong><code>node:timers/promises</code></strong> menyediakan versi Promise dari <code>setTimeout</code> dan <code>setInterval</code>. Kita mengimpornya dengan nama <code>tunggu</code> (<code>setTimeout as tunggu</code>), sehingga <code>await tunggu(50)</code> menjeda 50 ms tanpa perlu membuat <code>new Promise</code> sendiri seperti <code>bantu.js</code> di bab 12.</p>
+<h3 id="parseargs-membaca-argumen-terminal"><code>parseArgs</code>: membaca argumen terminal<a class="headerlink" href="#parseargs-membaca-argumen-terminal" title="Permanent link">&para;</a></h3>
+<p>Di bab 14 kita menulis sendiri fungsi <code>parseArgumen</code> untuk mengurai <code>--tanggal=2025-03-01</code>. Ternyata Node.js sudah punya <code>parseArgs</code>. Simpan sebagai <code>util-args.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">util-args.js</span><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">parseArgs</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:util"</span><span class="p">;</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">values</span><span class="p">,</span><span class="w"> </span><span class="nx">positionals</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parseArgs</span><span class="p">({</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">  </span><span class="nx">args</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"tambah"</span><span class="p">,</span><span class="w"> </span><span class="s2">"15000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--kategori"</span><span class="p">,</span><span class="w"> </span><span class="s2">"makan"</span><span class="p">,</span><span class="w"> </span><span class="s2">"-v"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--tanggal=2025-03-01"</span><span class="p">],</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="w">  </span><span class="nx">options</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="w">    </span><span class="nx">kategori</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w"> </span><span class="kr">short</span><span class="o">:</span><span class="w"> </span><span class="s2">"k"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">    </span><span class="nx">tanggal</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="w">    </span><span class="nx">verbose</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"boolean"</span><span class="p">,</span><span class="w"> </span><span class="kr">short</span><span class="o">:</span><span class="w"> </span><span class="s2">"v"</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="w">  </span><span class="nx">allowPositionals</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="p">});</span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">values</span><span class="p">);</span>
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">positionals</span><span class="p">);</span>
+</span><span id="__span-26-15"><a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a>
+</span><span id="__span-26-16"><a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-17"><a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a><span class="w">  </span><span class="nx">parseArgs</span><span class="p">({</span><span class="w"> </span><span class="nx">args</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"--tidak-dikenal"</span><span class="p">],</span><span class="w"> </span><span class="nx">options</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-26-18"><a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-19"><a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">code</span><span class="p">);</span>
+</span><span id="__span-26-20"><a id="__codelineno-26-20" name="__codelineno-26-20" href="#__codelineno-26-20"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>node<span class="w"> </span>util-args.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>[Object: null prototype] {
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>  kategori: 'makan',
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>  verbose: true,
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>  tanggal: '2025-03-01'
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>}
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>[ 'tambah', '15000' ]
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>TypeError ERR_PARSE_ARGS_UNKNOWN_OPTION
+</span></code></pre></div>
+<p>Penjelasan:</p>
+<ul>
+<li><code>options</code> mendaftarkan opsi yang dikenal, lengkap dengan jenisnya (<code>"string"</code> atau <code>"boolean"</code>), singkatan (<code>short</code>, ditulis <code>-v</code>), dan nilai bawaan.</li>
+<li><code>allowPositionals: true</code> mengizinkan argumen biasa (<code>"tambah"</code>, <code>"15000"</code>), yang dikumpulkan di <code>positionals</code>.</li>
+<li>Opsi boleh ditulis <code>--tanggal=2025-03-01</code> maupun <code>--kategori makan</code>.</li>
+<li>Opsi yang tidak terdaftar melempar error <code>ERR_PARSE_ARGS_UNKNOWN_OPTION</code>, sehingga salah ketik langsung ketahuan.</li>
+<li>Argumen <code>args</code> biasanya tidak ditulis. Tanpanya, <code>parseArgs</code> membaca <code>process.argv</code> yang sebenarnya. Di sini kita memberi <code>args</code> agar contoh bisa dijalankan tanpa mengetik argumen.</li>
+<li>Nilai <code>values</code> bertipe teks. Jika perlu angka, ubah dengan <code>Number(...)</code>.</li>
+</ul>
+<h2 id="nodecrypto-hash-dan-angka-acak"><code>node:crypto</code>: hash dan angka acak<a class="headerlink" href="#nodecrypto-hash-dan-angka-acak" title="Permanent link">&para;</a></h2>
+<p>Modul <code>crypto</code> berisi alat kriptografi. Tiga kebutuhan paling umum: hash, ID acak, dan penyimpanan kata sandi. Simpan sebagai <code>crypto-dasar.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">crypto-dasar.js</span><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createHash</span><span class="p">,</span><span class="w"> </span><span class="nx">createHmac</span><span class="p">,</span><span class="w"> </span><span class="nx">randomUUID</span><span class="p">,</span><span class="w"> </span><span class="nx">randomInt</span><span class="p">,</span><span class="w"> </span><span class="nx">randomBytes</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:crypto"</span><span class="p">;</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">createHash</span><span class="p">(</span><span class="s2">"sha256"</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="s2">"halo"</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s2">"hex"</span><span class="p">));</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">createHmac</span><span class="p">(</span><span class="s2">"sha256"</span><span class="p">,</span><span class="w"> </span><span class="s2">"rahasia"</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="s2">"pesan"</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s2">"hex"</span><span class="p">));</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="kd">const</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">randomUUID</span><span class="p">();</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">id</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="kd">const</span><span class="w"> </span><span class="nx">dadu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">randomInt</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">);</span>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dadu</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">dadu</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">6</span><span class="p">);</span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a>
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">randomBytes</span><span class="p">(</span><span class="mf">8</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="s2">"hex"</span><span class="p">).</span><span class="nx">length</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>node<span class="w"> </span>crypto-dasar.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>a4e63bcacf6c172ad84f9f4523c8f1acaf33676fa76d3258c67b7e7bbf16d777
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>433b7677c62d3dcfa784d99577da42c1c330e0bdaceb371984235bc630345952
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>36
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>true
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>16
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Fungsi</th>
+<th>Kegunaan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>createHash("sha256").update(data).digest("hex")</code></td>
+<td><strong>Hash</strong>: sidik jari dari data. Data yang sama selalu menghasilkan hash yang sama, dan hash tidak bisa dibalik menjadi data asli. Dipakai untuk memeriksa keutuhan berkas</td>
+</tr>
+<tr>
+<td><code>createHmac(algoritma, kunci)</code></td>
+<td>Hash yang memakai kunci rahasia. Dipakai untuk membuktikan sebuah pesan tidak diubah dan berasal dari pemilik kunci</td>
+</tr>
+<tr>
+<td><code>randomUUID()</code></td>
+<td>Pengenal acak 36 karakter, seperti <code>3b241101-e2bb-4255-8caf-4136c566a962</code>. Hasilnya berbeda setiap kali</td>
+</tr>
+<tr>
+<td><code>randomInt(min, maks)</code></td>
+<td>Bilangan bulat acak dari <code>min</code> sampai <strong>sebelum</strong> <code>maks</code></td>
+</tr>
+<tr>
+<td><code>randomBytes(n)</code></td>
+<td><code>n</code> byte acak, untuk token atau garam (<em>salt</em>)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Jangan memakai <code>Math.random()</code> untuk hal yang menyangkut keamanan</p>
+<p><code>Math.random()</code> mudah ditebak. Untuk token, ID sesi, atau kode verifikasi, gunakan <code>randomUUID</code>, <code>randomInt</code>, atau <code>randomBytes</code> dari <code>crypto</code>.</p>
+</div>
+<h3 id="menyimpan-kata-sandi">Menyimpan kata sandi<a class="headerlink" href="#menyimpan-kata-sandi" title="Permanent link">&para;</a></h3>
+<p>Kata sandi <strong>tidak boleh</strong> disimpan sebagai teks asli, dan juga tidak cukup di-hash dengan <code>sha256</code> biasa. Gunakan fungsi hash yang sengaja lambat dan menambahkan <strong>garam</strong> (<em>salt</em>) acak yang berbeda untuk tiap pengguna, seperti <code>scrypt</code>. Simpan sebagai <code>crypto-sandi.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">crypto-sandi.js</span><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">randomBytes</span><span class="p">,</span><span class="w"> </span><span class="nx">scryptSync</span><span class="p">,</span><span class="w"> </span><span class="nx">timingSafeEqual</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:crypto"</span><span class="p">;</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="kd">function</span><span class="w"> </span><span class="nx">buatHash</span><span class="p">(</span><span class="nx">sandi</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">garam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">randomBytes</span><span class="p">(</span><span class="mf">16</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="s2">"hex"</span><span class="p">);</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">scryptSync</span><span class="p">(</span><span class="nx">sandi</span><span class="p">,</span><span class="w"> </span><span class="nx">garam</span><span class="p">,</span><span class="w"> </span><span class="mf">32</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="s2">"hex"</span><span class="p">);</span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">garam</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">hash</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="p">}</span>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="kd">function</span><span class="w"> </span><span class="nx">periksa</span><span class="p">(</span><span class="nx">sandi</span><span class="p">,</span><span class="w"> </span><span class="nx">tersimpan</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">garam</span><span class="p">,</span><span class="w"> </span><span class="nx">hash</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tersimpan</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">":"</span><span class="p">);</span>
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">hashBaru</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">scryptSync</span><span class="p">(</span><span class="nx">sandi</span><span class="p">,</span><span class="w"> </span><span class="nx">garam</span><span class="p">,</span><span class="w"> </span><span class="mf">32</span><span class="p">);</span>
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">timingSafeEqual</span><span class="p">(</span><span class="nx">hashBaru</span><span class="p">,</span><span class="w"> </span><span class="nx">Buffer</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="nx">hash</span><span class="p">,</span><span class="w"> </span><span class="s2">"hex"</span><span class="p">));</span>
+</span><span id="__span-32-13"><a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a><span class="p">}</span>
+</span><span id="__span-32-14"><a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a>
+</span><span id="__span-32-15"><a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a><span class="kd">const</span><span class="w"> </span><span class="nx">tersimpan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">buatHash</span><span class="p">(</span><span class="s2">"rahasia123"</span><span class="p">);</span>
+</span><span id="__span-32-16"><a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tersimpan</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+</span><span id="__span-32-17"><a id="__codelineno-32-17" name="__codelineno-32-17" href="#__codelineno-32-17"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">periksa</span><span class="p">(</span><span class="s2">"rahasia123"</span><span class="p">,</span><span class="w"> </span><span class="nx">tersimpan</span><span class="p">));</span>
+</span><span id="__span-32-18"><a id="__codelineno-32-18" name="__codelineno-32-18" href="#__codelineno-32-18"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">periksa</span><span class="p">(</span><span class="s2">"salah"</span><span class="p">,</span><span class="w"> </span><span class="nx">tersimpan</span><span class="p">));</span>
+</span><span id="__span-32-19"><a id="__codelineno-32-19" name="__codelineno-32-19" href="#__codelineno-32-19"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">buatHash</span><span class="p">(</span><span class="s2">"rahasia123"</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">tersimpan</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>node<span class="w"> </span>crypto-sandi.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>97
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>true
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>false
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>false
+</span></code></pre></div>
+<p>Penjelasan:</p>
+<ol>
+<li><code>buatHash</code> membuat garam acak, menghitung <code>scrypt(sandi, garam)</code>, dan menyimpan <code>garam:hash</code> dalam satu teks (32 + 1 + 64 = 97 karakter).</li>
+<li><code>periksa</code> mengambil garam yang tersimpan, menghitung ulang hash dari sandi yang diketik pengguna, lalu membandingkannya. <code>timingSafeEqual</code> membandingkan tanpa membocorkan informasi lewat selisih waktu.</li>
+<li>Karena garamnya acak, hash kata sandi yang <strong>sama</strong> menghasilkan teks yang berbeda setiap kali (baris terakhir <code>false</code>). Itu disengaja: dua pengguna dengan sandi sama tidak punya hash yang sama.</li>
+</ol>
+<p>Di aplikasi sungguhan banyak orang memakai pustaka khusus untuk ini, tetapi prinsipnya sama: garam acak, algoritma lambat, dan perbandingan yang aman.</p>
+<h2 id="buffer-data-biner"><code>Buffer</code>: data biner<a class="headerlink" href="#buffer-data-biner" title="Permanent link">&para;</a></h2>
+<p>Komputer menyimpan semuanya sebagai byte. <strong><code>Buffer</code></strong> adalah cara Node.js memegang urutan byte, misalnya isi berkas gambar atau data jaringan. Simpan sebagai <code>buffer-dasar.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">buffer-dasar.js</span><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Buffer</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s2">"Halo"</span><span class="p">);</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="s2">"hex"</span><span class="p">));</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="s2">"base64"</span><span class="p">));</span>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s2">"SGFsbw=="</span><span class="p">,</span><span class="w"> </span><span class="s2">"base64"</span><span class="p">).</span><span class="nx">toString</span><span class="p">());</span>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>
+</span><span id="__span-35-9"><a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s2">"é"</span><span class="p">).</span><span class="nx">length</span><span class="p">,</span><span class="w"> </span><span class="s2">"é"</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+</span><span id="__span-35-10"><a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="nx">alloc</span><span class="p">(</span><span class="mf">3</span><span class="p">));</span>
+</span><span id="__span-35-11"><a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span><span class="w"> </span><span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">b</span><span class="p">[</span><span class="mf">0</span><span class="p">]));</span>
+</span><span id="__span-35-12"><a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a>
+</span><span id="__span-35-13"><a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">TextEncoder</span><span class="p">().</span><span class="nx">encode</span><span class="p">(</span><span class="s2">"Hi"</span><span class="p">));</span>
+</span><span id="__span-35-14"><a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">TextDecoder</span><span class="p">().</span><span class="nx">decode</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nb">Uint8Array</span><span class="p">([</span><span class="mf">72</span><span class="p">,</span><span class="w"> </span><span class="mf">105</span><span class="p">])));</span>
+</span><span id="__span-35-15"><a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">btoa</span><span class="p">(</span><span class="s2">"Halo"</span><span class="p">),</span><span class="w"> </span><span class="nx">atob</span><span class="p">(</span><span class="s2">"SGFsbw=="</span><span class="p">));</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>node<span class="w"> </span>buffer-dasar.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>&lt;Buffer 48 61 6c 6f&gt;
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>4
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>48616c6f
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>SGFsbw==
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>Halo
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>2 1
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a>&lt;Buffer 00 00 00&gt;
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>72 H
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>Uint8Array(2) [ 72, 105 ]
+</span><span id="__span-37-10"><a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a>Hi
+</span><span id="__span-37-11"><a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a>SGFsbw== Halo
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Contoh</th>
+<th>Penjelasan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Buffer.from("Halo")</code></td>
+<td>Mengubah teks menjadi byte (UTF-8). <code>48 61 6c 6f</code> adalah kode heksadesimal untuk H, a, l, o</td>
+</tr>
+<tr>
+<td><code>b.toString("hex")</code> / <code>"base64"</code></td>
+<td>Mengubah byte menjadi teks dengan penyandian <strong>hex</strong> atau <strong>base64</strong>. Base64 sering dipakai untuk mengirim data biner lewat teks</td>
+</tr>
+<tr>
+<td><code>Buffer.from(teks, "base64")</code></td>
+<td>Kebalikannya: membaca teks base64 menjadi byte</td>
+</tr>
+<tr>
+<td><code>Buffer.from("é").length</code></td>
+<td><code>2</code>, padahal <code>"é".length</code> adalah <code>1</code>: huruf <code>é</code> memakai dua byte. Panjang byte dan panjang karakter bisa berbeda untuk huruf non-ASCII</td>
+</tr>
+<tr>
+<td><code>Buffer.alloc(n)</code></td>
+<td>Membuat buffer berisi <code>n</code> byte nol</td>
+</tr>
+<tr>
+<td><code>TextEncoder</code> / <code>TextDecoder</code></td>
+<td>Pasangan standar untuk teks ke byte dan sebaliknya (juga ada di browser)</td>
+</tr>
+<tr>
+<td><code>btoa</code> / <code>atob</code></td>
+<td>Base64 untuk teks sederhana, juga ada di browser</td>
+</tr>
+</tbody>
+</table>
+<p>Kamu sudah memakai buffer tanpa sadar: <code>readFile</code> tanpa argumen <code>"utf8"</code> mengembalikan <code>Buffer</code>, dan memberikan <code>"utf8"</code> menyuruh Node.js mengubahnya menjadi teks.</p>
+<h2 id="structuredclone-salinan-sungguhan"><code>structuredClone</code>: salinan sungguhan<a class="headerlink" href="#structuredclone-salinan-sungguhan" title="Permanent link">&para;</a></h2>
+<p>Di bab 9 kamu belajar bahwa spread (<code>{ ...obj }</code>) hanya membuat salinan <strong>dangkal</strong>: objek di dalamnya tetap dibagi bersama. Fungsi global <strong><code>structuredClone</code></strong> membuat salinan <strong>mendalam</strong>. Simpan sebagai <code>clone.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">clone.js</span><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">asli</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="nx">alamat</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">kota</span><span class="o">:</span><span class="w"> </span><span class="s2">"Bandung"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nx">hobi</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"baca"</span><span class="p">,</span><span class="w"> </span><span class="s2">"main"</span><span class="p">]</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">dangkal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nx">asli</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">dalam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">structuredClone</span><span class="p">(</span><span class="nx">asli</span><span class="p">);</span>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="nx">dangkal</span><span class="p">.</span><span class="nx">alamat</span><span class="p">.</span><span class="nx">kota</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Medan"</span><span class="p">;</span>
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">asli</span><span class="p">.</span><span class="nx">alamat</span><span class="p">.</span><span class="nx">kota</span><span class="p">);</span>
+</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a>
+</span><span id="__span-38-9"><a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a><span class="nx">dalam</span><span class="p">.</span><span class="nx">hobi</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"masak"</span><span class="p">);</span>
+</span><span id="__span-38-10"><a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">asli</span><span class="p">.</span><span class="nx">hobi</span><span class="p">);</span>
+</span><span id="__span-38-11"><a id="__codelineno-38-11" name="__codelineno-38-11" href="#__codelineno-38-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dalam</span><span class="p">.</span><span class="nx">hobi</span><span class="p">);</span>
+</span><span id="__span-38-12"><a id="__codelineno-38-12" name="__codelineno-38-12" href="#__codelineno-38-12"></a>
+</span><span id="__span-38-13"><a id="__codelineno-38-13" name="__codelineno-38-13" href="#__codelineno-38-13"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-38-14"><a id="__codelineno-38-14" name="__codelineno-38-14" href="#__codelineno-38-14"></a><span class="w">  </span><span class="nx">structuredClone</span><span class="p">({</span><span class="w"> </span><span class="nx">sapa</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-38-15"><a id="__codelineno-38-15" name="__codelineno-38-15" href="#__codelineno-38-15"></a><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-38-16"><a id="__codelineno-38-16" name="__codelineno-38-16" href="#__codelineno-38-16"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+</span><span id="__span-38-17"><a id="__codelineno-38-17" name="__codelineno-38-17" href="#__codelineno-38-17"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>node<span class="w"> </span>clone.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>Medan
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>[ 'baca', 'main' ]
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>[ 'baca', 'main', 'masak' ]
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>DataCloneError
+</span></code></pre></div>
+<ul>
+<li>Mengubah <code>dangkal.alamat.kota</code> ikut mengubah <code>asli</code>, persis seperti peringatan di bab 9.</li>
+<li><code>structuredClone</code> menyalin seluruh lapisan, sehingga mengubah <code>dalam</code> tidak memengaruhi <code>asli</code>.</li>
+<li>Ia tidak bisa menyalin fungsi (<code>DataCloneError</code>). Ia cocok untuk data murni: objek, array, tanggal, dan sejenisnya.</li>
+</ul>
+<h2 id="contoh-praktis-ringkasan-sebuah-berkas">Contoh praktis: ringkasan sebuah berkas<a class="headerlink" href="#contoh-praktis-ringkasan-sebuah-berkas" title="Permanent link">&para;</a></h2>
+<p>Gabungkan beberapa modul menjadi alat baris perintah kecil. Pertama, skrip yang membuat berkas contoh dengan isi yang pasti:</p>
+<div class="language-javascript highlight"><span class="filename">siapkan.js</span><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">writeFile</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:fs/promises"</span><span class="p">;</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="k">await</span><span class="w"> </span><span class="nx">writeFile</span><span class="p">(</span><span class="s2">"catatan.txt"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Baris satu\nBaris dua\nBaris tiga\n"</span><span class="p">);</span>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"catatan.txt dibuat"</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-javascript highlight"><span class="filename">ringkas.js</span><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">parseArgs</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:util"</span><span class="p">;</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">readFile</span><span class="p">,</span><span class="w"> </span><span class="nx">stat</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:fs/promises"</span><span class="p">;</span>
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createHash</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:crypto"</span><span class="p">;</span>
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">basename</span><span class="p">,</span><span class="w"> </span><span class="nx">extname</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:path"</span><span class="p">;</span>
+</span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>
+</span><span id="__span-42-6"><a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">values</span><span class="p">,</span><span class="w"> </span><span class="nx">positionals</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parseArgs</span><span class="p">({</span>
+</span><span id="__span-42-7"><a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a><span class="w">  </span><span class="nx">options</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">hash</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"boolean"</span><span class="p">,</span><span class="w"> </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-42-8"><a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a><span class="w">  </span><span class="nx">allowPositionals</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-42-9"><a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a><span class="p">});</span>
+</span><span id="__span-42-10"><a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a>
+</span><span id="__span-42-11"><a id="__codelineno-42-11" name="__codelineno-42-11" href="#__codelineno-42-11"></a><span class="kd">const</span><span class="w"> </span><span class="nx">berkas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">positionals</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+</span><span id="__span-42-12"><a id="__codelineno-42-12" name="__codelineno-42-12" href="#__codelineno-42-12"></a>
+</span><span id="__span-42-13"><a id="__codelineno-42-13" name="__codelineno-42-13" href="#__codelineno-42-13"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">berkas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-42-14"><a id="__codelineno-42-14" name="__codelineno-42-14" href="#__codelineno-42-14"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Penggunaan: node ringkas.js &lt;berkas&gt; [--hash]"</span><span class="p">);</span>
+</span><span id="__span-42-15"><a id="__codelineno-42-15" name="__codelineno-42-15" href="#__codelineno-42-15"></a><span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exitCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+</span><span id="__span-42-16"><a id="__codelineno-42-16" name="__codelineno-42-16" href="#__codelineno-42-16"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-42-17"><a id="__codelineno-42-17" name="__codelineno-42-17" href="#__codelineno-42-17"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">isi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">readFile</span><span class="p">(</span><span class="nx">berkas</span><span class="p">,</span><span class="w"> </span><span class="s2">"utf8"</span><span class="p">);</span>
+</span><span id="__span-42-18"><a id="__codelineno-42-18" name="__codelineno-42-18" href="#__codelineno-42-18"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">stat</span><span class="p">(</span><span class="nx">berkas</span><span class="p">);</span>
+</span><span id="__span-42-19"><a id="__codelineno-42-19" name="__codelineno-42-19" href="#__codelineno-42-19"></a>
+</span><span id="__span-42-20"><a id="__codelineno-42-20" name="__codelineno-42-20" href="#__codelineno-42-20"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Nama: </span><span class="si">${</span><span class="nx">basename</span><span class="p">(</span><span class="nx">berkas</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-42-21"><a id="__codelineno-42-21" name="__codelineno-42-21" href="#__codelineno-42-21"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Ekstensi: </span><span class="si">${</span><span class="nx">extname</span><span class="p">(</span><span class="nx">berkas</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-42-22"><a id="__codelineno-42-22" name="__codelineno-42-22" href="#__codelineno-42-22"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Ukuran: </span><span class="si">${</span><span class="nx">info</span><span class="p">.</span><span class="nx">size</span><span class="si">}</span><span class="sb"> byte`</span><span class="p">);</span>
+</span><span id="__span-42-23"><a id="__codelineno-42-23" name="__codelineno-42-23" href="#__codelineno-42-23"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Baris: </span><span class="si">${</span><span class="nx">isi</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">"\n"</span><span class="p">).</span><span class="nx">filter</span><span class="p">(</span><span class="nb">Boolean</span><span class="p">).</span><span class="nx">length</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-42-24"><a id="__codelineno-42-24" name="__codelineno-42-24" href="#__codelineno-42-24"></a>
+</span><span id="__span-42-25"><a id="__codelineno-42-25" name="__codelineno-42-25" href="#__codelineno-42-25"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">values</span><span class="p">.</span><span class="nx">hash</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-42-26"><a id="__codelineno-42-26" name="__codelineno-42-26" href="#__codelineno-42-26"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`SHA-256: </span><span class="si">${</span><span class="nx">createHash</span><span class="p">(</span><span class="s2">"sha256"</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">isi</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s2">"hex"</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">12</span><span class="p">)</span><span class="si">}</span><span class="sb">...`</span><span class="p">);</span>
+</span><span id="__span-42-27"><a id="__codelineno-42-27" name="__codelineno-42-27" href="#__codelineno-42-27"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-42-28"><a id="__codelineno-42-28" name="__codelineno-42-28" href="#__codelineno-42-28"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>node<span class="w"> </span>siapkan.js
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>node<span class="w"> </span>ringkas.js<span class="w"> </span>catatan.txt<span class="w"> </span>--hash
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>catatan.txt dibuat
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>Nama: catatan.txt
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>Ekstensi: .txt
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>Ukuran: 32 byte
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>Baris: 3
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>SHA-256: 5bb7d91c9556...
+</span></code></pre></div>
+<p>Satu kali jalan memakai lima modul: <code>util</code> (membaca argumen), <code>fs/promises</code> (membaca isi dan ukuran), <code>crypto</code> (hash), <code>path</code> (nama dan ekstensi), serta async/await dari bab 12. Jika berkas tidak disebutkan:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>node<span class="w"> </span>ringkas.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>Penggunaan: node ringkas.js &lt;berkas&gt; [--hash]
+</span></code></pre></div>
+<p>Pesan itu dikirim lewat <code>console.error</code> dengan exit code 1, pola yang sama seperti di bab 14.</p>
+<h2 id="menemukan-modul-yang-kamu-butuhkan">Menemukan modul yang kamu butuhkan<a class="headerlink" href="#menemukan-modul-yang-kamu-butuhkan" title="Permanent link">&para;</a></h2>
+<p>Daftar lengkap modul bawaan ada di dokumentasi resmi (nodejs.org/docs/latest/api/), yang kamu kenali dari bab 15. Beberapa modul lain yang akan kamu temui nanti:</p>
+<table>
+<thead>
+<tr>
+<th>Modul</th>
+<th>Kegunaan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>node:fs</code> dan <code>node:fs/promises</code></td>
+<td>Berkas dan folder (sudah dipakai)</td>
+</tr>
+<tr>
+<td><code>node:http</code></td>
+<td>Server dan klien HTTP (bab 20)</td>
+</tr>
+<tr>
+<td><code>node:events</code> dan <code>node:stream</code></td>
+<td>Event dan aliran data (bab 19)</td>
+</tr>
+<tr>
+<td><code>node:readline</code></td>
+<td>Membaca masukan baris demi baris (bab 18)</td>
+</tr>
+<tr>
+<td><code>node:test</code> dan <code>node:assert</code></td>
+<td>Pengujian (bab 22)</td>
+</tr>
+<tr>
+<td><code>node:child_process</code></td>
+<td>Menjalankan program lain dari Node.js</td>
+</tr>
+<tr>
+<td><code>node:zlib</code></td>
+<td>Kompresi (misalnya gzip)</td>
+</tr>
+<tr>
+<td><code>node:worker_threads</code></td>
+<td>Pekerjaan berat di utas terpisah</td>
+</tr>
+</tbody>
+</table>
+<p>Aturan sederhananya: sebelum menjalankan <code>npm install</code> untuk kebutuhan umum, cari dulu di dokumentasi Node.js.</p>
+<h2 id="kesalahan-umum">Kesalahan umum<a class="headerlink" href="#kesalahan-umum" title="Permanent link">&para;</a></h2>
+<h3 id="1-menyambung-alamat-berkas-dengan-tanda">1. Menyambung alamat berkas dengan tanda <code>+</code><a class="headerlink" href="#1-menyambung-alamat-berkas-dengan-tanda" title="Permanent link">&para;</a></h3>
+<p><code>"data" + "/" + "x.json"</code> bekerja di satu sistem tetapi rusak di sistem lain, dan gagal merapikan <code>..</code>. Pakai <code>path.join</code>.</p>
+<h3 id="2-memakai-__dirname-di-es-module">2. Memakai <code>__dirname</code> di ES Module<a class="headerlink" href="#2-memakai-__dirname-di-es-module" title="Permanent link">&para;</a></h3>
+<p>Simpan sebagai <code>salah-dirname.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">salah-dirname.js</span><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>node<span class="w"> </span>salah-dirname.js
+</span></code></pre></div>
+<p>Output (dipersingkat):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>ReferenceError: __dirname is not defined in ES module scope
+</span></code></pre></div>
+<p><strong>Perbaikan:</strong> <code>import.meta.dirname</code> (atau <code>import.meta.filename</code>).</p>
+<h3 id="3-alamat-berkas-yang-relatif-ke-folder-kerja">3. Alamat berkas yang relatif ke folder kerja<a class="headerlink" href="#3-alamat-berkas-yang-relatif-ke-folder-kerja" title="Permanent link">&para;</a></h3>
+<p>Seperti pada <code>demo/salah.js</code>: alamat relatif dihitung dari folder tempat <code>node</code> dijalankan. Bentuk alamat proyek dengan <code>path.join(import.meta.dirname, ...)</code>.</p>
+<h3 id="4-memecah-url-secara-manual">4. Memecah URL secara manual<a class="headerlink" href="#4-memecah-url-secara-manual" title="Permanent link">&para;</a></h3>
+<p>Memakai <code>split("?")</code> atau <code>slice</code> untuk alamat web mudah salah pada karakter khusus. Gunakan <code>new URL(...)</code> dan <code>searchParams</code>.</p>
+<h3 id="5-lupa-bahwa-nilai-query-selalu-teks">5. Lupa bahwa nilai query selalu teks<a class="headerlink" href="#5-lupa-bahwa-nilai-query-selalu-teks" title="Permanent link">&para;</a></h3>
+<p><code>url.searchParams.get("min")</code> mengembalikan <code>"1000"</code> (teks), bukan angka. <code>"1000" + 5</code> menjadi <code>"10005"</code>. Ubah dengan <code>Number(...)</code> (bab 3).</p>
+<h3 id="6-memakai-mathrandom-atau-hash-polos-untuk-keamanan">6. Memakai <code>Math.random()</code> atau hash polos untuk keamanan<a class="headerlink" href="#6-memakai-mathrandom-atau-hash-polos-untuk-keamanan" title="Permanent link">&para;</a></h3>
+<p>Token dan ID yang sensitif harus dari <code>crypto</code>. Kata sandi disimpan dengan <code>scrypt</code> plus garam, bukan <code>md5</code> atau <code>sha256</code> polos, dan tidak boleh sebagai teks asli.</p>
+<h3 id="7-mengira-panjang-buffer-sama-dengan-panjang-teks">7. Mengira panjang <code>Buffer</code> sama dengan panjang teks<a class="headerlink" href="#7-mengira-panjang-buffer-sama-dengan-panjang-teks" title="Permanent link">&para;</a></h3>
+<p><code>Buffer.from("é").length</code> adalah 2, sedangkan <code>"é".length</code> adalah 1. Untuk ukuran dalam byte, gunakan <code>Buffer.byteLength(teks)</code>.</p>
+<h3 id="8-menyalin-objek-bersarang-dengan-spread">8. Menyalin objek bersarang dengan spread<a class="headerlink" href="#8-menyalin-objek-bersarang-dengan-spread" title="Permanent link">&para;</a></h3>
+<p>Spread hanya menyalin satu lapis. Pakai <code>structuredClone</code> untuk salinan mendalam, dan ingat ia tidak bisa menyalin fungsi.</p>
+<h3 id="9-memasang-paket-untuk-sesuatu-yang-sudah-bawaan">9. Memasang paket untuk sesuatu yang sudah bawaan<a class="headerlink" href="#9-memasang-paket-untuk-sesuatu-yang-sudah-bawaan" title="Permanent link">&para;</a></h3>
+<p>Mengolah alamat, hash, UUID, dan argumen terminal semuanya sudah tersedia. Periksa dokumentasi sebelum menambah paket.</p>
+<h2 id="ringkasan">Ringkasan<a class="headerlink" href="#ringkasan" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Modul bawaan</strong> dipakai tanpa <code>npm install</code> dan diimpor dengan awalan <code>node:</code>.</li>
+<li><code>node:path</code>: <code>join</code>, <code>resolve</code>, <code>dirname</code>, <code>basename</code>, <code>extname</code>, <code>parse</code>. Gunakan <code>path.join(import.meta.dirname, ...)</code> agar alamat tidak bergantung folder kerja.</li>
+<li><code>URL</code> dan <code>URLSearchParams</code> mengurai dan membuat alamat web. Nilai query selalu teks.</li>
+<li><code>node:os</code> memberi informasi sistem (platform, CPU, memori, folder rumah, folder sementara).</li>
+<li><code>node:util</code>: <code>format</code>, <code>inspect</code>, <code>isDeepStrictEqual</code>, <code>promisify</code>, dan <code>parseArgs</code> untuk argumen terminal.</li>
+<li><code>node:timers/promises</code> menyediakan <code>setTimeout</code> versi Promise.</li>
+<li><code>node:crypto</code>: hash (<code>sha256</code>), <code>randomUUID</code>, <code>randomInt</code>, <code>randomBytes</code>, dan <code>scrypt</code> dengan garam untuk kata sandi.</li>
+<li><code>Buffer</code> memegang byte; <code>toString("hex" | "base64")</code> mengubahnya menjadi teks.</li>
+<li><code>structuredClone</code> membuat salinan mendalam dari data murni.</li>
+<li>Periksa dokumentasi Node.js sebelum memasang paket untuk kebutuhan umum.</li>
+</ul>
+<h2 id="latihan">Latihan<a class="headerlink" href="#latihan" title="Permanent link">&para;</a></h2>
+<p>Kerjakan sendiri dulu sebelum melihat jawaban. Latihan dijalankan dari folder <code>node-belajar</code>.</p>
+<h3 id="latihan-1-memecah-alamat-berkas">Latihan 1: Memecah alamat berkas<a class="headerlink" href="#latihan-1-memecah-alamat-berkas" title="Permanent link">&para;</a></h3>
+<p>Dengan <code>path.posix.parse</code>, tampilkan nama (tanpa ekstensi), ekstensi, dan folder dari <code>/home/budi/proyek/laporan-2025.pdf</code>.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">path</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:path"</span><span class="p">;</span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">ext</span><span class="p">,</span><span class="w"> </span><span class="nx">dir</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">path</span><span class="p">.</span><span class="nx">posix</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="s2">"/home/budi/proyek/laporan-2025.pdf"</span><span class="p">);</span>
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">ext</span><span class="p">,</span><span class="w"> </span><span class="nx">dir</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>laporan-2025 .pdf /home/budi/proyek
+</span></code></pre></div>
+</details>
+<h3 id="latihan-2-query-dari-alamat">Latihan 2: Query dari alamat<a class="headerlink" href="#latihan-2-query-dari-alamat" title="Permanent link">&para;</a></h3>
+<p>Dari <code>https://toko.id/cari?q=kopi&amp;q=teh&amp;min=500</code>, tampilkan semua nilai <code>q</code> sebagai array dan nilai <code>min</code> sebagai <strong>angka</strong> yang ditambah 100.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">URL</span><span class="p">(</span><span class="s2">"https://toko.id/cari?q=kopi&amp;q=teh&amp;min=500"</span><span class="p">);</span>
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">getAll</span><span class="p">(</span><span class="s2">"q"</span><span class="p">));</span>
+</span><span id="__span-52-4"><a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"min"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>[ 'kopi', 'teh' ]
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>600
+</span></code></pre></div>
+</details>
+<h3 id="latihan-3-memformat-dengan-utilformat">Latihan 3: Memformat dengan <code>util.format</code><a class="headerlink" href="#latihan-3-memformat-dengan-utilformat" title="Permanent link">&para;</a></h3>
+<p>Gunakan <code>format</code> untuk menghasilkan teks <code>Sari punya 3 buku</code> dari nama <code>"Sari"</code> dan jumlah <code>3</code>.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">format</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:util"</span><span class="p">;</span>
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">format</span><span class="p">(</span><span class="s2">"%s punya %d buku"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Sari"</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">));</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>Sari punya 3 buku
+</span></code></pre></div>
+</details>
+<h3 id="latihan-4-parseargs">Latihan 4: <code>parseArgs</code><a class="headerlink" href="#latihan-4-parseargs" title="Permanent link">&para;</a></h3>
+<p>Urai argumen <code>["--nama", "Budi", "--umur", "20"]</code> dengan <code>parseArgs</code>, lalu tampilkan umur setahun lagi sebagai angka.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">parseArgs</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:util"</span><span class="p">;</span>
+</span><span id="__span-56-2"><a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>
+</span><span id="__span-56-3"><a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">values</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parseArgs</span><span class="p">({</span>
+</span><span id="__span-56-4"><a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a><span class="w">  </span><span class="nx">args</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"--nama"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--umur"</span><span class="p">,</span><span class="w"> </span><span class="s2">"20"</span><span class="p">],</span>
+</span><span id="__span-56-5"><a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a><span class="w">  </span><span class="nx">options</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-56-6"><a id="__codelineno-56-6" name="__codelineno-56-6" href="#__codelineno-56-6"></a><span class="w">    </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-56-7"><a id="__codelineno-56-7" name="__codelineno-56-7" href="#__codelineno-56-7"></a><span class="w">    </span><span class="nx">umur</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-56-8"><a id="__codelineno-56-8" name="__codelineno-56-8" href="#__codelineno-56-8"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-56-9"><a id="__codelineno-56-9" name="__codelineno-56-9" href="#__codelineno-56-9"></a><span class="p">});</span>
+</span><span id="__span-56-10"><a id="__codelineno-56-10" name="__codelineno-56-10" href="#__codelineno-56-10"></a>
+</span><span id="__span-56-11"><a id="__codelineno-56-11" name="__codelineno-56-11" href="#__codelineno-56-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">values</span><span class="p">.</span><span class="nx">nama</span><span class="si">}</span><span class="sb"> tahun depan </span><span class="si">${</span><span class="nb">Number</span><span class="p">(</span><span class="nx">values</span><span class="p">.</span><span class="nx">umur</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="si">}</span><span class="sb"> tahun`</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>Budi tahun depan 21 tahun
+</span></code></pre></div>
+</details>
+<h3 id="latihan-5-hash">Latihan 5: Hash<a class="headerlink" href="#latihan-5-hash" title="Permanent link">&para;</a></h3>
+<p>Tampilkan 8 karakter pertama dari hash SHA-256 teks <code>"node"</code>.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createHash</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:crypto"</span><span class="p">;</span>
+</span><span id="__span-58-2"><a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>
+</span><span id="__span-58-3"><a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">createHash</span><span class="p">(</span><span class="s2">"sha256"</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="s2">"node"</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s2">"hex"</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">));</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>545ea538
+</span></code></pre></div>
+</details>
+<h3 id="latihan-6-base64-bolak-balik">Latihan 6: Base64 bolak-balik<a class="headerlink" href="#latihan-6-base64-bolak-balik" title="Permanent link">&para;</a></h3>
+<p>Ubah teks <code>"Belajar Node.js"</code> menjadi base64, lalu kembalikan lagi ke teks.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">kode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Buffer</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="s2">"Belajar Node.js"</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="s2">"base64"</span><span class="p">);</span>
+</span><span id="__span-60-2"><a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">kode</span><span class="p">);</span>
+</span><span id="__span-60-3"><a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">.</span><span class="kr">from</span><span class="p">(</span><span class="nx">kode</span><span class="p">,</span><span class="w"> </span><span class="s2">"base64"</span><span class="p">).</span><span class="nx">toString</span><span class="p">());</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>QmVsYWphciBOb2RlLmpz
+</span><span id="__span-61-2"><a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>Belajar Node.js
+</span></code></pre></div>
+</details>
+<h3 id="latihan-7-salinan-mendalam">Latihan 7: Salinan mendalam<a class="headerlink" href="#latihan-7-salinan-mendalam" title="Permanent link">&para;</a></h3>
+<p>Salin <code>{ daftar: [1, 2], info: { aktif: true } }</code> dengan <code>structuredClone</code>, ubah salinannya (tambahkan 3 ke <code>daftar</code> dan set <code>aktif</code> jadi <code>false</code>), lalu tampilkan keduanya.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">asli</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">daftar</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">],</span><span class="w"> </span><span class="nx">info</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">aktif</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-62-2"><a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">salinan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">structuredClone</span><span class="p">(</span><span class="nx">asli</span><span class="p">);</span>
+</span><span id="__span-62-3"><a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a>
+</span><span id="__span-62-4"><a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a><span class="nx">salinan</span><span class="p">.</span><span class="nx">daftar</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mf">3</span><span class="p">);</span>
+</span><span id="__span-62-5"><a id="__codelineno-62-5" name="__codelineno-62-5" href="#__codelineno-62-5"></a><span class="nx">salinan</span><span class="p">.</span><span class="nx">info</span><span class="p">.</span><span class="nx">aktif</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+</span><span id="__span-62-6"><a id="__codelineno-62-6" name="__codelineno-62-6" href="#__codelineno-62-6"></a>
+</span><span id="__span-62-7"><a id="__codelineno-62-7" name="__codelineno-62-7" href="#__codelineno-62-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">asli</span><span class="p">);</span>
+</span><span id="__span-62-8"><a id="__codelineno-62-8" name="__codelineno-62-8" href="#__codelineno-62-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">salinan</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>{ daftar: [ 1, 2 ], info: { aktif: true } }
+</span><span id="__span-63-2"><a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>{ daftar: [ 1, 2, 3 ], info: { aktif: false } }
+</span></code></pre></div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Kembali ke atas
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../16-npm/" class="md-footer__link md-footer__link--prev" aria-label="Sebelumnya: npm dan package.json">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Sebelumnya
+              </span>
+              <div class="md-ellipsis">
+                npm dan package.json
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../18-proses-lingkungan/" class="md-footer__link md-footer__link--next" aria-label="Selanjutnya: Proses dan Lingkungan">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Selanjutnya
+              </span>
+              <div class="md-ellipsis">
+                Proses dan Lingkungan
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.path", "navigation.footer", "navigation.top", "navigation.tracking", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Tersalin ke clipboard", "clipboard.copy": "Salin ke clipboard", "search.result.more.one": "1 lagi di halaman ini", "search.result.more.other": "# lagi di halaman ini", "search.result.none": "Tidak ada dokumen yang sesuai", "search.result.one": "1 dokumen ditemukan", "search.result.other": "# dokumen ditemukan", "search.result.placeholder": "Ketik untuk mulai pencarian", "search.result.term.missing": "Tidak ada", "select.version": "Pilih versi"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/vendor/mermaid/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-config.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

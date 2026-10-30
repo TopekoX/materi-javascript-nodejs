@@ -1,0 +1,2871 @@
+
+<!doctype html>
+<html lang="id" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Materi belajar JavaScript dan Node.js bagi pemula, dari konsep dasar hingga praktik.">
+      
+      
+      
+        <link rel="canonical" href="https://topekox.my.id/mkdocs-template/javascript/10-error-handling/">
+      
+      
+        <link rel="prev" href="../09-objects/">
+      
+      
+        <link rel="next" href="../11-modules/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Error Handling & Debugging - Belajar JavaScript dan Node.js</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tujuan-pembelajaran" class="md-skip">
+          Lewati ke isi
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Belajar JavaScript dan Node.js" class="md-header__button md-logo" aria-label="Belajar JavaScript dan Node.js" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Belajar JavaScript dan Node.js
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Error Handling & Debugging
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: system (click for light)"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Theme: system (click for light)" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: light (click for dark)"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Theme: light (click for dark)" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: dark (click for system)"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Theme: dark (click for system)" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cari" placeholder="Cari" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cari">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Kosongkan" aria-label="Kosongkan" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Mempersiapkan pencarian
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigasi" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Belajar JavaScript dan Node.js" class="md-nav__button md-logo" aria-label="Belajar JavaScript dan Node.js" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Belajar JavaScript dan Node.js
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JavaScript Dasar
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JavaScript Dasar
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operators & Expressions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-strings-numbers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings & Numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-conditionals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-scope-hoisting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scope & Hoisting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-objects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Handling & Debugging
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Handling & Debugging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tujuan-pembelajaran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tujuan pembelajaran
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pendahuluan-error-itu-normal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pendahuluan: error itu normal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tiga-jenis-kesalahan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tiga jenis kesalahan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tiga jenis kesalahan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-error-sintaks-syntax-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Error sintaks (syntax error)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-error-saat-program-berjalan-runtime-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Error saat program berjalan (runtime error)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-error-logika-logic-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Error logika (logic error)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#membaca-pesan-error-dan-stack-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Membaca pesan error dan stack trace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-catch-dan-finally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        try, catch, dan finally
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="try, catch, dan finally">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#menangkap-error-dengan-trycatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menangkap error dengan try...catch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objek-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objek error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finally-selalu-dijalankan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        finally: selalu dijalankan
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#melempar-error-sendiri-dengan-throw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Melempar error sendiri dengan throw
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Melempar error sendiri dengan throw">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memilih-jenis-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memilih jenis error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#menangani-sebagian-melempar-ulang-sisanya" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menangani sebagian, melempar ulang sisanya
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contoh-praktis-membaca-pengaturan-dari-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contoh praktis: membaca pengaturan dari JSON
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-menelusuri-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging: menelusuri bug
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging: menelusuri bug">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#menampilkan-nilai-dengan-consolelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menampilkan nilai dengan console.log
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contoh-mencari-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contoh: mencari bug
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-debugging-yang-sistematis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah debugging yang sistematis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugger
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kesalahan-umum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kesalahan umum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kesalahan umum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-catch-kosong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. catch kosong
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-membungkus-semuanya-dalam-satu-try" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Membungkus semuanya dalam satu try
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-memakai-trycatch-untuk-alur-normal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Memakai try...catch untuk alur normal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-melempar-teks-biasa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Melempar teks biasa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-berharap-trycatch-menangkap-error-sintaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Berharap try...catch menangkap error sintaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-mengubah-banyak-hal-sekaligus-saat-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Mengubah banyak hal sekaligus saat debugging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-lupa-menghapus-consolelog-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Lupa menghapus console.log debugging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ringkasan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ringkasan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latihan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latihan-1-prediksi-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 1: Prediksi output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-2-lindungi-jsonparse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 2: Lindungi JSON.parse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-3-akar-kuadrat-yang-aman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 3: Akar kuadrat yang aman
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-4-validasi-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 4: Validasi password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-5-cari-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 5: Cari bug
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-6-parse-dengan-nilai-bawaan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 6: Parse dengan nilai bawaan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-7-urutan-finally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 7: Urutan finally
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-asynchronous/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asynchronous JavaScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes & OOP Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-proyek-akhir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyek Akhir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../nodejs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node.js
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Node.js
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/15-pengenalan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pengenalan Node.js
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/16-npm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    npm dan package.json
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/17-modul-bawaan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modul Bawaan Inti
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/18-proses-lingkungan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proses dan Lingkungan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/19-events-streams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events dan Streams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/20-http/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server HTTP Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/21-express/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Express
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/22-rest-api-tes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST API dan Pengujian
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/23-proyek-akhir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyek Akhir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tujuan-pembelajaran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tujuan pembelajaran
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pendahuluan-error-itu-normal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pendahuluan: error itu normal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tiga-jenis-kesalahan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tiga jenis kesalahan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tiga jenis kesalahan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-error-sintaks-syntax-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Error sintaks (syntax error)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-error-saat-program-berjalan-runtime-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Error saat program berjalan (runtime error)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-error-logika-logic-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Error logika (logic error)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#membaca-pesan-error-dan-stack-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Membaca pesan error dan stack trace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-catch-dan-finally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        try, catch, dan finally
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="try, catch, dan finally">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#menangkap-error-dengan-trycatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menangkap error dengan try...catch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objek-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objek error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finally-selalu-dijalankan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        finally: selalu dijalankan
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#melempar-error-sendiri-dengan-throw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Melempar error sendiri dengan throw
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Melempar error sendiri dengan throw">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memilih-jenis-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memilih jenis error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#menangani-sebagian-melempar-ulang-sisanya" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menangani sebagian, melempar ulang sisanya
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contoh-praktis-membaca-pengaturan-dari-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contoh praktis: membaca pengaturan dari JSON
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-menelusuri-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging: menelusuri bug
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging: menelusuri bug">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#menampilkan-nilai-dengan-consolelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menampilkan nilai dengan console.log
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contoh-mencari-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contoh: mencari bug
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langkah-debugging-yang-sistematis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langkah debugging yang sistematis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugger
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kesalahan-umum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kesalahan umum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kesalahan umum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-catch-kosong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. catch kosong
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-membungkus-semuanya-dalam-satu-try" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Membungkus semuanya dalam satu try
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-memakai-trycatch-untuk-alur-normal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Memakai try...catch untuk alur normal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-melempar-teks-biasa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Melempar teks biasa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-berharap-trycatch-menangkap-error-sintaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Berharap try...catch menangkap error sintaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-mengubah-banyak-hal-sekaligus-saat-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Mengubah banyak hal sekaligus saat debugging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-lupa-menghapus-consolelog-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Lupa menghapus console.log debugging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ringkasan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ringkasan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latihan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latihan-1-prediksi-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 1: Prediksi output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-2-lindungi-jsonparse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 2: Lindungi JSON.parse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-3-akar-kuadrat-yang-aman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 3: Akar kuadrat yang aman
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-4-validasi-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 4: Validasi password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-5-cari-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 5: Cari bug
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-6-parse-dengan-nilai-bawaan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 6: Parse dengan nilai bawaan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-7-urutan-finally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 7: Urutan finally
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigasi" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    JavaScript Dasar
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Error Handling & Debugging</h1>
+
+<h2 id="tujuan-pembelajaran">Tujuan pembelajaran<a class="headerlink" href="#tujuan-pembelajaran" title="Permanent link">&para;</a></h2>
+<p>Setelah mempelajari bab ini, kamu dapat:</p>
+<ul>
+<li>Membedakan error sintaks, error saat program berjalan, dan error logika.</li>
+<li>Membaca pesan error dan <em>stack trace</em> untuk menemukan sumber masalah.</li>
+<li>Menangani error dengan <code>try</code>, <code>catch</code>, dan <code>finally</code>.</li>
+<li>Membuat error sendiri dengan <code>throw</code> dan memilih jenis error yang tepat.</li>
+<li>Memvalidasi masukan agar program tidak berhenti mendadak.</li>
+<li>Menelusuri bug dengan <code>console.log</code>, <code>console.table</code>, dan langkah debugging yang sistematis.</li>
+</ul>
+<p>Bab ini memakai hampir semua materi sebelumnya: fungsi, array, objek, dan JSON dari bab 9. Jalankan setiap contoh dengan <code>node nama-file.js</code>.</p>
+<h2 id="pendahuluan-error-itu-normal">Pendahuluan: error itu normal<a class="headerlink" href="#pendahuluan-error-itu-normal" title="Permanent link">&para;</a></h2>
+<p>Sejak bab 1 kamu sudah bertemu <code>ReferenceError</code>, <code>TypeError</code>, dan teman-temannya. Pemrogram berpengalaman pun melihat error setiap hari. Error bukan tanda kamu gagal, melainkan <strong>pesan dari JavaScript yang memberi tahu apa yang salah dan di mana</strong>.</p>
+<p>Ada dua keterampilan yang dilatih di bab ini:</p>
+<ol>
+<li><strong>Debugging</strong>: menemukan dan memperbaiki penyebab error dalam kode yang kamu tulis.</li>
+<li><strong>Error handling</strong>: menulis program yang menghadapi masalah dengan tenang, misalnya data rusak atau masukan salah, alih-alih berhenti mendadak.</li>
+</ol>
+<p>Analogi: debugging seperti mekanik yang mencari kerusakan mobil, sedangkan error handling seperti sabuk pengaman dan ban serep yang disiapkan sebelum masalah terjadi.</p>
+<h2 id="tiga-jenis-kesalahan">Tiga jenis kesalahan<a class="headerlink" href="#tiga-jenis-kesalahan" title="Permanent link">&para;</a></h2>
+<h3 id="1-error-sintaks-syntax-error">1. Error sintaks (<em>syntax error</em>)<a class="headerlink" href="#1-error-sintaks-syntax-error" title="Permanent link">&para;</a></h3>
+<p>Kode ditulis dengan tata bahasa yang salah, sehingga JavaScript menolak menjalankannya <strong>sama sekali</strong>. Simpan sebagai <code>sintaks.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Halo"</span>
+</span></code></pre></div>
+<p>Output (dipersingkat):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SyntaxError: missing ) after argument list
+</span></code></pre></div>
+<p>Tanda kurung penutup <code>)</code> hilang. Karena kesalahan ini ketahuan saat JavaScript membaca file, tidak ada satu baris pun yang dijalankan.</p>
+<h3 id="2-error-saat-program-berjalan-runtime-error">2. Error saat program berjalan (<em>runtime error</em>)<a class="headerlink" href="#2-error-saat-program-berjalan-runtime-error" title="Permanent link">&para;</a></h3>
+<p>Kodenya valid secara tata bahasa, tetapi sebuah perintah gagal dijalankan. Program berhenti di titik itu. Berikut jenis yang paling sering:</p>
+<table>
+<thead>
+<tr>
+<th>Jenis</th>
+<th>Penyebab umum</th>
+<th>Contoh pesan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ReferenceError</code></td>
+<td>Memakai variabel yang tidak ada</td>
+<td><code>undefinedVar is not defined</code></td>
+</tr>
+<tr>
+<td><code>TypeError</code></td>
+<td>Memakai nilai dengan cara yang tidak cocok untuk tipenya</td>
+<td><code>o.fungsi is not a function</code>, <code>Cannot read properties of null (reading 'x')</code></td>
+</tr>
+<tr>
+<td><code>RangeError</code></td>
+<td>Angka di luar jangkauan yang diizinkan</td>
+<td><code>Invalid count value: -1</code></td>
+</tr>
+<tr>
+<td><code>SyntaxError</code></td>
+<td>Teks yang diolah (misalnya <code>JSON.parse</code>) bukan format yang valid</td>
+<td><code>Unexpected token 'b', "bukan json" is not valid JSON</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-error-logika-logic-error">3. Error logika (<em>logic error</em>)<a class="headerlink" href="#3-error-logika-logic-error" title="Permanent link">&para;</a></h3>
+<p>Program berjalan tanpa error, tetapi <strong>hasilnya salah</strong>. Ini yang paling sulit ditemukan karena JavaScript tidak memberi peringatan. Simpan sebagai <code>logika.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">nilai</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">80</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">];</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">nilai</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">nilai</span><span class="p">[</span><span class="mf">1</span><span class="p">];</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">rata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">rataSalah</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">nilai</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">nilai</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rata</span><span class="p">);</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rataSalah</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>85
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>125
+</span></code></pre></div>
+<p><code>rataSalah</code> lupa tanda kurung, sehingga pembagian dikerjakan lebih dulu (aturan urutan operasi bab 2). Tidak ada pesan error, hanya angka yang keliru. Menemukan kesalahan semacam ini butuh teknik debugging, yang dibahas di bagian akhir.</p>
+<h2 id="membaca-pesan-error-dan-stack-trace">Membaca pesan error dan stack trace<a class="headerlink" href="#membaca-pesan-error-dan-stack-trace" title="Permanent link">&para;</a></h2>
+<p>Ketika error tidak ditangani, Node.js mencetak pesan lengkap lalu menghentikan program. Simpan sebagai <code>stack.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">c</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">"Ada yang salah"</span><span class="p">);</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">}</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="kd">function</span><span class="w"> </span><span class="nx">b</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nx">c</span><span class="p">();</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="kd">function</span><span class="w"> </span><span class="nx">a</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="nx">b</span><span class="p">();</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">}</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="nx">a</span><span class="p">();</span>
+</span></code></pre></div>
+<p>Output (dipersingkat, <code>...</code> mewakili lokasi folder):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>...\stack.js:2
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  throw new Error("Ada yang salah");
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  ^
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Error: Ada yang salah
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    at c (...\stack.js:2:9)
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    at b (...\stack.js:5:3)
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    at a (...\stack.js:8:3)
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    at Object.&lt;anonymous&gt; (...\stack.js:10:1)
+</span></code></pre></div>
+<p>Cara membacanya:</p>
+<table>
+<thead>
+<tr>
+<th>Bagian</th>
+<th>Artinya</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>...\stack.js:2</code></td>
+<td>File dan nomor baris tempat error muncul</td>
+</tr>
+<tr>
+<td>Baris kode dengan <code>^</code></td>
+<td>Baris yang bermasalah</td>
+</tr>
+<tr>
+<td><code>Error: Ada yang salah</code></td>
+<td><strong>Jenis</strong> error dan <strong>pesannya</strong></td>
+</tr>
+<tr>
+<td>Daftar <code>at ...</code></td>
+<td><strong>Stack trace</strong>: urutan pemanggilan fungsi yang membawa program ke error, dari yang paling dalam ke luar</td>
+</tr>
+</tbody>
+</table>
+<p>Pada stack trace, <code>at c (stack.js:2:9)</code> berarti error terjadi di fungsi <code>c</code>, baris 2, kolom 9. Di bawahnya, <code>c</code> dipanggil oleh <code>b</code> (baris 5), yang dipanggil oleh <code>a</code> (baris 8), yang dipanggil dari kode utama (baris 10). Baris-baris <code>at</code> di dalam Node.js sendiri tidak perlu kamu perhatikan.</p>
+<div class="admonition tip">
+<p class="admonition-title">Urutan membaca</p>
+<p>Mulai dari <strong>pesan error</strong> (apa yang salah), lalu <strong>baris pertama stack trace</strong> yang menunjuk ke file milikmu (di mana). Hampir selalu itu sudah cukup untuk menemukan masalahnya.</p>
+</div>
+<h2 id="try-catch-dan-finally"><code>try</code>, <code>catch</code>, dan <code>finally</code><a class="headerlink" href="#try-catch-dan-finally" title="Permanent link">&para;</a></h2>
+<h3 id="menangkap-error-dengan-trycatch">Menangkap error dengan <code>try...catch</code><a class="headerlink" href="#menangkap-error-dengan-trycatch" title="Permanent link">&para;</a></h3>
+<p>Kita bisa meminta JavaScript <strong>mencoba</strong> menjalankan kode berisiko, dan menyiapkan jalur cadangan jika terjadi error. Simpan sebagai <code>try-catch.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Mulai"</span><span class="p">);</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">hasil</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="s2">"bukan json"</span><span class="p">);</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Tidak sampai sini"</span><span class="p">);</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Terjadi error!"</span><span class="p">);</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="p">}</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Program lanjut"</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Mulai
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Terjadi error!
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>SyntaxError
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Unexpected token 'b', "bukan json" is not valid JSON
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>Program lanjut
+</span></code></pre></div>
+<p>Proses eksekusinya:</p>
+<ol>
+<li>Blok <code>try</code> mulai dijalankan dan mencetak <code>Mulai</code>.</li>
+<li><code>JSON.parse("bukan json")</code> gagal dan melemparkan error.</li>
+<li>JavaScript <strong>langsung melompat</strong> ke blok <code>catch</code>. Baris <code>Tidak sampai sini</code> dilewati.</li>
+<li>Objek error diberikan ke variabel <code>error</code> (nama bebas). Kita membaca <code>error.name</code> (jenis) dan <code>error.message</code> (pesan).</li>
+<li>Setelah <code>catch</code> selesai, program <strong>berlanjut normal</strong> dengan <code>Program lanjut</code>.</li>
+</ol>
+<p>Tanpa <code>try...catch</code>, error di langkah 2 akan menghentikan seluruh program.</p>
+<h3 id="objek-error">Objek error<a class="headerlink" href="#objek-error" title="Permanent link">&para;</a></h3>
+<p>Error adalah objek (bab 9) dengan tiga properti yang berguna:</p>
+<table>
+<thead>
+<tr>
+<th>Properti</th>
+<th>Isi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Jenis error, misalnya <code>"TypeError"</code></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>Penjelasan singkat</td>
+</tr>
+<tr>
+<td><code>stack</code></td>
+<td>Teks stack trace lengkap</td>
+</tr>
+</tbody>
+</table>
+<h3 id="finally-selalu-dijalankan"><code>finally</code>: selalu dijalankan<a class="headerlink" href="#finally-selalu-dijalankan" title="Permanent link">&para;</a></h3>
+<p>Blok <code>finally</code> dijalankan <strong>apa pun yang terjadi</strong>, baik ada error maupun tidak. Cocok untuk pekerjaan beres-beres. Simpan sebagai <code>finally.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">bacaAngka</span><span class="p">(</span><span class="nx">teks</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="nx">teks</span><span class="p">);</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">n</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`"</span><span class="si">${</span><span class="nx">teks</span><span class="si">}</span><span class="sb">" bukan angka`</span><span class="p">);</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">n</span><span class="p">;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Gagal:"</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Selesai memeriksa"</span><span class="p">,</span><span class="w"> </span><span class="nx">teks</span><span class="p">);</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="p">}</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bacaAngka</span><span class="p">(</span><span class="s2">"42"</span><span class="p">));</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bacaAngka</span><span class="p">(</span><span class="s2">"abc"</span><span class="p">));</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Selesai memeriksa 42
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>42
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Gagal: "abc" bukan angka
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Selesai memeriksa abc
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>0
+</span></code></pre></div>
+<p>Perhatikan bahwa <code>finally</code> dijalankan <strong>sebelum</strong> nilai <code>return</code> sampai ke pemanggil. Itu sebabnya <code>Selesai memeriksa 42</code> tercetak lebih dulu daripada <code>42</code>, dan <code>finally</code> tetap berjalan walaupun <code>try</code> atau <code>catch</code> sudah mengeksekusi <code>return</code>.</p>
+<h2 id="melempar-error-sendiri-dengan-throw">Melempar error sendiri dengan <code>throw</code><a class="headerlink" href="#melempar-error-sendiri-dengan-throw" title="Permanent link">&para;</a></h2>
+<p>Kita juga bisa <strong>membuat</strong> error ketika menemukan keadaan yang tidak boleh terjadi. Perintahnya <code>throw</code>. Simpan sebagai <code>throw.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">bagi</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">b</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">"Pembagi tidak boleh nol"</span><span class="p">);</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">}</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bagi</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">));</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bagi</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">));</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Error: </span><span class="si">${</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>5
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Error: Pembagi tidak boleh nol
+</span></code></pre></div>
+<ul>
+<li><code>new Error("pesan")</code> membuat objek error baru dengan pesan tertentu. Kata <code>new</code> dipakai untuk membuat objek dari "cetakan" bawaan; bab Classes menjelaskannya lebih dalam.</li>
+<li><code>throw</code> melempar error itu. Fungsi berhenti seketika, dan error naik ke pemanggil sampai ada <code>catch</code> yang menangkapnya.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Lempar objek <code>Error</code>, bukan teks</p>
+<p>Tulis <code>throw new Error("pesan")</code>, bukan <code>throw "pesan"</code>. Hanya objek <code>Error</code> yang membawa stack trace. Teks biasa tidak punya <code>name</code>, <code>message</code>, maupun <code>stack</code>.</p>
+</div>
+<h3 id="memilih-jenis-error">Memilih jenis error<a class="headerlink" href="#memilih-jenis-error" title="Permanent link">&para;</a></h3>
+<p>Selain <code>Error</code> umum, ada jenis yang lebih spesifik, termasuk <code>TypeError</code> dan <code>RangeError</code>. Memilih jenis yang tepat membuat penyebab masalah lebih jelas. Simpan sebagai <code>validasi.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">buatAkun</span><span class="p">(</span><span class="nx">nama</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">nama</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s2">"string"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">nama</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Nama harus berupa teks yang tidak kosong"</span><span class="p">);</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">umur</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s2">"number"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Umur harus berupa angka"</span><span class="p">);</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">umur</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">umur</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">150</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">RangeError</span><span class="p">(</span><span class="s2">"Umur di luar jangkauan"</span><span class="p">);</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="p">}</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="kd">const</span><span class="w"> </span><span class="nx">percobaan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w">  </span><span class="p">[</span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">],</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="w">  </span><span class="p">[</span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">],</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="w">  </span><span class="p">[</span><span class="s2">"Sari"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dua"</span><span class="p">],</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="w">  </span><span class="p">[</span><span class="s2">"Andi"</span><span class="p">,</span><span class="w"> </span><span class="mf">200</span><span class="p">],</span>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="p">];</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="nx">percobaan</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(([</span><span class="nx">nama</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"OK:"</span><span class="p">,</span><span class="w"> </span><span class="nx">buatAkun</span><span class="p">(</span><span class="nx">nama</span><span class="p">,</span><span class="w"> </span><span class="nx">umur</span><span class="p">));</span>
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a><span class="p">});</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>OK: { nama: 'Budi', umur: 20 }
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>TypeError: Nama harus berupa teks yang tidak kosong
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>TypeError: Umur harus berupa angka
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>RangeError: Umur di luar jangkauan
+</span></code></pre></div>
+<p>Fungsi <code>buatAkun</code> memeriksa masukan di awal (<strong>validasi</strong>) dan menolak yang tidak masuk akal. Perhatikan <code>try...catch</code> berada <strong>di dalam</strong> <code>forEach</code>, sehingga satu masukan yang salah tidak menghentikan pemeriksaan masukan berikutnya.</p>
+<h3 id="menangani-sebagian-melempar-ulang-sisanya">Menangani sebagian, melempar ulang sisanya<a class="headerlink" href="#menangani-sebagian-melempar-ulang-sisanya" title="Permanent link">&para;</a></h3>
+<p>Kadang kita hanya ingin menangani jenis error tertentu. Error lain sebaiknya dilempar lagi (<strong>rethrow</strong>) agar tidak tersembunyi. Simpan sebagai <code>rethrow.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">parseAman</span><span class="p">(</span><span class="nx">teks</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">teks</span><span class="p">);</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"SyntaxError"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="nx">e</span><span class="p">;</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="p">}</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">parseAman</span><span class="p">(</span><span class="s1">'{"a":1}'</span><span class="p">));</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">parseAman</span><span class="p">(</span><span class="s2">"rusak"</span><span class="p">));</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>{ a: 1 }
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>null
+</span></code></pre></div>
+<p>Jika error-nya <code>SyntaxError</code> (data tidak valid), fungsi mengembalikan <code>null</code>. Jenis error lain di-<code>throw</code> ulang agar kesalahan yang tidak terduga tetap terlihat.</p>
+<h2 id="contoh-praktis-membaca-pengaturan-dari-json">Contoh praktis: membaca pengaturan dari JSON<a class="headerlink" href="#contoh-praktis-membaca-pengaturan-dari-json" title="Permanent link">&para;</a></h2>
+<p>Data dari luar program (file, pengguna, jaringan) bisa rusak kapan saja, sehingga pembacaannya perlu dilindungi. Simpan sebagai <code>pengaturan.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">bawaan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tema</span><span class="o">:</span><span class="w"> </span><span class="s2">"terang"</span><span class="p">,</span><span class="w"> </span><span class="nx">ukuran</span><span class="o">:</span><span class="w"> </span><span class="mf">14</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="kd">function</span><span class="w"> </span><span class="nx">bacaPengaturan</span><span class="p">(</span><span class="nx">teks</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nx">bawaan</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">teks</span><span class="p">)</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Pengaturan rusak, memakai bawaan."</span><span class="p">);</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">bawaan</span><span class="p">;</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="p">}</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bacaPengaturan</span><span class="p">(</span><span class="s1">'{"tema":"gelap"}'</span><span class="p">));</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bacaPengaturan</span><span class="p">(</span><span class="s1">'{"tema":"gelap"'</span><span class="p">));</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>{ tema: 'gelap', ukuran: 14 }
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Pengaturan rusak, memakai bawaan.
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>{ tema: 'terang', ukuran: 14 }
+</span></code></pre></div>
+<ul>
+<li>Pemanggilan pertama berisi JSON valid. Spread menggabungkannya dengan pengaturan bawaan (bab 9).</li>
+<li>Pemanggilan kedua kehilangan <code>}</code> di akhir, sehingga <code>JSON.parse</code> gagal. Program tidak berhenti, melainkan memakai pengaturan bawaan.</li>
+<li><code>catch { ... }</code> tanpa <code>(error)</code> diperbolehkan jika kita tidak membutuhkan objek errornya.</li>
+</ul>
+<h2 id="debugging-menelusuri-bug">Debugging: menelusuri bug<a class="headerlink" href="#debugging-menelusuri-bug" title="Permanent link">&para;</a></h2>
+<h3 id="menampilkan-nilai-dengan-consolelog">Menampilkan nilai dengan <code>console.log</code><a class="headerlink" href="#menampilkan-nilai-dengan-consolelog" title="Permanent link">&para;</a></h3>
+<p>Cara paling sederhana untuk melihat apa yang terjadi di dalam program adalah mencetak nilai variabel. Simpan sebagai <code>debug-log.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">409</span><span class="p">;</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">rata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">81.8</span><span class="p">;</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">nilai</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="nx">nilai</span><span class="o">:</span><span class="w"> </span><span class="mf">80</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Sari"</span><span class="p">,</span><span class="w"> </span><span class="nx">nilai</span><span class="o">:</span><span class="w"> </span><span class="mf">92</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="p">];</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"total:"</span><span class="p">,</span><span class="w"> </span><span class="nx">total</span><span class="p">);</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">({</span><span class="w"> </span><span class="nx">total</span><span class="p">,</span><span class="w"> </span><span class="nx">rata</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">table</span><span class="p">(</span><span class="nx">nilai</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>total: 409
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>{ total: 409, rata: 81.8 }
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>┌─────────┬────────┬───────┐
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>│ (index) │ nama   │ nilai │
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>├─────────┼────────┼───────┤
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>│ 0       │ 'Budi' │ 80    │
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>│ 1       │ 'Sari' │ 92    │
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>└─────────┴────────┴───────┘
+</span></code></pre></div>
+<p>Tiga teknik:</p>
+<ul>
+<li><code>console.log("total:", total)</code> memberi <strong>label</strong> supaya tidak bingung angka mana yang sedang dilihat.</li>
+<li><code>console.log({ total, rata })</code> memakai properti singkat (bab 9) untuk mencetak nama sekaligus nilai beberapa variabel.</li>
+<li><code>console.table(...)</code> menampilkan array objek sebagai tabel yang mudah dibaca.</li>
+</ul>
+<p>Ada juga <code>console.error(...)</code> dan <code>console.warn(...)</code> untuk pesan masalah. Keduanya keluar lewat jalur khusus yang disebut <strong>stderr</strong>, terpisah dari output normal.</p>
+<h3 id="contoh-mencari-bug">Contoh: mencari bug<a class="headerlink" href="#contoh-mencari-bug" title="Permanent link">&para;</a></h3>
+<p>Fungsi ini seharusnya menghitung rata-rata, tetapi hasilnya salah. Simpan sebagai <code>bug.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">rataRata</span><span class="p">(</span><span class="nx">angka</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nx">angka</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span><span class="nx">total</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">angka</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">angka</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="p">}</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rataRata</span><span class="p">([</span><span class="mf">80</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">70</span><span class="p">]));</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>NaN
+</span></code></pre></div>
+<p>Hasilnya <code>NaN</code> (dari bab 3), tanda ada angka yang tidak valid ikut dihitung. Mari telusuri dengan menambahkan <code>console.log</code> di dalam perulangan. Simpan sebagai <code>bug-debug.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">rataRata</span><span class="p">(</span><span class="nx">angka</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nx">angka</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">({</span><span class="w"> </span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="nx">elemen</span><span class="o">:</span><span class="w"> </span><span class="nx">angka</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">    </span><span class="nx">total</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">angka</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">angka</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="p">}</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rataRata</span><span class="p">([</span><span class="mf">80</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">70</span><span class="p">]));</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>{ i: 1, elemen: 90, total: 0 }
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>{ i: 2, elemen: 70, total: 90 }
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>{ i: 3, elemen: undefined, total: 160 }
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>NaN
+</span></code></pre></div>
+<p>Jejak ini langsung membuka masalahnya:</p>
+<ol>
+<li>Perulangan dimulai dari <code>i = 1</code>, sehingga elemen pertama (80) terlewat.</li>
+<li>Pada <code>i = 3</code> elemennya <code>undefined</code>, karena indeks terakhir sebenarnya 2. Menjumlahkan <code>undefined</code> menghasilkan <code>NaN</code>.</li>
+</ol>
+<p>Ini kesalahan klasik <strong>selisih satu</strong> (bab 5). Perbaikan: mulai dari <code>i = 0</code> dan gunakan <code>i &lt; angka.length</code>.</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">rataRata</span><span class="p">(</span><span class="nx">angka</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">angka</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">    </span><span class="nx">total</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">angka</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">angka</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="p">}</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">rataRata</span><span class="p">([</span><span class="mf">80</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">70</span><span class="p">]));</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>80
+</span></code></pre></div>
+<h3 id="langkah-debugging-yang-sistematis">Langkah debugging yang sistematis<a class="headerlink" href="#langkah-debugging-yang-sistematis" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Baca pesan error</strong> dengan teliti, jangan hanya melihat warna merahnya.</li>
+<li><strong>Temukan barisnya</strong> dari stack trace, lalu baca kode di sekitarnya.</li>
+<li><strong>Persempit masalah.</strong> Kecilkan kode sampai contoh paling pendek yang masih salah.</li>
+<li><strong>Periksa nilai nyata</strong>, jangan menebak. Cetak variabel yang dicurigai.</li>
+<li><strong>Ubah satu hal sekali</strong>, lalu jalankan lagi. Mengubah banyak hal sekaligus membuat sebab-akibat tidak jelas.</li>
+<li><strong>Jelaskan kode dengan kata-kata</strong>, bahkan kepada benda mati. Seringkali kesalahan terlihat saat kamu menjelaskannya baris demi baris.</li>
+</ol>
+<h3 id="debugger">Debugger<a class="headerlink" href="#debugger" title="Permanent link">&para;</a></h3>
+<p>Selain <code>console.log</code>, ada alat bernama <strong>debugger</strong> yang memungkinkan program dijeda di baris tertentu (<strong>breakpoint</strong>) dan dijalankan baris demi baris sambil melihat isi semua variabel. Pada editor seperti VS Code, kamu menaruh breakpoint dengan mengklik di sisi kiri nomor baris, lalu menjalankan program dalam mode debug. Di dalam kode, perintah <code>debugger;</code> juga berfungsi sebagai breakpoint ketika program dijalankan lewat alat debug. Untuk sekarang <code>console.log</code> sudah cukup; coba debugger saat programmu mulai besar.</p>
+<h2 id="kesalahan-umum">Kesalahan umum<a class="headerlink" href="#kesalahan-umum" title="Permanent link">&para;</a></h2>
+<h3 id="1-catch-kosong">1. <code>catch</code> kosong<a class="headerlink" href="#1-catch-kosong" title="Permanent link">&para;</a></h3>
+<p>Simpan sebagai <code>catch-kosong.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">  </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="s2">"rusak"</span><span class="p">);</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">  </span><span class="c1">// tidak melakukan apa-apa</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="p">}</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Selesai tanpa kabar apa pun"</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>Selesai tanpa kabar apa pun
+</span></code></pre></div>
+<p>Error ditelan diam-diam, sehingga bug tersembunyi dan sulit ditemukan nanti. <strong>Perbaikan:</strong> minimal catat pesannya (<code>console.log(e.message)</code>), atau tangani dengan jalur cadangan yang jelas.</p>
+<h3 id="2-membungkus-semuanya-dalam-satu-try">2. Membungkus semuanya dalam satu <code>try</code><a class="headerlink" href="#2-membungkus-semuanya-dalam-satu-try" title="Permanent link">&para;</a></h3>
+<p>Menaruh seluruh program di satu <code>try...catch</code> besar membuat sulit mengetahui bagian mana yang gagal. Bungkus hanya kode yang memang berisiko, dengan blok <code>try</code> sependek mungkin.</p>
+<h3 id="3-memakai-trycatch-untuk-alur-normal">3. Memakai <code>try...catch</code> untuk alur normal<a class="headerlink" href="#3-memakai-trycatch-untuk-alur-normal" title="Permanent link">&para;</a></h3>
+<p>Jika sesuatu bisa diperiksa dengan <code>if</code>, pakai <code>if</code>. <code>try...catch</code> untuk keadaan yang <strong>tidak terduga</strong>, bukan untuk percabangan sehari-hari.</p>
+<h3 id="4-melempar-teks-biasa">4. Melempar teks biasa<a class="headerlink" href="#4-melempar-teks-biasa" title="Permanent link">&para;</a></h3>
+<p>Simpan sebagai <code>throw-teks.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="s2">"ada masalah"</span><span class="p">;</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">e</span><span class="p">);</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">stack</span><span class="p">);</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>string
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>undefined
+</span></code></pre></div>
+<p>Teks tidak punya stack trace. <strong>Perbaikan:</strong> <code>throw new Error("ada masalah")</code>.</p>
+<h3 id="5-berharap-trycatch-menangkap-error-sintaks">5. Berharap <code>try...catch</code> menangkap error sintaks<a class="headerlink" href="#5-berharap-trycatch-menangkap-error-sintaks" title="Permanent link">&para;</a></h3>
+<p>Error sintaks muncul saat file dibaca, sebelum <code>try</code> sempat dijalankan, sehingga tidak bisa ditangkap. Perbaiki kodenya.</p>
+<h3 id="6-mengubah-banyak-hal-sekaligus-saat-debugging">6. Mengubah banyak hal sekaligus saat debugging<a class="headerlink" href="#6-mengubah-banyak-hal-sekaligus-saat-debugging" title="Permanent link">&para;</a></h3>
+<p>Jika tiga hal diubah bersamaan dan masalah hilang, kamu tidak tahu mana yang memperbaikinya. Ubah satu per satu.</p>
+<h3 id="7-lupa-menghapus-consolelog-debugging">7. Lupa menghapus <code>console.log</code> debugging<a class="headerlink" href="#7-lupa-menghapus-consolelog-debugging" title="Permanent link">&para;</a></h3>
+<p>Setelah bug ketemu, hapus pencetakan sementara agar output program tetap bersih.</p>
+<h2 id="ringkasan">Ringkasan<a class="headerlink" href="#ringkasan" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Tiga jenis kesalahan: <strong>sintaks</strong> (kode tidak bisa dibaca), <strong>runtime</strong> (gagal saat berjalan), dan <strong>logika</strong> (hasil salah tanpa error).</li>
+<li>Baca pesan error lalu stack trace. Cari baris pertama yang menunjuk ke file milikmu.</li>
+<li><code>try { ... } catch (e) { ... }</code> menangkap error dan membuat program berlanjut. <code>finally</code> selalu dijalankan.</li>
+<li>Objek error punya <code>name</code>, <code>message</code>, dan <code>stack</code>.</li>
+<li><code>throw new Error("pesan")</code> melempar error sendiri. Pilih jenis yang tepat, misalnya <code>TypeError</code> atau <code>RangeError</code>.</li>
+<li>Validasi masukan di awal fungsi dan tolak yang tidak masuk akal.</li>
+<li>Tangkap error yang kamu tahu cara menanganinya, lempar ulang (<code>throw e</code>) sisanya.</li>
+<li>Debugging: cetak nilai nyata (<code>console.log</code>, <code>console.table</code>), persempit masalah, dan ubah satu hal sekali.</li>
+<li>Hindari <code>catch</code> kosong dan <code>throw</code> teks biasa.</li>
+</ul>
+<h2 id="latihan">Latihan<a class="headerlink" href="#latihan" title="Permanent link">&para;</a></h2>
+<p>Kerjakan sendiri dulu sebelum melihat jawaban.</p>
+<h3 id="latihan-1-prediksi-output">Latihan 1: Prediksi output<a class="headerlink" href="#latihan-1-prediksi-output" title="Permanent link">&para;</a></h3>
+<p>Apa yang tampil, dan dalam urutan apa?</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"A"</span><span class="p">);</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">  </span><span class="kc">null</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"B"</span><span class="p">);</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"C"</span><span class="p">);</span>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"D"</span><span class="p">);</span>
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<details class="success">
+<summary>Jawaban</summary>
+<p>Output: <code>A</code>, <code>C</code>, <code>D</code> (masing-masing di baris sendiri). Mengakses <code>null.x</code> menyebabkan <code>TypeError</code>, sehingga <code>B</code> dilewati dan program melompat ke <code>catch</code>. <code>finally</code> selalu berjalan di akhir.</p>
+</details>
+<h3 id="latihan-2-lindungi-jsonparse">Latihan 2: Lindungi <code>JSON.parse</code><a class="headerlink" href="#latihan-2-lindungi-jsonparse" title="Permanent link">&para;</a></h3>
+<p>Kode ini akan menghentikan program. Bungkus dengan <code>try...catch</code> agar mencetak <code>Data rusak</code> dan tetap menampilkan <code>Selesai</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="s1">'{"a":'</span><span class="p">);</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Selesai"</span><span class="p">);</span>
+</span></code></pre></div>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="s1">'{"a":'</span><span class="p">);</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Data rusak"</span><span class="p">);</span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="p">}</span>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Selesai"</span><span class="p">);</span>
+</span></code></pre></div>
+Output: <code>Data rusak</code> lalu <code>Selesai</code>.</p>
+</details>
+<h3 id="latihan-3-akar-kuadrat-yang-aman">Latihan 3: Akar kuadrat yang aman<a class="headerlink" href="#latihan-3-akar-kuadrat-yang-aman" title="Permanent link">&para;</a></h3>
+<p>Buat fungsi <code>akar(n)</code> yang melempar <code>RangeError</code> dengan pesan <code>Angka tidak boleh negatif</code> jika <code>n</code> negatif, dan selain itu mengembalikan <code>Math.sqrt(n)</code>. Uji dengan 16 dan -4, dan tangkap errornya.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">akar</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">RangeError</span><span class="p">(</span><span class="s2">"Angka tidak boleh negatif"</span><span class="p">);</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="p">}</span>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>
+</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="p">[</span><span class="mf">16</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">4</span><span class="p">].</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">akar</span><span class="p">(</span><span class="nx">n</span><span class="p">));</span>
+</span><span id="__span-33-11"><a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-12"><a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-33-13"><a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-33-14"><a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a><span class="p">});</span>
+</span></code></pre></div>
+Output:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>4
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>RangeError: Angka tidak boleh negatif
+</span></code></pre></div></p>
+</details>
+<h3 id="latihan-4-validasi-password">Latihan 4: Validasi password<a class="headerlink" href="#latihan-4-validasi-password" title="Permanent link">&para;</a></h3>
+<p>Buat fungsi <code>cekPassword(p)</code> yang melempar <code>Error</code> dengan pesan <code>Password minimal 8 karakter</code> jika panjangnya kurang dari 8, dan <code>Password tidak boleh mengandung spasi</code> jika ada spasi (<code>includes(" ")</code>). Jika lolos, kembalikan <code>"OK"</code>. Uji dengan <code>"abc"</code>, <code>"rahasia123"</code>, dan <code>"ada spasi nih1"</code>.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">cekPassword</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">8</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">"Password minimal 8 karakter"</span><span class="p">);</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">" "</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">"Password tidak boleh mengandung spasi"</span><span class="p">);</span>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">;</span>
+</span><span id="__span-35-9"><a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="p">}</span>
+</span><span id="__span-35-10"><a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a>
+</span><span id="__span-35-11"><a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a><span class="p">[</span><span class="s2">"abc"</span><span class="p">,</span><span class="w"> </span><span class="s2">"rahasia123"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ada spasi nih1"</span><span class="p">].</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">p</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-12"><a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-13"><a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cekPassword</span><span class="p">(</span><span class="nx">p</span><span class="p">));</span>
+</span><span id="__span-35-14"><a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-15"><a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span id="__span-35-16"><a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-35-17"><a id="__codelineno-35-17" name="__codelineno-35-17" href="#__codelineno-35-17"></a><span class="p">});</span>
+</span></code></pre></div>
+Output:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>Password minimal 8 karakter
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>OK
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>Password tidak boleh mengandung spasi
+</span></code></pre></div></p>
+</details>
+<h3 id="latihan-5-cari-bug">Latihan 5: Cari bug<a class="headerlink" href="#latihan-5-cari-bug" title="Permanent link">&para;</a></h3>
+<p>Fungsi ini seharusnya mencari angka terbesar, tetapi menghasilkan <code>undefined</code>. Temukan penyebabnya dengan <code>console.log</code>, lalu perbaiki:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">terbesar</span><span class="p">(</span><span class="nx">angka</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">max</span><span class="p">;</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">angka</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">angka</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">max</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="w">      </span><span class="nx">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">angka</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">max</span><span class="p">;</span>
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a><span class="p">}</span>
+</span><span id="__span-37-10"><a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a>
+</span><span id="__span-37-11"><a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">terbesar</span><span class="p">([</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">9</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">]));</span>
+</span></code></pre></div>
+<details class="success">
+<summary>Jawaban</summary>
+<p><code>max</code> tidak pernah diberi nilai awal, sehingga bernilai <code>undefined</code>, dan <code>3 &gt; undefined</code> selalu <code>false</code>. Perbaikan: beri nilai awal elemen pertama.
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">terbesar</span><span class="p">(</span><span class="nx">angka</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">angka</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">angka</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">angka</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">max</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="w">      </span><span class="nx">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">angka</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">max</span><span class="p">;</span>
+</span><span id="__span-38-9"><a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a><span class="p">}</span>
+</span><span id="__span-38-10"><a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a>
+</span><span id="__span-38-11"><a id="__codelineno-38-11" name="__codelineno-38-11" href="#__codelineno-38-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">terbesar</span><span class="p">([</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">9</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">]));</span>
+</span></code></pre></div>
+Output: <code>9</code></p>
+</details>
+<h3 id="latihan-6-parse-dengan-nilai-bawaan">Latihan 6: Parse dengan nilai bawaan<a class="headerlink" href="#latihan-6-parse-dengan-nilai-bawaan" title="Permanent link">&para;</a></h3>
+<p>Buat fungsi <code>parseDenganBawaan(teks, bawaan)</code> yang mengembalikan hasil <code>JSON.parse(teks)</code>, atau <code>bawaan</code> jika teksnya tidak valid. Uji dengan <code>'{"x":1}'</code> dan <code>"rusak"</code>, dengan <code>bawaan</code> berupa <code>{ x: 0 }</code>.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">parseDenganBawaan</span><span class="p">(</span><span class="nx">teks</span><span class="p">,</span><span class="w"> </span><span class="nx">bawaan</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">teks</span><span class="p">);</span>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">bawaan</span><span class="p">;</span>
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="p">}</span>
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>
+</span><span id="__span-39-9"><a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">parseDenganBawaan</span><span class="p">(</span><span class="s1">'{"x":1}'</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="p">}));</span>
+</span><span id="__span-39-10"><a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">parseDenganBawaan</span><span class="p">(</span><span class="s2">"rusak"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="p">}));</span>
+</span></code></pre></div>
+Output:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>{ x: 1 }
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>{ x: 0 }
+</span></code></pre></div></p>
+</details>
+<h3 id="latihan-7-urutan-finally">Latihan 7: Urutan <code>finally</code><a class="headerlink" href="#latihan-7-urutan-finally" title="Permanent link">&para;</a></h3>
+<p>Tebak urutan output kedua pemanggilan ini:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">proses</span><span class="p">(</span><span class="nx">angka</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Buka"</span><span class="p">);</span>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">angka</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">"negatif"</span><span class="p">);</span>
+</span><span id="__span-41-6"><a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-41-7"><a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">angka</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+</span><span id="__span-41-8"><a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-41-9"><a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s2">"gagal"</span><span class="p">;</span>
+</span><span id="__span-41-10"><a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-41-11"><a id="__codelineno-41-11" name="__codelineno-41-11" href="#__codelineno-41-11"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Tutup"</span><span class="p">);</span>
+</span><span id="__span-41-12"><a id="__codelineno-41-12" name="__codelineno-41-12" href="#__codelineno-41-12"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-41-13"><a id="__codelineno-41-13" name="__codelineno-41-13" href="#__codelineno-41-13"></a><span class="p">}</span>
+</span><span id="__span-41-14"><a id="__codelineno-41-14" name="__codelineno-41-14" href="#__codelineno-41-14"></a>
+</span><span id="__span-41-15"><a id="__codelineno-41-15" name="__codelineno-41-15" href="#__codelineno-41-15"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">proses</span><span class="p">(</span><span class="mf">5</span><span class="p">));</span>
+</span><span id="__span-41-16"><a id="__codelineno-41-16" name="__codelineno-41-16" href="#__codelineno-41-16"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">proses</span><span class="p">(</span><span class="o">-</span><span class="mf">1</span><span class="p">));</span>
+</span></code></pre></div>
+<details class="success">
+<summary>Jawaban</summary>
+<p>Output:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>Buka
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>Tutup
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>10
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>Buka
+</span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>Tutup
+</span><span id="__span-42-6"><a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a>gagal
+</span></code></pre></div>
+<code>finally</code> selalu berjalan sebelum nilai <code>return</code> dikirim ke pemanggil, baik lewat <code>return</code> di <code>try</code> (untuk 5) maupun di <code>catch</code> (untuk -1).</p>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Kembali ke atas
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../09-objects/" class="md-footer__link md-footer__link--prev" aria-label="Sebelumnya: Objects">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Sebelumnya
+              </span>
+              <div class="md-ellipsis">
+                Objects
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../11-modules/" class="md-footer__link md-footer__link--next" aria-label="Selanjutnya: Modules">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Selanjutnya
+              </span>
+              <div class="md-ellipsis">
+                Modules
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.path", "navigation.footer", "navigation.top", "navigation.tracking", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Tersalin ke clipboard", "clipboard.copy": "Salin ke clipboard", "search.result.more.one": "1 lagi di halaman ini", "search.result.more.other": "# lagi di halaman ini", "search.result.none": "Tidak ada dokumen yang sesuai", "search.result.one": "1 dokumen ditemukan", "search.result.other": "# dokumen ditemukan", "search.result.placeholder": "Ketik untuk mulai pencarian", "search.result.term.missing": "Tidak ada", "select.version": "Pilih versi"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/vendor/mermaid/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-config.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

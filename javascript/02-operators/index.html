@@ -1,0 +1,2499 @@
+
+<!doctype html>
+<html lang="id" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Materi belajar JavaScript dan Node.js bagi pemula, dari konsep dasar hingga praktik.">
+      
+      
+      
+        <link rel="canonical" href="https://topekox.my.id/mkdocs-template/javascript/02-operators/">
+      
+      
+        <link rel="prev" href="../01-variables/">
+      
+      
+        <link rel="next" href="../03-strings-numbers/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Operators & Expressions - Belajar JavaScript dan Node.js</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tujuan-pembelajaran" class="md-skip">
+          Lewati ke isi
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Belajar JavaScript dan Node.js" class="md-header__button md-logo" aria-label="Belajar JavaScript dan Node.js" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Belajar JavaScript dan Node.js
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Operators & Expressions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: system (click for light)"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Theme: system (click for light)" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: light (click for dark)"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Theme: light (click for dark)" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: dark (click for system)"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Theme: dark (click for system)" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cari" placeholder="Cari" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cari">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Kosongkan" aria-label="Kosongkan" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Mempersiapkan pencarian
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigasi" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Belajar JavaScript dan Node.js" class="md-nav__button md-logo" aria-label="Belajar JavaScript dan Node.js" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Belajar JavaScript dan Node.js
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JavaScript Dasar
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JavaScript Dasar
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operators & Expressions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operators & Expressions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tujuan-pembelajaran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tujuan pembelajaran
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apa-itu-operator-dan-ekspresi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apa itu operator dan ekspresi?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operator-aritmetika" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operator aritmetika
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operator aritmetika">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#juga-dipakai-untuk-teks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        + juga dipakai untuk teks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#urutan-pengerjaan-operasi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Urutan pengerjaan operasi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memperbarui-nilai-variabel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memperbarui nilai variabel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operator-perbandingan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operator perbandingan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operator perbandingan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        === dan ==
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operator-logika" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operator logika
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contoh-praktis-menghitung-diskon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contoh praktis: menghitung diskon
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kesalahan-umum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kesalahan umum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kesalahan umum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-memakai-untuk-membandingkan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Memakai = untuk membandingkan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mengira-ekspresi-mengubah-variabel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mengira ekspresi mengubah variabel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-menyambung-teks-dan-angka-tanpa-sadar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Menyambung teks dan angka tanpa sadar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-mengubah-variabel-const" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Mengubah variabel const
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-urutan-operasi-yang-tidak-sesuai-harapan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Urutan operasi yang tidak sesuai harapan
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ringkasan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ringkasan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latihan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latihan-1-prediksi-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 1: Prediksi output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-2-atau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 2: === atau !==
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-3-luas-dan-keliling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 3: Luas dan keliling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-4-konversi-suhu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 4: Konversi suhu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-5-genap-atau-ganjil" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 5: Genap atau ganjil
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-6-kembalian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 6: Kembalian
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-7-syarat-masuk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 7: Syarat masuk
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-strings-numbers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings & Numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-conditionals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-scope-hoisting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scope & Hoisting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-objects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-error-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Handling & Debugging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-asynchronous/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asynchronous JavaScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes & OOP Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-proyek-akhir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyek Akhir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../nodejs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node.js
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Node.js
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/15-pengenalan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pengenalan Node.js
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/16-npm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    npm dan package.json
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/17-modul-bawaan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modul Bawaan Inti
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/18-proses-lingkungan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proses dan Lingkungan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/19-events-streams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events dan Streams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/20-http/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server HTTP Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/21-express/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Express
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/22-rest-api-tes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST API dan Pengujian
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/23-proyek-akhir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyek Akhir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tujuan-pembelajaran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tujuan pembelajaran
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apa-itu-operator-dan-ekspresi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apa itu operator dan ekspresi?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operator-aritmetika" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operator aritmetika
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operator aritmetika">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#juga-dipakai-untuk-teks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        + juga dipakai untuk teks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#urutan-pengerjaan-operasi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Urutan pengerjaan operasi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memperbarui-nilai-variabel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memperbarui nilai variabel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operator-perbandingan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operator perbandingan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operator perbandingan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        === dan ==
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operator-logika" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operator logika
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contoh-praktis-menghitung-diskon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contoh praktis: menghitung diskon
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kesalahan-umum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kesalahan umum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kesalahan umum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-memakai-untuk-membandingkan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Memakai = untuk membandingkan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mengira-ekspresi-mengubah-variabel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mengira ekspresi mengubah variabel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-menyambung-teks-dan-angka-tanpa-sadar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Menyambung teks dan angka tanpa sadar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-mengubah-variabel-const" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Mengubah variabel const
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-urutan-operasi-yang-tidak-sesuai-harapan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Urutan operasi yang tidak sesuai harapan
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ringkasan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ringkasan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latihan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latihan-1-prediksi-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 1: Prediksi output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-2-atau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 2: === atau !==
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-3-luas-dan-keliling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 3: Luas dan keliling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-4-konversi-suhu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 4: Konversi suhu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-5-genap-atau-ganjil" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 5: Genap atau ganjil
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-6-kembalian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 6: Kembalian
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-7-syarat-masuk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 7: Syarat masuk
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigasi" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    JavaScript Dasar
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Operators & Expressions</h1>
+
+<h2 id="tujuan-pembelajaran">Tujuan pembelajaran<a class="headerlink" href="#tujuan-pembelajaran" title="Permanent link">&para;</a></h2>
+<p>Setelah mempelajari bab ini, kamu dapat:</p>
+<ul>
+<li>Menjelaskan apa itu operator, operand, dan ekspresi.</li>
+<li>Memakai operator aritmetika: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, dan <code>**</code>.</li>
+<li>Memperbarui nilai variabel dengan <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>++</code>, dan <code>--</code>.</li>
+<li>Memahami urutan pengerjaan operasi dan memakai tanda kurung.</li>
+<li>Membandingkan nilai dengan <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>===</code>, dan <code>!==</code>.</li>
+<li>Menggabungkan kondisi dengan <code>&amp;&amp;</code>, <code>||</code>, dan <code>!</code>.</li>
+</ul>
+<p>Bab ini memakai hal-hal dari bab sebelumnya: <code>let</code>, <code>const</code>, <code>console.log</code>, dan template literal. Jalankan setiap contoh dengan <code>node nama-file.js</code>.</p>
+<h2 id="apa-itu-operator-dan-ekspresi">Apa itu operator dan ekspresi?<a class="headerlink" href="#apa-itu-operator-dan-ekspresi" title="Permanent link">&para;</a></h2>
+<p>Dalam matematika, kamu sudah mengenal tanda <code>+</code> dan <code>×</code>. Tanda-tanda itu menyuruh kita melakukan sesuatu pada angka. Di JavaScript, tanda seperti itu disebut <strong>operator</strong>.</p>
+<p>Perhatikan <code>3 + 4</code>:</p>
+<ul>
+<li><code>3</code> dan <code>4</code> disebut <strong>operand</strong>, yaitu nilai yang diolah.</li>
+<li><code>+</code> adalah <strong>operator</strong>, yaitu perintah untuk mengolahnya.</li>
+<li>Seluruh <code>3 + 4</code> disebut <strong>ekspresi</strong>, yaitu potongan kode yang menghasilkan sebuah nilai (di sini: <code>7</code>).</li>
+</ul>
+<p>Analoginya seperti mesin kasir: kamu memasukkan angka (operand), menekan tombol (operator), dan keluar hasilnya (nilai ekspresi).</p>
+<p>Ekspresi bisa disimpan di variabel, atau langsung ditampilkan:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">hasil</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">4</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hasil</span><span class="p">);</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">4</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Keduanya menampilkan <code>7</code>.</p>
+<h2 id="operator-aritmetika">Operator aritmetika<a class="headerlink" href="#operator-aritmetika" title="Permanent link">&para;</a></h2>
+<p>Operator aritmetika dipakai untuk menghitung. Simpan sebagai <code>aritmetika.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">17</span><span class="p">;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span><span class="p">);</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">b</span><span class="p">);</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">b</span><span class="p">);</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">b</span><span class="p">);</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="nx">b</span><span class="p">);</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>22
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>12
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>85
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>3.4
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>2
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>289
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Nama</th>
+<th>Contoh</th>
+<th>Hasil</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+</code></td>
+<td>Tambah</td>
+<td><code>17 + 5</code></td>
+<td><code>22</code></td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>Kurang</td>
+<td><code>17 - 5</code></td>
+<td><code>12</code></td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Kali</td>
+<td><code>17 * 5</code></td>
+<td><code>85</code></td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>Bagi</td>
+<td><code>17 / 5</code></td>
+<td><code>3.4</code></td>
+</tr>
+<tr>
+<td><code>%</code></td>
+<td>Sisa bagi (modulo)</td>
+<td><code>17 % 5</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>**</code></td>
+<td>Pangkat</td>
+<td><code>17 ** 2</code></td>
+<td><code>289</code></td>
+</tr>
+</tbody>
+</table>
+<p>Dua operator yang mungkin baru bagimu:</p>
+<ul>
+<li><strong><code>%</code> (modulo)</strong> memberi <strong>sisa pembagian</strong>. 17 dibagi 5 hasilnya 3, dengan sisa 2. Jadi <code>17 % 5</code> adalah <code>2</code>. Bayangkan membagi 17 permen kepada 5 anak: tiap anak dapat 3, dan 2 permen tersisa.</li>
+<li><strong><code>**</code> (pangkat)</strong> menghitung perpangkatan. <code>17 ** 2</code> sama dengan 17 × 17.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Kegunaan <code>%</code></p>
+<p>Modulo sangat berguna untuk memeriksa genap atau ganjil. Angka genap jika sisa bagi dua adalah 0: <code>14 % 2</code> hasilnya <code>0</code>, sedangkan <code>7 % 2</code> hasilnya <code>1</code>.</p>
+</div>
+<h3 id="juga-dipakai-untuk-teks"><code>+</code> juga dipakai untuk teks<a class="headerlink" href="#juga-dipakai-untuk-teks" title="Permanent link">&para;</a></h3>
+<p>Di bab sebelumnya kamu sudah memakai <code>+</code> untuk menyambung teks. Simpan sebagai <code>plus-teks.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"5"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Halo "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"dunia"</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>53
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>8
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Halo dunia
+</span></code></pre></div>
+<p>Jika salah satu operand adalah teks, <code>+</code> menyambung, bukan menjumlahkan. Jadi <code>"5" + 3</code> menghasilkan teks <code>"53"</code>, bukan angka <code>8</code>. Bab berikutnya membahas cara JavaScript mengubah tipe nilai secara lebih lengkap.</p>
+<h2 id="urutan-pengerjaan-operasi">Urutan pengerjaan operasi<a class="headerlink" href="#urutan-pengerjaan-operasi" title="Permanent link">&para;</a></h2>
+<p>Seperti di matematika, kali dan bagi dikerjakan lebih dulu daripada tambah dan kurang. Simpan sebagai <code>urutan.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">4</span><span class="p">);</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">((</span><span class="mf">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">4</span><span class="p">);</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">10</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">2</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>14
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>20
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>3
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>16
+</span></code></pre></div>
+<p>Penjelasan:</p>
+<table>
+<thead>
+<tr>
+<th>Ekspresi</th>
+<th>Cara JavaScript menghitung</th>
+<th>Hasil</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>2 + 3 * 4</code></td>
+<td><code>3 * 4 = 12</code> dulu, baru <code>2 + 12</code></td>
+<td><code>14</code></td>
+</tr>
+<tr>
+<td><code>(2 + 3) * 4</code></td>
+<td>Tanda kurung dikerjakan lebih dulu: <code>5 * 4</code></td>
+<td><code>20</code></td>
+</tr>
+<tr>
+<td><code>10 - 4 - 3</code></td>
+<td>Dari kiri ke kanan: <code>6 - 3</code></td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td><code>2 ** 3 * 2</code></td>
+<td>Pangkat dulu: <code>8 * 2</code></td>
+<td><code>16</code></td>
+</tr>
+</tbody>
+</table>
+<p>Urutan dari yang paling dulu: <strong>tanda kurung</strong>, lalu <strong>pangkat</strong>, lalu <strong>kali, bagi, dan sisa bagi</strong>, lalu <strong>tambah dan kurang</strong>. Operator dengan tingkat yang sama dikerjakan dari kiri ke kanan.</p>
+<div class="admonition tip">
+<p class="admonition-title">Pakai kurung agar jelas</p>
+<p>Jika ragu, tambahkan tanda kurung. Kode seperti <code>(a + b) * c</code> lebih mudah dibaca dan tidak bergantung pada hafalan urutan.</p>
+</div>
+<h2 id="memperbarui-nilai-variabel">Memperbarui nilai variabel<a class="headerlink" href="#memperbarui-nilai-variabel" title="Permanent link">&para;</a></h2>
+<p>Di bab 1 kamu menulis <code>saldo = saldo - total</code>. Cara itu sering dipakai, sehingga JavaScript menyediakan singkatannya. Simpan sebagai <code>perbarui.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">skor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nx">skor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">skor</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">skor</span><span class="p">);</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nx">skor</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">skor</span><span class="p">);</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nx">skor</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">skor</span><span class="p">);</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="nx">skor</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">skor</span><span class="p">);</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="nx">skor</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mf">4</span><span class="p">;</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">skor</span><span class="p">);</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="kd">let</span><span class="w"> </span><span class="nx">hitung</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="nx">hitung</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="nx">hitung</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hitung</span><span class="p">);</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="nx">hitung</span><span class="o">--</span><span class="p">;</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hitung</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>15
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>20
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>17
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>34
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>8.5
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>2
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>1
+</span></code></pre></div>
+<p>Penjelasan proses eksekusinya:</p>
+<table>
+<thead>
+<tr>
+<th>Baris</th>
+<th>Artinya</th>
+<th><code>skor</code> menjadi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>skor = skor + 5</code></td>
+<td>Hitung <code>10 + 5</code>, simpan kembali</td>
+<td><code>15</code></td>
+</tr>
+<tr>
+<td><code>skor += 5</code></td>
+<td>Singkatan dari <code>skor = skor + 5</code></td>
+<td><code>20</code></td>
+</tr>
+<tr>
+<td><code>skor -= 3</code></td>
+<td>Singkatan dari <code>skor = skor - 3</code></td>
+<td><code>17</code></td>
+</tr>
+<tr>
+<td><code>skor *= 2</code></td>
+<td>Singkatan dari <code>skor = skor * 2</code></td>
+<td><code>34</code></td>
+</tr>
+<tr>
+<td><code>skor /= 4</code></td>
+<td>Singkatan dari <code>skor = skor / 4</code></td>
+<td><code>8.5</code></td>
+</tr>
+</tbody>
+</table>
+<p>Untuk menambah atau mengurangi <strong>satu</strong>, tersedia bentuk yang lebih singkat lagi:</p>
+<ul>
+<li><code>hitung++</code> menambah 1 (sama dengan <code>hitung += 1</code>).</li>
+<li><code>hitung--</code> mengurangi 1 (sama dengan <code>hitung -= 1</code>).</li>
+</ul>
+<p>Semua operator ini mengubah nilai variabel, jadi variabelnya harus dibuat dengan <code>let</code>, bukan <code>const</code>.</p>
+<h2 id="operator-perbandingan">Operator perbandingan<a class="headerlink" href="#operator-perbandingan" title="Permanent link">&para;</a></h2>
+<p>Operator perbandingan membandingkan dua nilai dan menghasilkan <code>true</code> (benar) atau <code>false</code> (salah). Hasil seperti ini bertipe <strong>boolean</strong>, tipe yang sudah kamu kenal di bab 1. Simpan sebagai <code>perbandingan.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">umur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">17</span><span class="p">;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">umur</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">17</span><span class="p">);</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">umur</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">17</span><span class="p">);</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">umur</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">20</span><span class="p">);</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">umur</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">16</span><span class="p">);</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">umur</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">17</span><span class="p">);</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">umur</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="mf">17</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>false
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>true
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>true
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>false
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>true
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>false
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Artinya</th>
+<th><code>umur</code> = 17</th>
+<th>Hasil</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&gt;</code></td>
+<td>lebih besar dari</td>
+<td><code>umur &gt; 17</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>&gt;=</code></td>
+<td>lebih besar atau sama dengan</td>
+<td><code>umur &gt;= 17</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>lebih kecil dari</td>
+<td><code>umur &lt; 20</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>&lt;=</code></td>
+<td>lebih kecil atau sama dengan</td>
+<td><code>umur &lt;= 16</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>===</code></td>
+<td>sama dengan</td>
+<td><code>umur === 17</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>!==</code></td>
+<td>tidak sama dengan</td>
+<td><code>umur !== 17</code></td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title"><code>=</code> bukan <code>===</code></p>
+<p>Satu tanda <code>=</code> berarti <strong>mengisi</strong> variabel. Tiga tanda <code>===</code> berarti <strong>membandingkan</strong>. Menukar keduanya adalah salah satu kesalahan paling umum bagi pemula.</p>
+</div>
+<h3 id="dan"><code>===</code> dan <code>==</code><a class="headerlink" href="#dan" title="Permanent link">&para;</a></h3>
+<p>JavaScript punya dua cara memeriksa kesamaan: <code>===</code> dan <code>==</code>. Simpan sebagai <code>sama-dengan.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">5</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"5"</span><span class="p">);</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">5</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"5"</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>false
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>true
+</span></code></pre></div>
+<ul>
+<li><code>===</code> membandingkan nilai <strong>dan tipe</strong>. Angka <code>5</code> dan teks <code>"5"</code> berbeda tipe, jadi hasilnya <code>false</code>.</li>
+<li><code>==</code> mencoba mengubah tipe lebih dulu, sehingga <code>5 == "5"</code> menghasilkan <code>true</code>. Perilaku ini sering membingungkan.</li>
+</ul>
+<p><strong>Biasakan memakai <code>===</code> dan <code>!==</code>.</strong> Alasan lengkap <code>==</code> bersikap seperti itu dibahas di bab 3.</p>
+<h2 id="operator-logika">Operator logika<a class="headerlink" href="#operator-logika" title="Permanent link">&para;</a></h2>
+<p>Kadang kita perlu menggabungkan beberapa pernyataan benar/salah. Ada tiga operator logika:</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Nama</th>
+<th>Artinya</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;&amp;</code></td>
+<td>AND (dan)</td>
+<td><code>true</code> jika <strong>kedua</strong> sisi <code>true</code></td>
+</tr>
+<tr>
+<td><code>\|\|</code></td>
+<td>OR (atau)</td>
+<td><code>true</code> jika <strong>salah satu</strong> sisi <code>true</code></td>
+</tr>
+<tr>
+<td><code>!</code></td>
+<td>NOT (bukan)</td>
+<td>membalik <code>true</code> menjadi <code>false</code> dan sebaliknya</td>
+</tr>
+</tbody>
+</table>
+<p>Analogi: untuk masuk gedung kamu harus punya kartu <strong>dan</strong> tanda pengenal (<code>&amp;&amp;</code>). Untuk membayar, kamu boleh memakai tunai <strong>atau</strong> kartu (<code>||</code>).</p>
+<p>Simpan sebagai <code>logika.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">sudahLogin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">adalahAdmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sudahLogin</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">adalahAdmin</span><span class="p">);</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sudahLogin</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">adalahAdmin</span><span class="p">);</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">!</span><span class="nx">sudahLogin</span><span class="p">);</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">!</span><span class="nx">adalahAdmin</span><span class="p">);</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="kd">const</span><span class="w"> </span><span class="nx">nilai</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">75</span><span class="p">;</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="kd">const</span><span class="w"> </span><span class="nx">lulus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">nilai</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">60</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">nilai</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lulus</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>false
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>true
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>false
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>true
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>true
+</span></code></pre></div>
+<p>Penjelasan:</p>
+<ol>
+<li><code>sudahLogin &amp;&amp; adalahAdmin</code>: <code>true</code> dan <code>false</code>. Karena satu sisi salah, hasilnya <code>false</code>.</li>
+<li><code>sudahLogin || adalahAdmin</code>: cukup satu sisi benar, jadi hasilnya <code>true</code>.</li>
+<li><code>!sudahLogin</code> membalik <code>true</code> menjadi <code>false</code>.</li>
+<li><code>!adalahAdmin</code> membalik <code>false</code> menjadi <code>true</code>.</li>
+<li><code>nilai &gt;= 60 &amp;&amp; nilai &lt;= 100</code>: <code>75 &gt;= 60</code> benar dan <code>75 &lt;= 100</code> benar, jadi <code>lulus</code> bernilai <code>true</code>. Ini cara menulis "nilai berada di antara 60 dan 100".</li>
+</ol>
+<p>Tabel kebenaran:</p>
+<table>
+<thead>
+<tr>
+<th><code>a</code></th>
+<th><code>b</code></th>
+<th><code>a &amp;&amp; b</code></th>
+<th><code>a \|\| b</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>true</code></td>
+<td><code>true</code></td>
+<td><code>true</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>true</code></td>
+<td><code>false</code></td>
+<td><code>false</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>false</code></td>
+<td><code>true</code></td>
+<td><code>false</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>false</code></td>
+<td><code>false</code></td>
+<td><code>false</code></td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="contoh-praktis-menghitung-diskon">Contoh praktis: menghitung diskon<a class="headerlink" href="#contoh-praktis-menghitung-diskon" title="Permanent link">&para;</a></h2>
+<p>Simpan sebagai <code>diskon.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">harga</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">120000</span><span class="p">;</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">diskon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.15</span><span class="p">;</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">jumlah</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="kd">const</span><span class="w"> </span><span class="nx">subtotal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">harga</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">jumlah</span><span class="p">;</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="kd">const</span><span class="w"> </span><span class="nx">potongan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">subtotal</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">diskon</span><span class="p">;</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="kd">const</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">subtotal</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">potongan</span><span class="p">;</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Subtotal: </span><span class="si">${</span><span class="nx">subtotal</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Potongan: </span><span class="si">${</span><span class="nx">potongan</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Total: </span><span class="si">${</span><span class="nx">total</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="kd">const</span><span class="w"> </span><span class="nx">totalMenit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">135</span><span class="p">;</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="kd">const</span><span class="w"> </span><span class="nx">sisaMenit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">totalMenit</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">60</span><span class="p">;</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="kd">const</span><span class="w"> </span><span class="nx">jam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">totalMenit</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">sisaMenit</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">60</span><span class="p">;</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">totalMenit</span><span class="si">}</span><span class="sb"> menit = </span><span class="si">${</span><span class="nx">jam</span><span class="si">}</span><span class="sb"> jam </span><span class="si">${</span><span class="nx">sisaMenit</span><span class="si">}</span><span class="sb"> menit`</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Subtotal: 240000
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>Potongan: 36000
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>Total: 204000
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>135 menit = 2 jam 15 menit
+</span></code></pre></div>
+<p>Proses eksekusinya:</p>
+<ol>
+<li><code>subtotal</code> = 120000 × 2 = 240000.</li>
+<li><code>potongan</code> = 240000 × 0,15 = 36000 (diskon 15%).</li>
+<li><code>total</code> = 240000 - 36000 = 204000.</li>
+<li>Untuk mengubah 135 menit menjadi jam: <code>135 % 60</code> memberi sisa 15 menit. Lalu <code>(135 - 15) / 60</code> memberi 2 jam. Inilah contoh nyata kegunaan modulo.</li>
+</ol>
+<h2 id="kesalahan-umum">Kesalahan umum<a class="headerlink" href="#kesalahan-umum" title="Permanent link">&para;</a></h2>
+<h3 id="1-memakai-untuk-membandingkan">1. Memakai <code>=</code> untuk membandingkan<a class="headerlink" href="#1-memakai-untuk-membandingkan" title="Permanent link">&para;</a></h3>
+<p><code>umur = 17</code> mengisi variabel, sedangkan <code>umur === 17</code> membandingkan. Gunakan <code>===</code> ketika ingin bertanya "apakah sama?".</p>
+<h3 id="2-mengira-ekspresi-mengubah-variabel">2. Mengira ekspresi mengubah variabel<a class="headerlink" href="#2-mengira-ekspresi-mengubah-variabel" title="Permanent link">&para;</a></h3>
+<p>Simpan sebagai <code>tidak-berubah.js</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">angka</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nx">angka</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">angka</span><span class="p">);</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="nx">angka</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">angka</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">angka</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>5
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>8
+</span></code></pre></div>
+<p>Baris <code>angka + 3;</code> menghitung 8 tetapi hasilnya tidak disimpan ke mana pun, sehingga <code>angka</code> tetap 5. Agar nilainya berubah, hasil harus dimasukkan kembali dengan <code>=</code>, <code>+=</code>, atau <code>++</code>.</p>
+<h3 id="3-menyambung-teks-dan-angka-tanpa-sadar">3. Menyambung teks dan angka tanpa sadar<a class="headerlink" href="#3-menyambung-teks-dan-angka-tanpa-sadar" title="Permanent link">&para;</a></h3>
+<p><code>"5" + 3</code> menghasilkan <code>"53"</code>, bukan <code>8</code>. Jika hasil yang muncul aneh, periksa apakah salah satu nilainya berupa teks (dengan tanda kutip).</p>
+<h3 id="4-mengubah-variabel-const">4. Mengubah variabel <code>const</code><a class="headerlink" href="#4-mengubah-variabel-const" title="Permanent link">&para;</a></h3>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">skor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nx">skor</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>TypeError: Assignment to constant variable.
+</span></code></pre></div>
+<p>Operator seperti <code>+=</code> dan <code>++</code> mengubah isi variabel, sehingga tidak bisa dipakai pada <code>const</code>. <strong>Perbaikan:</strong> buat variabel dengan <code>let</code>.</p>
+<h3 id="5-urutan-operasi-yang-tidak-sesuai-harapan">5. Urutan operasi yang tidak sesuai harapan<a class="headerlink" href="#5-urutan-operasi-yang-tidak-sesuai-harapan" title="Permanent link">&para;</a></h3>
+<p><code>10 + 5 * 2</code> hasilnya <code>20</code>, bukan <code>30</code>. Jika ingin menjumlah dulu, tulis <code>(10 + 5) * 2</code>.</p>
+<h2 id="ringkasan">Ringkasan<a class="headerlink" href="#ringkasan" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Operator</strong> adalah tanda yang melakukan sesuatu pada <strong>operand</strong>. <strong>Ekspresi</strong> adalah kode yang menghasilkan nilai.</li>
+<li>Aritmetika: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code> (sisa bagi), <code>**</code> (pangkat).</li>
+<li>Urutan: tanda kurung, pangkat, kali/bagi/sisa, lalu tambah/kurang. Pakai kurung agar jelas.</li>
+<li>Singkatan pembaruan: <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>++</code>, <code>--</code>. Hanya untuk variabel <code>let</code>.</li>
+<li>Perbandingan menghasilkan <code>true</code> atau <code>false</code>: <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>===</code>, <code>!==</code>. Biasakan memakai <code>===</code>.</li>
+<li>Logika: <code>&amp;&amp;</code> (dan), <code>||</code> (atau), <code>!</code> (bukan).</li>
+<li><code>=</code> mengisi, <code>===</code> membandingkan.</li>
+</ul>
+<h2 id="latihan">Latihan<a class="headerlink" href="#latihan" title="Permanent link">&para;</a></h2>
+<p>Kerjakan sendiri dulu sebelum melihat jawaban.</p>
+<h3 id="latihan-1-prediksi-output">Latihan 1: Prediksi output<a class="headerlink" href="#latihan-1-prediksi-output" title="Permanent link">&para;</a></h3>
+<p>Tebak hasilnya, lalu jalankan untuk memeriksa:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+</span></code></pre></div>
+<details class="success">
+<summary>Jawaban</summary>
+<p>Output: <code>18</code>. Kali dan bagi dikerjakan dulu: <code>5 * 2 = 10</code> dan <code>4 / 2 = 2</code>. Lalu <code>10 + 10 - 2 = 18</code>.</p>
+</details>
+<h3 id="latihan-2-atau">Latihan 2: <code>===</code> atau <code>!==</code><a class="headerlink" href="#latihan-2-atau" title="Permanent link">&para;</a></h3>
+<p>Tebak hasil kedua baris ini:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"3"</span><span class="p">);</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s2">"3"</span><span class="p">);</span>
+</span></code></pre></div>
+<details class="success">
+<summary>Jawaban</summary>
+<p>Output: <code>false</code> lalu <code>true</code>. Angka <code>3</code> dan teks <code>"3"</code> berbeda tipe, jadi tidak dianggap sama.</p>
+</details>
+<h3 id="latihan-3-luas-dan-keliling">Latihan 3: Luas dan keliling<a class="headerlink" href="#latihan-3-luas-dan-keliling" title="Permanent link">&para;</a></h3>
+<p>Buat variabel <code>panjang</code> (8) dan <code>lebar</code> (5), lalu tampilkan luas dan keliling persegi panjang dengan template literal.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">panjang</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8</span><span class="p">;</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">lebar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Luas: </span><span class="si">${</span><span class="nx">panjang</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">lebar</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Keliling: </span><span class="si">${</span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nx">panjang</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">lebar</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></code></pre></div>
+Output:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>Luas: 40
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>Keliling: 26
+</span></code></pre></div></p>
+</details>
+<h3 id="latihan-4-konversi-suhu">Latihan 4: Konversi suhu<a class="headerlink" href="#latihan-4-konversi-suhu" title="Permanent link">&para;</a></h3>
+<p>Ubah 25 derajat Celsius ke Fahrenheit dengan rumus <code>F = C × 9 / 5 + 32</code>, lalu tampilkan hasilnya.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">celsius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">25</span><span class="p">;</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">fahrenheit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">celsius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">9</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">32</span><span class="p">;</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">celsius</span><span class="si">}</span><span class="sb"> C = </span><span class="si">${</span><span class="nx">fahrenheit</span><span class="si">}</span><span class="sb"> F`</span><span class="p">);</span>
+</span></code></pre></div>
+Output: <code>25 C = 77 F</code></p>
+</details>
+<h3 id="latihan-5-genap-atau-ganjil">Latihan 5: Genap atau ganjil<a class="headerlink" href="#latihan-5-genap-atau-ganjil" title="Permanent link">&para;</a></h3>
+<p>Tampilkan <code>true</code> jika 14 adalah bilangan genap, lalu periksa juga angka 7. Petunjuk: pakai <code>%</code> dan <code>===</code>.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">14</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">7</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+</span></code></pre></div>
+Output: <code>true</code> lalu <code>false</code>.</p>
+</details>
+<h3 id="latihan-6-kembalian">Latihan 6: Kembalian<a class="headerlink" href="#latihan-6-kembalian" title="Permanent link">&para;</a></h3>
+<p>Total tagihan adalah 87500 dan pembeli membayar 100000. Tampilkan apakah uangnya cukup (<code>true</code>/<code>false</code>) dan berapa kembaliannya.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">tagihan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">87500</span><span class="p">;</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">bayar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100000</span><span class="p">;</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bayar</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nx">tagihan</span><span class="p">);</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bayar</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">tagihan</span><span class="p">);</span>
+</span></code></pre></div>
+Output: <code>true</code> lalu <code>12500</code>.</p>
+</details>
+<h3 id="latihan-7-syarat-masuk">Latihan 7: Syarat masuk<a class="headerlink" href="#latihan-7-syarat-masuk" title="Permanent link">&para;</a></h3>
+<p>Seseorang boleh masuk jika umurnya minimal 17 <strong>dan</strong> punya KTP. Buat variabel <code>umur</code> (19) dan <code>punyaKtp</code> (<code>true</code>), lalu tampilkan apakah ia boleh masuk. Setelah itu tampilkan kebalikannya memakai <code>!</code>.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">umur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">19</span><span class="p">;</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">punyaKtp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">bolehMasuk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">umur</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">17</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">punyaKtp</span><span class="p">;</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bolehMasuk</span><span class="p">);</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">!</span><span class="nx">bolehMasuk</span><span class="p">);</span>
+</span></code></pre></div>
+Output: <code>true</code> lalu <code>false</code>.</p>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Kembali ke atas
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../01-variables/" class="md-footer__link md-footer__link--prev" aria-label="Sebelumnya: Variables">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Sebelumnya
+              </span>
+              <div class="md-ellipsis">
+                Variables
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../03-strings-numbers/" class="md-footer__link md-footer__link--next" aria-label="Selanjutnya: Strings &amp; Numbers">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Selanjutnya
+              </span>
+              <div class="md-ellipsis">
+                Strings & Numbers
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.path", "navigation.footer", "navigation.top", "navigation.tracking", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Tersalin ke clipboard", "clipboard.copy": "Salin ke clipboard", "search.result.more.one": "1 lagi di halaman ini", "search.result.more.other": "# lagi di halaman ini", "search.result.none": "Tidak ada dokumen yang sesuai", "search.result.one": "1 dokumen ditemukan", "search.result.other": "# dokumen ditemukan", "search.result.placeholder": "Ketik untuk mulai pencarian", "search.result.term.missing": "Tidak ada", "select.version": "Pilih versi"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/vendor/mermaid/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-config.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

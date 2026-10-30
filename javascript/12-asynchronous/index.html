@@ -1,0 +1,2881 @@
+
+<!doctype html>
+<html lang="id" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Materi belajar JavaScript dan Node.js bagi pemula, dari konsep dasar hingga praktik.">
+      
+      
+      
+        <link rel="canonical" href="https://topekox.my.id/mkdocs-template/javascript/12-asynchronous/">
+      
+      
+        <link rel="prev" href="../11-modules/">
+      
+      
+        <link rel="next" href="../13-classes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Asynchronous JavaScript - Belajar JavaScript dan Node.js</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tujuan-pembelajaran" class="md-skip">
+          Lewati ke isi
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Belajar JavaScript dan Node.js" class="md-header__button md-logo" aria-label="Belajar JavaScript dan Node.js" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Belajar JavaScript dan Node.js
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Asynchronous JavaScript
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: system (click for light)"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Theme: system (click for light)" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: light (click for dark)"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Theme: light (click for dark)" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: dark (click for system)"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Theme: dark (click for system)" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cari" placeholder="Cari" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cari">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Kosongkan" aria-label="Kosongkan" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Mempersiapkan pencarian
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigasi" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Belajar JavaScript dan Node.js" class="md-nav__button md-logo" aria-label="Belajar JavaScript dan Node.js" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Belajar JavaScript dan Node.js
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JavaScript Dasar
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JavaScript Dasar
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operators & Expressions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-strings-numbers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings & Numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-conditionals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-scope-hoisting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scope & Hoisting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-objects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-error-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Handling & Debugging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asynchronous JavaScript
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asynchronous JavaScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tujuan-pembelajaran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tujuan pembelajaran
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pendahuluan-jangan-berdiri-menunggu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pendahuluan: jangan berdiri menunggu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sinkron-vs-asinkron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sinkron vs asinkron
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sinkron vs asinkron">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-loop-secara-konsep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event loop secara konsep
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mengulang-dengan-setinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mengulang dengan setInterval
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#callback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Callback
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Callback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#masalah-callback-bersarang" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Masalah: callback bersarang
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#promise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Promise
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Promise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#konsep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Konsep
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#membuat-promise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Membuat Promise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memakai-promise-then-catch-finally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memakai Promise: then, catch, finally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merantai-pekerjaan-yang-saling-bergantung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Merantai pekerjaan yang saling bergantung
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#menjalankan-banyak-pekerjaan-sekaligus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menjalankan banyak pekerjaan sekaligus
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-dan-await" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        async dan await
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="async dan await">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#menangani-error-dengan-trycatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menangani error dengan try...catch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#berurutan-atau-bersamaan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Berurutan atau bersamaan?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modul-bawaan-versi-promise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modul bawaan versi Promise
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contoh-praktis-laporan-pelanggan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contoh praktis: laporan pelanggan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kesalahan-umum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kesalahan umum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kesalahan umum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-lupa-await" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Lupa await
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-trycatch-tanpa-await" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. try...catch tanpa await
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-await-di-fungsi-biasa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. await di fungsi biasa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-foreach-dengan-async-tidak-ditunggu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. forEach dengan async tidak ditunggu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-menunggu-berurutan-padahal-bisa-bersamaan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Menunggu berurutan padahal bisa bersamaan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-mengira-async-berarti-banyak-pekerjaan-jalan-sekaligus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Mengira async berarti banyak pekerjaan jalan sekaligus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-mengandalkan-ketepatan-settimeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Mengandalkan ketepatan setTimeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ringkasan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ringkasan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latihan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latihan-1-prediksi-urutan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 1: Prediksi urutan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-2-perbaiki-await" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 2: Perbaiki await
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-3-jeda-dengan-tunggu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 3: Jeda dengan tunggu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-4-hasil-promiseall-tetap-berurutan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 4: Hasil Promise.all tetap berurutan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-5-tangani-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 5: Tangani error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-6-hitung-mundur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 6: Hitung mundur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-7-laporan-yang-tahan-gagal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 7: Laporan yang tahan gagal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes & OOP Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-proyek-akhir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyek Akhir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../nodejs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node.js
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Node.js
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/15-pengenalan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pengenalan Node.js
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/16-npm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    npm dan package.json
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/17-modul-bawaan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modul Bawaan Inti
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/18-proses-lingkungan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proses dan Lingkungan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/19-events-streams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events dan Streams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/20-http/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server HTTP Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/21-express/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Express
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/22-rest-api-tes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST API dan Pengujian
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nodejs/23-proyek-akhir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyek Akhir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tujuan-pembelajaran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tujuan pembelajaran
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pendahuluan-jangan-berdiri-menunggu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pendahuluan: jangan berdiri menunggu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sinkron-vs-asinkron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sinkron vs asinkron
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sinkron vs asinkron">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-loop-secara-konsep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event loop secara konsep
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mengulang-dengan-setinterval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mengulang dengan setInterval
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#callback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Callback
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Callback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#masalah-callback-bersarang" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Masalah: callback bersarang
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#promise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Promise
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Promise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#konsep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Konsep
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#membuat-promise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Membuat Promise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memakai-promise-then-catch-finally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memakai Promise: then, catch, finally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merantai-pekerjaan-yang-saling-bergantung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Merantai pekerjaan yang saling bergantung
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#menjalankan-banyak-pekerjaan-sekaligus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menjalankan banyak pekerjaan sekaligus
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-dan-await" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        async dan await
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="async dan await">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#menangani-error-dengan-trycatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menangani error dengan try...catch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#berurutan-atau-bersamaan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Berurutan atau bersamaan?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modul-bawaan-versi-promise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modul bawaan versi Promise
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contoh-praktis-laporan-pelanggan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contoh praktis: laporan pelanggan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kesalahan-umum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kesalahan umum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kesalahan umum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-lupa-await" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Lupa await
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-trycatch-tanpa-await" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. try...catch tanpa await
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-await-di-fungsi-biasa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. await di fungsi biasa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-foreach-dengan-async-tidak-ditunggu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. forEach dengan async tidak ditunggu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-menunggu-berurutan-padahal-bisa-bersamaan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Menunggu berurutan padahal bisa bersamaan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-mengira-async-berarti-banyak-pekerjaan-jalan-sekaligus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Mengira async berarti banyak pekerjaan jalan sekaligus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-mengandalkan-ketepatan-settimeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Mengandalkan ketepatan setTimeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ringkasan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ringkasan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latihan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latihan-1-prediksi-urutan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 1: Prediksi urutan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-2-perbaiki-await" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 2: Perbaiki await
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-3-jeda-dengan-tunggu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 3: Jeda dengan tunggu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-4-hasil-promiseall-tetap-berurutan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 4: Hasil Promise.all tetap berurutan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-5-tangani-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 5: Tangani error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-6-hitung-mundur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 6: Hitung mundur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-7-laporan-yang-tahan-gagal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 7: Laporan yang tahan gagal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigasi" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    JavaScript Dasar
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Asynchronous JavaScript</h1>
+
+<h2 id="tujuan-pembelajaran">Tujuan pembelajaran<a class="headerlink" href="#tujuan-pembelajaran" title="Permanent link">&para;</a></h2>
+<p>Setelah mempelajari bab ini, kamu dapat:</p>
+<ul>
+<li>Menjelaskan perbedaan kode sinkron dan asinkron.</li>
+<li>Menjelaskan secara konsep bagaimana <em>event loop</em> mengatur urutan eksekusi.</li>
+<li>Memakai <code>setTimeout</code> dan <code>setInterval</code>.</li>
+<li>Memahami <em>callback</em> dan masalah yang muncul ketika callback bersarang.</li>
+<li>Membuat dan memakai <em>Promise</em> dengan <code>.then()</code>, <code>.catch()</code>, dan <code>.finally()</code>.</li>
+<li>Menulis kode asinkron yang mudah dibaca dengan <code>async</code> dan <code>await</code>.</li>
+<li>Menjalankan beberapa pekerjaan sekaligus dengan <code>Promise.all</code>.</li>
+<li>Menangani error pada kode asinkron.</li>
+</ul>
+<p>Bab ini memakai fungsi (bab 6), penanganan error (bab 10), dan modul (bab 11). Semua contoh ada di folder <code>modul-belajar</code> dari bab 11, yaitu folder yang sudah berisi <code>package.json</code> bertipe <code>module</code>. Itu penting, karena beberapa contoh memakai <code>await</code> langsung di tingkat paling atas file, yang hanya diizinkan di ES Modules.</p>
+<h2 id="pendahuluan-jangan-berdiri-menunggu">Pendahuluan: jangan berdiri menunggu<a class="headerlink" href="#pendahuluan-jangan-berdiri-menunggu" title="Permanent link">&para;</a></h2>
+<p>Bayangkan kamu memesan makanan di restoran. Setelah memesan, kamu tidak berdiri di depan dapur sampai makanan jadi. Kamu duduk, mengobrol, membuka ponsel, dan ketika makanan siap, pelayan memanggilmu. Pelayan pun tidak berhenti melayani tamu lain hanya karena satu pesanan belum jadi.</p>
+<p>JavaScript bekerja dengan cara serupa. Sampai bab 11, semua kode berjalan <strong>sinkron</strong>: satu baris selesai dulu, baru baris berikutnya. Namun ada pekerjaan yang lambat: membaca file, memanggil server di internet, menunggu timer. Jika program berdiri menunggu setiap pekerjaan itu, seluruh program membeku.</p>
+<p>Pekerjaan <strong>asinkron</strong> menyelesaikan masalah ini: kita memulai pekerjaan lambat, meneruskan pekerjaan lain, dan JavaScript memanggil kita kembali ketika hasilnya siap.</p>
+<h2 id="sinkron-vs-asinkron">Sinkron vs asinkron<a class="headerlink" href="#sinkron-vs-asinkron" title="Permanent link">&para;</a></h2>
+<p>Fungsi bawaan <code>setTimeout(fungsi, ms)</code> menjadwalkan sebuah fungsi untuk dijalankan <strong>nanti</strong>, setelah <code>ms</code> milidetik (1000 ms = 1 detik). Buat file <code>urutan.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">urutan.js</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"1. Mulai"</span><span class="p">);</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"3. Timer selesai"</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">},</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"2. Selesai membaca kode"</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>node<span class="w"> </span>urutan.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>1. Mulai
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>2. Selesai membaca kode
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>3. Timer selesai
+</span></code></pre></div>
+<p>Urutan output berbeda dari urutan penulisan. Penjelasannya:</p>
+<ol>
+<li><code>console.log("1. Mulai")</code> dijalankan.</li>
+<li><code>setTimeout</code> <strong>mendaftarkan</strong> fungsi ke timer dan langsung selesai. JavaScript tidak menunggu 100 ms.</li>
+<li><code>console.log("2. ...")</code> dijalankan.</li>
+<li>Setelah semua kode di atas selesai dan 100 ms berlalu, fungsi yang dijadwalkan dipanggil dan mencetak <code>3. ...</code>.</li>
+</ol>
+<p>Fungsi yang diberikan ke <code>setTimeout</code> adalah contoh <strong>callback</strong>, yaitu fungsi yang akan dipanggil kembali nanti. Konsep yang sama sudah kamu pakai pada <code>map</code> dan <code>filter</code> di bab 8.</p>
+<h3 id="event-loop-secara-konsep">Event loop secara konsep<a class="headerlink" href="#event-loop-secara-konsep" title="Permanent link">&para;</a></h3>
+<p>Bagaimana JavaScript mengatur ini semua padahal ia hanya mengerjakan <strong>satu hal pada satu waktu</strong>? Dengan <strong>event loop</strong>. Bayangkan tiga bagian:</p>
+<pre class="mermaid"><code>flowchart LR
+    stack["Call Stack&lt;br/&gt;(kode yang sedang berjalan)"] --&gt;|"setTimeout, baca file, dll."| api["Node.js&lt;br/&gt;(mengurus pekerjaan lambat)"]
+    api --&gt;|"selesai"| queue["Antrian callback"]
+    queue --&gt;|"event loop memindahkan&lt;br/&gt;saat stack kosong"| stack</code></pre>
+<ul>
+<li><strong>Call stack</strong>: tempat kode yang sedang dijalankan.</li>
+<li><strong>Node.js</strong> (di belakang layar): mengurus timer, file, dan jaringan tanpa menghalangi stack.</li>
+<li><strong>Antrian callback</strong>: callback yang sudah siap menunggu giliran.</li>
+<li><strong>Event loop</strong> terus memeriksa: jika stack kosong, ambil callback berikutnya dari antrian dan jalankan.</li>
+</ul>
+<p>Konsekuensi penting: <strong>callback tidak pernah memotong kode yang sedang berjalan</strong>. Ia baru berjalan setelah kode saat ini selesai, bahkan jika waktu tunggunya 0 ms. Simpan sebagai <code>event-loop.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">event-loop.js</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"1. Mulai"</span><span class="p">);</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"4. Timer 0 ms"</span><span class="p">),</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"3. Promise"</span><span class="p">));</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"2. Selesai membaca kode"</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>node<span class="w"> </span>event-loop.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>1. Mulai
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>2. Selesai membaca kode
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>3. Promise
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>4. Timer 0 ms
+</span></code></pre></div>
+<p>Timer 0 ms tetap berjalan setelah semua kode sinkron. Callback dari Promise (dibahas di bawah) punya antrian sendiri yang diprioritaskan lebih dulu daripada antrian timer. Kamu tidak perlu menghafal detailnya: cukup ingat bahwa <strong>semua kode sinkron selesai lebih dulu</strong>, baru callback.</p>
+<h3 id="mengulang-dengan-setinterval">Mengulang dengan <code>setInterval</code><a class="headerlink" href="#mengulang-dengan-setinterval" title="Permanent link">&para;</a></h3>
+<p><code>setInterval(fungsi, ms)</code> memanggil fungsi <strong>berulang kali</strong> setiap <code>ms</code> milidetik, sampai dihentikan dengan <code>clearInterval</code>. Buat <code>interval.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">interval.js</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">hitung</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hitung</span><span class="p">);</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nx">hitung</span><span class="o">--</span><span class="p">;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">hitung</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Selesai!"</span><span class="p">);</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="p">},</span><span class="w"> </span><span class="mf">50</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>node<span class="w"> </span>interval.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>3
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>2
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>1
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Selesai!
+</span></code></pre></div>
+<p><code>setInterval</code> mengembalikan sebuah nilai pengenal yang disimpan di <code>id</code>. Ketika hitungan mencapai 0, <code>clearInterval(id)</code> menghentikan pengulangan. Tanpa <code>clearInterval</code>, program tidak akan pernah berhenti.</p>
+<h2 id="callback">Callback<a class="headerlink" href="#callback" title="Permanent link">&para;</a></h2>
+<p>Cara tertua menangani hasil asinkron adalah menyerahkan sebuah fungsi untuk dipanggil saat pekerjaan selesai. Dalam Node.js ada konvensi: callback menerima dua argumen, <strong>error lebih dulu</strong>, lalu hasilnya. Jika tidak ada error, argumen pertama bernilai <code>null</code>. Buat <code>callback.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">callback.js</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">id</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">      </span><span class="nx">callback</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">"ID tidak valid"</span><span class="p">));</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">      </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Budi"</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mf">50</span><span class="p">);</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="p">}</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="kd">function</span><span class="w"> </span><span class="nx">tampilkan</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span><span class="w"> </span><span class="nx">pengguna</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Gagal:"</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Berhasil:"</span><span class="p">,</span><span class="w"> </span><span class="nx">pengguna</span><span class="p">);</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="p">}</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">tampilkan</span><span class="p">);</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">tampilkan</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>node<span class="w"> </span>callback.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Berhasil: { id: 1, nama: 'Budi' }
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Gagal: ID tidak valid
+</span></code></pre></div>
+<p>Kedua panggilan menunggu 50 ms. Pekerjaan yang didaftarkan lebih dulu selesai lebih dulu, sehingga <code>Berhasil</code> muncul sebelum <code>Gagal</code>. Di dalam callback, hasil dan error harus dicek manual dengan <code>if (error)</code>.</p>
+<h3 id="masalah-callback-bersarang">Masalah: callback bersarang<a class="headerlink" href="#masalah-callback-bersarang" title="Permanent link">&para;</a></h3>
+<p>Jika langkah kedua bergantung pada langkah pertama, callback harus ditaruh di dalam callback. Buat <code>neraka.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">neraka.js</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">langkah</span><span class="p">(</span><span class="nx">nama</span><span class="p">,</span><span class="w"> </span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nama</span><span class="p">);</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="nx">callback</span><span class="p">();</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">}</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="nx">langkah</span><span class="p">(</span><span class="s2">"Ambil pengguna"</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">  </span><span class="nx">langkah</span><span class="p">(</span><span class="s2">"Ambil pesanan"</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">    </span><span class="nx">langkah</span><span class="p">(</span><span class="s2">"Hitung total"</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Selesai"</span><span class="p">);</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="p">});</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>node<span class="w"> </span>neraka.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Ambil pengguna
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Ambil pesanan
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>Hitung total
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Selesai
+</span></code></pre></div>
+<p>Setiap langkah baru menggeser kode makin ke kanan, membentuk piramida yang sulit dibaca. Dengan penanganan error di tiap tingkat, hasilnya jauh lebih buruk. Fenomena ini dijuluki <strong>callback hell</strong>. Promise dan <code>async/await</code> lahir untuk mengatasinya.</p>
+<h2 id="promise">Promise<a class="headerlink" href="#promise" title="Permanent link">&para;</a></h2>
+<h3 id="konsep">Konsep<a class="headerlink" href="#konsep" title="Permanent link">&para;</a></h3>
+<p><strong>Promise</strong> adalah objek yang mewakili hasil pekerjaan asinkron yang <strong>belum selesai</strong>, seperti struk pesanan di restoran: bukan makanannya, tetapi janji bahwa makanan akan datang (atau pesanan gagal). Sebuah Promise selalu berada di salah satu dari tiga keadaan:</p>
+<table>
+<thead>
+<tr>
+<th>Keadaan</th>
+<th>Artinya</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pending</code></td>
+<td>Pekerjaan masih berjalan</td>
+</tr>
+<tr>
+<td><code>fulfilled</code></td>
+<td>Berhasil, hasilnya tersedia</td>
+</tr>
+<tr>
+<td><code>rejected</code></td>
+<td>Gagal, alasan kegagalan (biasanya objek <code>Error</code>) tersedia</td>
+</tr>
+</tbody>
+</table>
+<p>Promise yang sudah <code>fulfilled</code> atau <code>rejected</code> tidak akan berubah lagi.</p>
+<h3 id="membuat-promise">Membuat Promise<a class="headerlink" href="#membuat-promise" title="Permanent link">&para;</a></h3>
+<p>Kita buat dua fungsi pendukung yang akan dipakai di sisa bab ini. Pertama, <code>bantu.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">bantu.js</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">tunggu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">ms</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">ms</span><span class="p">));</span>
+</span></code></pre></div>
+<p>Lalu <code>data.js</code>, yang menyimulasikan pengambilan data dari server:</p>
+<div class="language-javascript highlight"><span class="filename">data.js</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">namaPengguna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">1</span><span class="o">:</span><span class="w"> </span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="o">:</span><span class="w"> </span><span class="s2">"Sari"</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="o">:</span><span class="w"> </span><span class="s2">"Andi"</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">daftarPesanan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span><span class="mf">1</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nx">barang</span><span class="o">:</span><span class="w"> </span><span class="s2">"Pensil"</span><span class="p">,</span><span class="w"> </span><span class="nx">harga</span><span class="o">:</span><span class="w"> </span><span class="mf">2000</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">barang</span><span class="o">:</span><span class="w"> </span><span class="s2">"Buku"</span><span class="p">,</span><span class="w"> </span><span class="nx">harga</span><span class="o">:</span><span class="w"> </span><span class="mf">8000</span><span class="w"> </span><span class="p">}],</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">  </span><span class="mf">2</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nx">barang</span><span class="o">:</span><span class="w"> </span><span class="s2">"Pulpen"</span><span class="p">,</span><span class="w"> </span><span class="nx">harga</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="w"> </span><span class="p">}],</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">  </span><span class="mf">3</span><span class="o">:</span><span class="w"> </span><span class="p">[],</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="p">};</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">namaPengguna</span><span class="p">[</span><span class="nx">id</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">        </span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">"Pengguna tidak ditemukan"</span><span class="p">));</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">      </span><span class="nx">resolve</span><span class="p">({</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="nx">namaPengguna</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">20</span><span class="p">);</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="p">}</span>
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>
+</span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">ambilPesanan</span><span class="p">(</span><span class="nx">idPengguna</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-23"><a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a><span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">daftarPesanan</span><span class="p">[</span><span class="nx">idPengguna</span><span class="p">]),</span><span class="w"> </span><span class="mf">20</span><span class="p">);</span>
+</span><span id="__span-16-24"><a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-16-25"><a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Cara kerja <code>new Promise((resolve, reject) =&gt; { ... })</code>:</p>
+<ul>
+<li>Fungsi yang diberikan dijalankan langsung dan menerima dua fungsi: <code>resolve</code> dan <code>reject</code>.</li>
+<li>Panggil <code>resolve(nilai)</code> ketika pekerjaan <strong>berhasil</strong>. Promise menjadi <code>fulfilled</code> dengan <code>nilai</code> itu.</li>
+<li>Panggil <code>reject(error)</code> ketika <strong>gagal</strong>. Promise menjadi <code>rejected</code>.</li>
+<li>Pada <code>tunggu</code>, <code>resolve</code> diberikan langsung ke <code>setTimeout</code> sebagai callback, jadi Promise berhasil setelah <code>ms</code> milidetik tanpa nilai.</li>
+</ul>
+<h3 id="memakai-promise-then-catch-finally">Memakai Promise: <code>then</code>, <code>catch</code>, <code>finally</code><a class="headerlink" href="#memakai-promise-then-catch-finally" title="Permanent link">&para;</a></h3>
+<p>Buat <code>promise-dasar.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">promise-dasar.js</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./data.js"</span><span class="p">;</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">pengguna</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Pengguna:"</span><span class="p">,</span><span class="w"> </span><span class="nx">pengguna</span><span class="p">);</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">pengguna</span><span class="p">.</span><span class="nx">nama</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">  </span><span class="p">})</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">  </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">huruf</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Nama besar:"</span><span class="p">,</span><span class="w"> </span><span class="nx">huruf</span><span class="p">);</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">  </span><span class="p">})</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">  </span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Gagal:"</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">  </span><span class="p">})</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">  </span><span class="p">.</span><span class="k">finally</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Selesai"</span><span class="p">);</span>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">  </span><span class="p">});</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>node<span class="w"> </span>promise-dasar.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Pengguna: { id: 1, nama: 'Budi' }
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Nama besar: BUDI
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>Selesai
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Perintah</th>
+<th>Dijalankan ketika</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.then(f)</code></td>
+<td>Promise berhasil. <code>f</code> menerima hasilnya</td>
+</tr>
+<tr>
+<td><code>.catch(f)</code></td>
+<td>Promise (atau langkah sebelumnya dalam rantai) gagal. <code>f</code> menerima error</td>
+</tr>
+<tr>
+<td><code>.finally(f)</code></td>
+<td>Selalu, baik berhasil maupun gagal</td>
+</tr>
+</tbody>
+</table>
+<p>Setiap <code>.then</code> menghasilkan <strong>Promise baru</strong>, sehingga bisa dirantai. Nilai yang di-<code>return</code> pada satu <code>.then</code> menjadi masukan <code>.then</code> berikutnya (di sini nama huruf besar). Jika satu langkah gagal, rantai melompat ke <code>.catch</code> terdekat. Mari lihat kasus gagal. Buat <code>promise-gagal.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">promise-gagal.js</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./data.js"</span><span class="p">;</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">99</span><span class="p">)</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">  </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">pengguna</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Tidak sampai sini:"</span><span class="p">,</span><span class="w"> </span><span class="nx">pengguna</span><span class="p">);</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span><span class="p">})</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">  </span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Gagal:"</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">  </span><span class="p">})</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">  </span><span class="p">.</span><span class="k">finally</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Selesai"</span><span class="p">);</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">  </span><span class="p">});</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>node<span class="w"> </span>promise-gagal.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Gagal: Pengguna tidak ditemukan
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Selesai
+</span></code></pre></div>
+<h3 id="merantai-pekerjaan-yang-saling-bergantung">Merantai pekerjaan yang saling bergantung<a class="headerlink" href="#merantai-pekerjaan-yang-saling-bergantung" title="Permanent link">&para;</a></h3>
+<p>Jika sebuah <code>.then</code> mengembalikan Promise lain, rantai akan <strong>menunggu</strong> Promise itu selesai dulu. Inilah pengganti callback bersarang. Buat <code>promise-rantai.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">promise-rantai.js</span><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="p">,</span><span class="w"> </span><span class="nx">ambilPesanan</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./data.js"</span><span class="p">;</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">  </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">pengguna</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">ambilPesanan</span><span class="p">(</span><span class="nx">pengguna</span><span class="p">.</span><span class="nx">id</span><span class="p">))</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">  </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">pesanan</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Jumlah pesanan:"</span><span class="p">,</span><span class="w"> </span><span class="nx">pesanan</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">  </span><span class="p">})</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">  </span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Gagal:"</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="w">  </span><span class="p">});</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>node<span class="w"> </span>promise-rantai.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Jumlah pesanan: 2
+</span></code></pre></div>
+<p>Kodenya tetap rata ke bawah, tidak menjorok ke kanan, dan satu <code>.catch</code> di akhir menangani error dari semua langkah.</p>
+<h3 id="menjalankan-banyak-pekerjaan-sekaligus">Menjalankan banyak pekerjaan sekaligus<a class="headerlink" href="#menjalankan-banyak-pekerjaan-sekaligus" title="Permanent link">&para;</a></h3>
+<p>Jika pekerjaannya tidak saling bergantung, jalankan bersamaan dengan <code>Promise.all</code>. Ia menerima array Promise dan menghasilkan Promise baru yang berisi array hasil, <strong>dengan urutan sama seperti urutan input</strong>. Buat <code>promise-all.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">promise-all.js</span><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./data.js"</span><span class="p">;</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">1</span><span class="p">),</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">2</span><span class="p">),</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">3</span><span class="p">)]).</span><span class="nx">then</span><span class="p">((</span><span class="nx">hasil</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hasil</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">p</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">p</span><span class="p">.</span><span class="nx">nama</span><span class="p">));</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="p">});</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">1</span><span class="p">),</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">99</span><span class="p">)]).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Salah satu gagal:"</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="p">});</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="nb">Promise</span><span class="p">.</span><span class="nx">allSettled</span><span class="p">([</span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">1</span><span class="p">),</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">99</span><span class="p">)]).</span><span class="nx">then</span><span class="p">((</span><span class="nx">hasil</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hasil</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">h</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">h</span><span class="p">.</span><span class="nx">status</span><span class="p">));</span>
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="p">});</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>node<span class="w"> </span>promise-all.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>[ 'Budi', 'Sari', 'Andi' ]
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>Salah satu gagal: Pengguna tidak ditemukan
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>[ 'fulfilled', 'rejected' ]
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Perintah</th>
+<th>Hasil</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Promise.all([...])</code></td>
+<td>Berhasil jika <strong>semua</strong> berhasil. Gagal segera begitu <strong>salah satu</strong> gagal</td>
+</tr>
+<tr>
+<td><code>Promise.allSettled([...])</code></td>
+<td>Selalu menunggu semuanya selesai dan melaporkan status tiap Promise (<code>fulfilled</code> atau <code>rejected</code>)</td>
+</tr>
+<tr>
+<td><code>Promise.race([...])</code></td>
+<td>Mengikuti Promise yang <strong>paling dulu</strong> selesai</td>
+</tr>
+</tbody>
+</table>
+<p>Urutan baris output mengikuti waktu selesai tiap rantai. Ketiganya berjalan bersamaan, jadi jangan mengandalkan urutan antara pekerjaan yang saling bersaing. Yang pasti urutannya hanyalah <strong>isi array hasil</strong>: ia selalu sama dengan urutan input.</p>
+<h2 id="async-dan-await"><code>async</code> dan <code>await</code><a class="headerlink" href="#async-dan-await" title="Permanent link">&para;</a></h2>
+<p>Rantai <code>.then()</code> sudah jauh lebih baik daripada callback bersarang, tetapi masih terasa berbeda dari kode biasa. <code>async</code> dan <code>await</code> membuat kode asinkron <strong>terbaca seperti kode sinkron</strong>.</p>
+<ul>
+<li>Kata <strong><code>async</code></strong> di depan fungsi membuat fungsi itu selalu mengembalikan Promise.</li>
+<li>Kata <strong><code>await</code></strong> di dalam fungsi <code>async</code> berarti "tunggu Promise ini selesai, lalu beri aku hasilnya". Selama menunggu, JavaScript bebas mengerjakan hal lain di luar fungsi itu.</li>
+</ul>
+<p>Buat <code>async-dasar.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">async-dasar.js</span><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="p">,</span><span class="w"> </span><span class="nx">ambilPesanan</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./data.js"</span><span class="p">;</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">tampilkanPesanan</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">pengguna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">pesanan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">ambilPesanan</span><span class="p">(</span><span class="nx">pengguna</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">pengguna</span><span class="p">.</span><span class="nx">nama</span><span class="si">}</span><span class="sb"> punya </span><span class="si">${</span><span class="nx">pesanan</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> pesanan`</span><span class="p">;</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="p">}</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">tampilkanPesanan</span><span class="p">(</span><span class="mf">1</span><span class="p">));</span>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">tampilkanPesanan</span><span class="p">(</span><span class="mf">3</span><span class="p">));</span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a>
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="kd">const</span><span class="w"> </span><span class="nx">janji</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tampilkanPesanan</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">janji</span><span class="p">);</span>
+</span><span id="__span-29-14"><a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">janji</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>node<span class="w"> </span>async-dasar.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>Budi punya 2 pesanan
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>Andi punya 0 pesanan
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>Promise { &lt;pending&gt; }
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>Sari punya 1 pesanan
+</span></code></pre></div>
+<p>Penjelasan:</p>
+<ol>
+<li><code>await ambilPengguna(id)</code> menunggu Promise selesai dan mengembalikan <strong>nilainya langsung</strong>, bukan Promise. Kodenya mirip contoh <code>promise-rantai.js</code>, tetapi terbaca dari atas ke bawah.</li>
+<li><code>return</code> di fungsi <code>async</code> membungkus nilai dalam Promise. Karena itu <code>tampilkanPesanan(2)</code> tanpa <code>await</code> menghasilkan <code>Promise { &lt;pending&gt; }</code>.</li>
+<li>Di ES Modules, <code>await</code> boleh dipakai <strong>langsung di tingkat paling atas file</strong> (<em>top-level await</em>), seperti pada <code>console.log(await ...)</code>. Di luar ES Modules, <code>await</code> hanya boleh ada di dalam fungsi <code>async</code>.</li>
+</ol>
+<h3 id="menangani-error-dengan-trycatch">Menangani error dengan <code>try...catch</code><a class="headerlink" href="#menangani-error-dengan-trycatch" title="Permanent link">&para;</a></h3>
+<p>Dengan <code>await</code>, error dari Promise yang gagal dilempar seperti error biasa, sehingga <code>try...catch</code> dari bab 10 bisa dipakai kembali. Buat <code>async-error.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">async-error.js</span><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./data.js"</span><span class="p">;</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">cari</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">pengguna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Ditemukan:"</span><span class="p">,</span><span class="w"> </span><span class="nx">pengguna</span><span class="p">.</span><span class="nx">nama</span><span class="p">);</span>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Gagal:"</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Selesai mencari"</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">);</span>
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="p">}</span>
+</span><span id="__span-32-13"><a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a>
+</span><span id="__span-32-14"><a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a><span class="k">await</span><span class="w"> </span><span class="nx">cari</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+</span><span id="__span-32-15"><a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a><span class="k">await</span><span class="w"> </span><span class="nx">cari</span><span class="p">(</span><span class="mf">99</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>node<span class="w"> </span>async-error.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>Ditemukan: Sari
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>Selesai mencari 2
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>Gagal: Pengguna tidak ditemukan
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>Selesai mencari 99
+</span></code></pre></div>
+<h3 id="berurutan-atau-bersamaan">Berurutan atau bersamaan?<a class="headerlink" href="#berurutan-atau-bersamaan" title="Permanent link">&para;</a></h3>
+<p>Setiap <code>await</code> membuat kode menunggu. Jika tiga pekerjaan tidak saling bergantung, menunggunya satu per satu membuang waktu. Buat <code>async-paralel.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">async-paralel.js</span><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tunggu</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./bantu.js"</span><span class="p">;</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="kd">let</span><span class="w"> </span><span class="nx">mulai</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="k">await</span><span class="w"> </span><span class="nx">tunggu</span><span class="p">(</span><span class="mf">100</span><span class="p">);</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="k">await</span><span class="w"> </span><span class="nx">tunggu</span><span class="p">(</span><span class="mf">100</span><span class="p">);</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="k">await</span><span class="w"> </span><span class="nx">tunggu</span><span class="p">(</span><span class="mf">100</span><span class="p">);</span>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="kd">const</span><span class="w"> </span><span class="nx">berurutan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">mulai</span><span class="p">;</span>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>
+</span><span id="__span-35-9"><a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="nx">mulai</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+</span><span id="__span-35-10"><a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a><span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">tunggu</span><span class="p">(</span><span class="mf">100</span><span class="p">),</span><span class="w"> </span><span class="nx">tunggu</span><span class="p">(</span><span class="mf">100</span><span class="p">),</span><span class="w"> </span><span class="nx">tunggu</span><span class="p">(</span><span class="mf">100</span><span class="p">)]);</span>
+</span><span id="__span-35-11"><a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a><span class="kd">const</span><span class="w"> </span><span class="nx">bersamaan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">mulai</span><span class="p">;</span>
+</span><span id="__span-35-12"><a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a>
+</span><span id="__span-35-13"><a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Berurutan (sekitar 300 ms), minimal 250:"</span><span class="p">,</span><span class="w"> </span><span class="nx">berurutan</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">250</span><span class="p">);</span>
+</span><span id="__span-35-14"><a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Bersamaan (sekitar 100 ms), di bawah 250:"</span><span class="p">,</span><span class="w"> </span><span class="nx">bersamaan</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">250</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>node<span class="w"> </span>async-paralel.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>Berurutan (sekitar 300 ms), minimal 250: true
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>Bersamaan (sekitar 100 ms), di bawah 250: true
+</span></code></pre></div>
+<p><code>Date.now()</code> memberi waktu saat ini dalam milidetik, sehingga selisihnya adalah lama proses. Tiga pekerjaan 100 ms yang ditunggu berurutan memakan sekitar 300 ms, sedangkan dengan <code>Promise.all</code> hanya sekitar 100 ms. <strong>Aturan praktis:</strong> jika pekerjaan saling bergantung, <code>await</code> satu per satu. Jika tidak, jalankan bersamaan dengan <code>Promise.all</code>.</p>
+<h3 id="modul-bawaan-versi-promise">Modul bawaan versi Promise<a class="headerlink" href="#modul-bawaan-versi-promise" title="Permanent link">&para;</a></h3>
+<p>Banyak modul bawaan Node.js punya versi Promise yang cocok dengan <code>await</code>. Di bab 11 kita memakai <code>readFileSync</code> yang bersifat sinkron (menghentikan program sampai selesai). Versi asinkronnya ada di <code>node:fs/promises</code>. Buat <code>file-async.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">file-async.js</span><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">writeFile</span><span class="p">,</span><span class="w"> </span><span class="nx">readFile</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:fs/promises"</span><span class="p">;</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="k">await</span><span class="w"> </span><span class="nx">writeFile</span><span class="p">(</span><span class="s2">"catatan.txt"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Belajar async"</span><span class="p">);</span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">isi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">readFile</span><span class="p">(</span><span class="s2">"catatan.txt"</span><span class="p">,</span><span class="w"> </span><span class="s2">"utf8"</span><span class="p">);</span>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isi</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>node<span class="w"> </span>file-async.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>Belajar async
+</span></code></pre></div>
+<p>Untuk program yang melayani banyak pengguna sekaligus, versi asinkron lebih baik karena tidak menahan pekerjaan lain selagi menunggu disk.</p>
+<div class="admonition note">
+<p class="admonition-title">Mengambil data dari internet</p>
+<p>Node.js punya fungsi bawaan <code>fetch(alamat)</code> yang mengembalikan Promise untuk memanggil server di internet. Pola penggunaannya sama persis: <code>const respons = await fetch(alamat);</code>. Karena butuh koneksi internet, contohnya tidak kita jalankan di sini. Pembahasannya ada di bagian Node.js.</p>
+</div>
+<h2 id="contoh-praktis-laporan-pelanggan">Contoh praktis: laporan pelanggan<a class="headerlink" href="#contoh-praktis-laporan-pelanggan" title="Permanent link">&para;</a></h2>
+<p>Gabungkan semuanya: ambil beberapa pengguna bersamaan, hitung total pesanan, dan tangani pengguna yang tidak ada tanpa menghentikan yang lain. Buat <code>laporan.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">laporan.js</span><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="p">,</span><span class="w"> </span><span class="nx">ambilPesanan</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./data.js"</span><span class="p">;</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">laporan</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">pengguna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+</span><span id="__span-41-6"><a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">pesanan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">ambilPesanan</span><span class="p">(</span><span class="nx">pengguna</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+</span><span id="__span-41-7"><a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">pesanan</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">jumlah</span><span class="p">,</span><span class="w"> </span><span class="nx">p</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">jumlah</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">p</span><span class="p">.</span><span class="nx">harga</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+</span><span id="__span-41-8"><a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">pengguna</span><span class="p">.</span><span class="nx">nama</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">pesanan</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> barang, total </span><span class="si">${</span><span class="nx">total</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span><span id="__span-41-9"><a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-41-10"><a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`Pengguna </span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span><span id="__span-41-11"><a id="__codelineno-41-11" name="__codelineno-41-11" href="#__codelineno-41-11"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-41-12"><a id="__codelineno-41-12" name="__codelineno-41-12" href="#__codelineno-41-12"></a><span class="p">}</span>
+</span><span id="__span-41-13"><a id="__codelineno-41-13" name="__codelineno-41-13" href="#__codelineno-41-13"></a>
+</span><span id="__span-41-14"><a id="__codelineno-41-14" name="__codelineno-41-14" href="#__codelineno-41-14"></a><span class="kd">const</span><span class="w"> </span><span class="nx">hasil</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">99</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">laporan</span><span class="p">));</span>
+</span><span id="__span-41-15"><a id="__codelineno-41-15" name="__codelineno-41-15" href="#__codelineno-41-15"></a><span class="nx">hasil</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">baris</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">baris</span><span class="p">));</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>node<span class="w"> </span>laporan.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>Budi: 2 barang, total 10000
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>Sari: 1 barang, total 3000
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>Andi: 0 barang, total 0
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>Pengguna 99: Pengguna tidak ditemukan
+</span></code></pre></div>
+<p>Proses eksekusinya:</p>
+<ol>
+<li><code>[1, 2, 3, 99].map(laporan)</code> memanggil <code>laporan</code> untuk setiap id. Karena <code>laporan</code> adalah fungsi <code>async</code>, hasilnya adalah array berisi empat Promise yang sudah berjalan bersamaan.</li>
+<li><code>Promise.all</code> menunggu keempatnya dan mengembalikan array hasil dengan urutan sama seperti input.</li>
+<li>Untuk id 99, <code>ambilPengguna</code> gagal. <code>try...catch</code> di dalam <code>laporan</code> mengubahnya menjadi teks, sehingga satu kegagalan tidak membatalkan <code>Promise.all</code>.</li>
+</ol>
+<h2 id="kesalahan-umum">Kesalahan umum<a class="headerlink" href="#kesalahan-umum" title="Permanent link">&para;</a></h2>
+<h3 id="1-lupa-await">1. Lupa <code>await</code><a class="headerlink" href="#1-lupa-await" title="Permanent link">&para;</a></h3>
+<p>Buat <code>lupa-await.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">lupa-await.js</span><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./data.js"</span><span class="p">;</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">pengguna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pengguna</span><span class="p">);</span>
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pengguna</span><span class="p">.</span><span class="nx">nama</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>node<span class="w"> </span>lupa-await.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>Promise { &lt;pending&gt; }
+</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>undefined
+</span></code></pre></div>
+<p>Tanpa <code>await</code>, <code>pengguna</code> adalah Promise, bukan datanya. <strong>Perbaikan:</strong> <code>const pengguna = await ambilPengguna(1);</code>.</p>
+<h3 id="2-trycatch-tanpa-await">2. <code>try...catch</code> tanpa <code>await</code><a class="headerlink" href="#2-trycatch-tanpa-await" title="Permanent link">&para;</a></h3>
+<p>Buat <code>salah-catch.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">salah-catch.js</span><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./data.js"</span><span class="p">;</span>
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-47-4"><a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a><span class="w">  </span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">99</span><span class="p">);</span>
+</span><span id="__span-47-5"><a id="__codelineno-47-5" name="__codelineno-47-5" href="#__codelineno-47-5"></a><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-47-6"><a id="__codelineno-47-6" name="__codelineno-47-6" href="#__codelineno-47-6"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Tertangkap"</span><span class="p">);</span>
+</span><span id="__span-47-7"><a id="__codelineno-47-7" name="__codelineno-47-7" href="#__codelineno-47-7"></a><span class="p">}</span>
+</span><span id="__span-47-8"><a id="__codelineno-47-8" name="__codelineno-47-8" href="#__codelineno-47-8"></a>
+</span><span id="__span-47-9"><a id="__codelineno-47-9" name="__codelineno-47-9" href="#__codelineno-47-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Program lanjut"</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>node<span class="w"> </span>salah-catch.js
+</span></code></pre></div>
+<p>Output (dipersingkat):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>Program lanjut
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>Error: Pengguna tidak ditemukan
+</span></code></pre></div>
+<p><code>ambilPengguna(99)</code> hanya <strong>memulai</strong> pekerjaan dan langsung selesai, sehingga <code>try</code> tidak melihat error apa pun. Kegagalan terjadi belakangan, di luar jangkauan <code>catch</code>, dan Node.js menghentikan program karena ada Promise gagal yang tidak ditangani (<em>unhandled rejection</em>). <strong>Perbaikan:</strong> <code>await ambilPengguna(99)</code> di dalam <code>try</code>, atau tambahkan <code>.catch(...)</code>.</p>
+<h3 id="3-await-di-fungsi-biasa">3. <code>await</code> di fungsi biasa<a class="headerlink" href="#3-await-di-fungsi-biasa" title="Permanent link">&para;</a></h3>
+<p>Buat <code>salah-await.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">salah-await.js</span><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">ambil</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>node<span class="w"> </span>salah-await.js
+</span></code></pre></div>
+<p>Output (dipersingkat):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>SyntaxError: Unexpected reserved word
+</span></code></pre></div>
+<p><code>await</code> hanya boleh ada di dalam fungsi <code>async</code> (atau di tingkat atas ES Module). <strong>Perbaikan:</strong> <code>async function ambil() { ... }</code>.</p>
+<h3 id="4-foreach-dengan-async-tidak-ditunggu">4. <code>forEach</code> dengan <code>async</code> tidak ditunggu<a class="headerlink" href="#4-foreach-dengan-async-tidak-ditunggu" title="Permanent link">&para;</a></h3>
+<p>Buat <code>salah-foreach.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">salah-foreach.js</span><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tunggu</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./bantu.js"</span><span class="p">;</span>
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>
+</span><span id="__span-53-3"><a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-53-4"><a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a><span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">tunggu</span><span class="p">(</span><span class="mf">10</span><span class="p">);</span>
+</span><span id="__span-53-5"><a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"item"</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="p">);</span>
+</span><span id="__span-53-6"><a id="__codelineno-53-6" name="__codelineno-53-6" href="#__codelineno-53-6"></a><span class="p">});</span>
+</span><span id="__span-53-7"><a id="__codelineno-53-7" name="__codelineno-53-7" href="#__codelineno-53-7"></a>
+</span><span id="__span-53-8"><a id="__codelineno-53-8" name="__codelineno-53-8" href="#__codelineno-53-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Selesai forEach"</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>node<span class="w"> </span>salah-foreach.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>Selesai forEach
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>item 1
+</span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>item 2
+</span><span id="__span-55-4"><a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a>item 3
+</span></code></pre></div>
+<p><code>forEach</code> tidak menunggu callback <code>async</code>-nya. Ia memulai ketiganya lalu langsung lanjut, sehingga <code>Selesai forEach</code> tercetak lebih dulu. <strong>Perbaikan:</strong> pakai <code>for...of</code> dengan <code>await</code> jika harus berurutan. Buat <code>benar-foreach.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">benar-foreach.js</span><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tunggu</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./bantu.js"</span><span class="p">;</span>
+</span><span id="__span-56-2"><a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>
+</span><span id="__span-56-3"><a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-56-4"><a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a><span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">tunggu</span><span class="p">(</span><span class="mf">10</span><span class="p">);</span>
+</span><span id="__span-56-5"><a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"item"</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="p">);</span>
+</span><span id="__span-56-6"><a id="__codelineno-56-6" name="__codelineno-56-6" href="#__codelineno-56-6"></a><span class="p">}</span>
+</span><span id="__span-56-7"><a id="__codelineno-56-7" name="__codelineno-56-7" href="#__codelineno-56-7"></a>
+</span><span id="__span-56-8"><a id="__codelineno-56-8" name="__codelineno-56-8" href="#__codelineno-56-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Selesai for...of"</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>node<span class="w"> </span>benar-foreach.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>item 1
+</span><span id="__span-58-2"><a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>item 2
+</span><span id="__span-58-3"><a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a>item 3
+</span><span id="__span-58-4"><a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a>Selesai for...of
+</span></code></pre></div>
+<p>Jika urutan tidak penting, gunakan <code>await Promise.all(array.map(async (n) =&gt; { ... }))</code>.</p>
+<h3 id="5-menunggu-berurutan-padahal-bisa-bersamaan">5. Menunggu berurutan padahal bisa bersamaan<a class="headerlink" href="#5-menunggu-berurutan-padahal-bisa-bersamaan" title="Permanent link">&para;</a></h3>
+<p>Tiga <code>await</code> berurutan untuk pekerjaan yang tidak saling bergantung membuat program lebih lambat dari seharusnya, seperti pada <code>async-paralel.js</code>. Gunakan <code>Promise.all</code>.</p>
+<h3 id="6-mengira-async-berarti-banyak-pekerjaan-jalan-sekaligus">6. Mengira <code>async</code> berarti banyak pekerjaan jalan sekaligus<a class="headerlink" href="#6-mengira-async-berarti-banyak-pekerjaan-jalan-sekaligus" title="Permanent link">&para;</a></h3>
+<p>JavaScript tetap mengerjakan satu hal pada satu waktu. <code>async</code> dan Promise hanya mengatur agar program tidak <strong>menunggu dengan sia-sia</strong> selama pekerjaan lambat berlangsung. Perhitungan berat yang tidak melibatkan menunggu (misalnya perulangan jutaan kali) tetap menahan semuanya.</p>
+<h3 id="7-mengandalkan-ketepatan-settimeout">7. Mengandalkan ketepatan <code>setTimeout</code><a class="headerlink" href="#7-mengandalkan-ketepatan-settimeout" title="Permanent link">&para;</a></h3>
+<p><code>setTimeout(f, 100)</code> berarti "<strong>paling cepat</strong> sekitar 100 ms", bukan tepat 100 ms. Jika stack sedang sibuk, callback menunggu lebih lama. Jangan mengatur logika program berdasarkan selisih waktu yang sangat tipis.</p>
+<h2 id="ringkasan">Ringkasan<a class="headerlink" href="#ringkasan" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Kode <strong>sinkron</strong> berjalan satu per satu dan menunggu. Kode <strong>asinkron</strong> memulai pekerjaan lambat lalu meneruskan, dan hasilnya datang belakangan.</li>
+<li><strong>Event loop</strong> menjalankan callback hanya setelah stack kosong. Semua kode sinkron selesai lebih dulu.</li>
+<li><code>setTimeout</code> menjadwalkan sekali, <code>setInterval</code> berulang (hentikan dengan <code>clearInterval</code>).</li>
+<li><strong>Callback</strong> sederhana tetapi menjadi sulit dibaca jika bersarang (<em>callback hell</em>).</li>
+<li><strong>Promise</strong> punya tiga keadaan: <code>pending</code>, <code>fulfilled</code>, dan <code>rejected</code>. Gunakan <code>.then()</code>, <code>.catch()</code>, dan <code>.finally()</code>, dan rantai untuk pekerjaan berurutan.</li>
+<li><code>Promise.all</code> menunggu semuanya (gagal jika satu gagal), <code>allSettled</code> melaporkan semuanya, <code>race</code> mengikuti yang tercepat.</li>
+<li><code>async</code> membuat fungsi mengembalikan Promise. <code>await</code> menunggu Promise dan memberi nilainya, dan di ES Modules boleh dipakai di tingkat atas file.</li>
+<li>Tangani error <code>await</code> dengan <code>try...catch</code>.</li>
+<li>Pekerjaan yang tidak saling bergantung sebaiknya dijalankan bersamaan dengan <code>Promise.all</code>.</li>
+<li>Hati-hati: lupa <code>await</code>, <code>try...catch</code> tanpa <code>await</code>, dan <code>forEach</code> dengan <code>async</code>.</li>
+</ul>
+<h2 id="latihan">Latihan<a class="headerlink" href="#latihan" title="Permanent link">&para;</a></h2>
+<p>Kerjakan sendiri dulu sebelum melihat jawaban. Latihan memakai <code>bantu.js</code> dan <code>data.js</code> dari bab ini.</p>
+<h3 id="latihan-1-prediksi-urutan">Latihan 1: Prediksi urutan<a class="headerlink" href="#latihan-1-prediksi-urutan" title="Permanent link">&para;</a></h3>
+<p>Tebak urutan outputnya:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"A"</span><span class="p">);</span>
+</span><span id="__span-59-2"><a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"B"</span><span class="p">),</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+</span><span id="__span-59-3"><a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"C"</span><span class="p">));</span>
+</span><span id="__span-59-4"><a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"D"</span><span class="p">);</span>
+</span></code></pre></div>
+<details class="success">
+<summary>Jawaban</summary>
+<p>Output: <code>A</code>, <code>D</code>, <code>C</code>, <code>B</code> (masing-masing di baris sendiri). Kode sinkron (<code>A</code>, <code>D</code>) selesai lebih dulu. Lalu callback Promise (<code>C</code>) diprioritaskan sebelum callback timer (<code>B</code>).</p>
+</details>
+<h3 id="latihan-2-perbaiki-await">Latihan 2: Perbaiki <code>await</code><a class="headerlink" href="#latihan-2-perbaiki-await" title="Permanent link">&para;</a></h3>
+<p>Kode ini mencetak <code>undefined</code>. Perbaiki agar mencetak <code>Budi</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">ambil</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">({</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Budi"</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-60-2"><a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>
+</span><span id="__span-60-3"><a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ambil</span><span class="p">();</span>
+</span><span id="__span-60-4"><a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">nama</span><span class="p">);</span>
+</span></code></pre></div>
+<details class="success">
+<summary>Jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">ambil</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">({</span><span class="w"> </span><span class="nx">nama</span><span class="o">:</span><span class="w"> </span><span class="s2">"Budi"</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-61-2"><a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>
+</span><span id="__span-61-3"><a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">ambil</span><span class="p">();</span>
+</span><span id="__span-61-4"><a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">nama</span><span class="p">);</span>
+</span></code></pre></div>
+Output: <code>Budi</code>. Tanpa <code>await</code>, <code>data</code> adalah Promise yang belum selesai.</p>
+</details>
+<h3 id="latihan-3-jeda-dengan-tunggu">Latihan 3: Jeda dengan <code>tunggu</code><a class="headerlink" href="#latihan-3-jeda-dengan-tunggu" title="Permanent link">&para;</a></h3>
+<p>Dengan <code>tunggu</code> dari <code>bantu.js</code>, tampilkan <code>mulai</code>, tunggu 100 ms, lalu tampilkan <code>selesai</code>. Pakai <code>await</code>.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tunggu</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./bantu.js"</span><span class="p">;</span>
+</span><span id="__span-62-2"><a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>
+</span><span id="__span-62-3"><a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"mulai"</span><span class="p">);</span>
+</span><span id="__span-62-4"><a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a><span class="k">await</span><span class="w"> </span><span class="nx">tunggu</span><span class="p">(</span><span class="mf">100</span><span class="p">);</span>
+</span><span id="__span-62-5"><a id="__codelineno-62-5" name="__codelineno-62-5" href="#__codelineno-62-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"selesai"</span><span class="p">);</span>
+</span></code></pre></div>
+Output: <code>mulai</code> lalu <code>selesai</code>.</p>
+</details>
+<h3 id="latihan-4-hasil-promiseall-tetap-berurutan">Latihan 4: Hasil <code>Promise.all</code> tetap berurutan<a class="headerlink" href="#latihan-4-hasil-promiseall-tetap-berurutan" title="Permanent link">&para;</a></h3>
+<p>Buat tiga Promise yang berhasil setelah 30, 10, dan 20 ms dengan nilai <code>"a"</code>, <code>"b"</code>, <code>"c"</code>. Jalankan dengan <code>Promise.all</code> dan tampilkan hasilnya. Tebak dulu urutan isi array hasilnya.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">setelah</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">ms</span><span class="p">,</span><span class="w"> </span><span class="nx">nilai</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+</span><span id="__span-63-2"><a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a><span class="w">  </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">resolve</span><span class="p">(</span><span class="nx">nilai</span><span class="p">),</span><span class="w"> </span><span class="nx">ms</span><span class="p">));</span>
+</span><span id="__span-63-3"><a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>
+</span><span id="__span-63-4"><a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">hasil</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">setelah</span><span class="p">(</span><span class="mf">30</span><span class="p">,</span><span class="w"> </span><span class="s2">"a"</span><span class="p">),</span><span class="w"> </span><span class="nx">setelah</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="s2">"b"</span><span class="p">),</span><span class="w"> </span><span class="nx">setelah</span><span class="p">(</span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="s2">"c"</span><span class="p">)]);</span>
+</span><span id="__span-63-5"><a id="__codelineno-63-5" name="__codelineno-63-5" href="#__codelineno-63-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hasil</span><span class="p">);</span>
+</span></code></pre></div>
+Output: <code>[ 'a', 'b', 'c' ]</code>. Urutan hasil mengikuti urutan input, bukan urutan selesainya.</p>
+</details>
+<h3 id="latihan-5-tangani-error">Latihan 5: Tangani error<a class="headerlink" href="#latihan-5-tangani-error" title="Permanent link">&para;</a></h3>
+<p>Buat fungsi <code>async</code> <code>bagi(a, b)</code> yang melempar <code>Error("Pembagi tidak boleh nol")</code> jika <code>b</code> adalah 0. Panggil dengan <code>await</code> di dalam <code>try...catch</code> untuk <code>bagi(10, 2)</code> dan <code>bagi(5, 0)</code>.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-64-1"><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">bagi</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-64-2"><a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">b</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-64-3"><a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">"Pembagi tidak boleh nol"</span><span class="p">);</span>
+</span><span id="__span-64-4"><a id="__codelineno-64-4" name="__codelineno-64-4" href="#__codelineno-64-4"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-64-5"><a id="__codelineno-64-5" name="__codelineno-64-5" href="#__codelineno-64-5"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+</span><span id="__span-64-6"><a id="__codelineno-64-6" name="__codelineno-64-6" href="#__codelineno-64-6"></a><span class="p">}</span>
+</span><span id="__span-64-7"><a id="__codelineno-64-7" name="__codelineno-64-7" href="#__codelineno-64-7"></a>
+</span><span id="__span-64-8"><a id="__codelineno-64-8" name="__codelineno-64-8" href="#__codelineno-64-8"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">]</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="p">[[</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">]])</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-64-9"><a id="__codelineno-64-9" name="__codelineno-64-9" href="#__codelineno-64-9"></a><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-64-10"><a id="__codelineno-64-10" name="__codelineno-64-10" href="#__codelineno-64-10"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">bagi</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">));</span>
+</span><span id="__span-64-11"><a id="__codelineno-64-11" name="__codelineno-64-11" href="#__codelineno-64-11"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-64-12"><a id="__codelineno-64-12" name="__codelineno-64-12" href="#__codelineno-64-12"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Gagal:"</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span id="__span-64-13"><a id="__codelineno-64-13" name="__codelineno-64-13" href="#__codelineno-64-13"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-64-14"><a id="__codelineno-64-14" name="__codelineno-64-14" href="#__codelineno-64-14"></a><span class="p">}</span>
+</span></code></pre></div>
+Output:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-65-1"><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>5
+</span><span id="__span-65-2"><a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a>Gagal: Pembagi tidak boleh nol
+</span></code></pre></div>
+<code>throw</code> di dalam fungsi <code>async</code> menjadikan Promise yang dikembalikan berstatus <code>rejected</code>.</p>
+</details>
+<h3 id="latihan-6-hitung-mundur">Latihan 6: Hitung mundur<a class="headerlink" href="#latihan-6-hitung-mundur" title="Permanent link">&para;</a></h3>
+<p>Dengan <code>setInterval</code> setiap 50 ms, cetak <code>3</code>, <code>2</code>, <code>1</code>, lalu <code>Selesai!</code>, kemudian hentikan intervalnya. (Contoh <code>interval.js</code> boleh dilihat sebagai acuan struktur, tetapi tulis sendiri.)</p>
+<details class="success">
+<summary>Jawaban</summary>
+<p>Lihat <code>interval.js</code>. Intinya: simpan hasil <code>setInterval</code> ke variabel, kurangi penghitung di setiap putaran, dan panggil <code>clearInterval</code> saat penghitung mencapai 0.</p>
+</details>
+<h3 id="latihan-7-laporan-yang-tahan-gagal">Latihan 7: Laporan yang tahan gagal<a class="headerlink" href="#latihan-7-laporan-yang-tahan-gagal" title="Permanent link">&para;</a></h3>
+<p>Jalankan <code>ambilPengguna</code> untuk id 1 dan 99 dengan <code>Promise.allSettled</code>, lalu tampilkan status tiap hasil, dan untuk yang berhasil tampilkan namanya.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p><div class="language-javascript highlight"><pre><span></span><code><span id="__span-66-1"><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./data.js"</span><span class="p">;</span>
+</span><span id="__span-66-2"><a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>
+</span><span id="__span-66-3"><a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">hasil</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">allSettled</span><span class="p">([</span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">1</span><span class="p">),</span><span class="w"> </span><span class="nx">ambilPengguna</span><span class="p">(</span><span class="mf">99</span><span class="p">)]);</span>
+</span><span id="__span-66-4"><a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a>
+</span><span id="__span-66-5"><a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a><span class="nx">hasil</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">h</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-66-6"><a id="__codelineno-66-6" name="__codelineno-66-6" href="#__codelineno-66-6"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">status</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"fulfilled"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-66-7"><a id="__codelineno-66-7" name="__codelineno-66-7" href="#__codelineno-66-7"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Berhasil:"</span><span class="p">,</span><span class="w"> </span><span class="nx">h</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">nama</span><span class="p">);</span>
+</span><span id="__span-66-8"><a id="__codelineno-66-8" name="__codelineno-66-8" href="#__codelineno-66-8"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-66-9"><a id="__codelineno-66-9" name="__codelineno-66-9" href="#__codelineno-66-9"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Gagal:"</span><span class="p">,</span><span class="w"> </span><span class="nx">h</span><span class="p">.</span><span class="nx">reason</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span id="__span-66-10"><a id="__codelineno-66-10" name="__codelineno-66-10" href="#__codelineno-66-10"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-66-11"><a id="__codelineno-66-11" name="__codelineno-66-11" href="#__codelineno-66-11"></a><span class="p">});</span>
+</span></code></pre></div>
+Output:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-67-1"><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>Berhasil: Budi
+</span><span id="__span-67-2"><a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a>Gagal: Pengguna tidak ditemukan
+</span></code></pre></div>
+Setiap hasil <code>allSettled</code> punya <code>status</code>, dan <code>value</code> (jika berhasil) atau <code>reason</code> (jika gagal).</p>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Kembali ke atas
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../11-modules/" class="md-footer__link md-footer__link--prev" aria-label="Sebelumnya: Modules">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Sebelumnya
+              </span>
+              <div class="md-ellipsis">
+                Modules
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../13-classes/" class="md-footer__link md-footer__link--next" aria-label="Selanjutnya: Classes &amp; OOP Dasar">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Selanjutnya
+              </span>
+              <div class="md-ellipsis">
+                Classes & OOP Dasar
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.path", "navigation.footer", "navigation.top", "navigation.tracking", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Tersalin ke clipboard", "clipboard.copy": "Salin ke clipboard", "search.result.more.one": "1 lagi di halaman ini", "search.result.more.other": "# lagi di halaman ini", "search.result.none": "Tidak ada dokumen yang sesuai", "search.result.one": "1 dokumen ditemukan", "search.result.other": "# dokumen ditemukan", "search.result.placeholder": "Ketik untuk mulai pencarian", "search.result.term.missing": "Tidak ada", "select.version": "Pilih versi"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/vendor/mermaid/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-config.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

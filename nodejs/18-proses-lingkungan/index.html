@@ -1,0 +1,2886 @@
+
+<!doctype html>
+<html lang="id" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Materi belajar JavaScript dan Node.js bagi pemula, dari konsep dasar hingga praktik.">
+      
+      
+      
+        <link rel="canonical" href="https://topekox.my.id/mkdocs-template/nodejs/18-proses-lingkungan/">
+      
+      
+        <link rel="prev" href="../17-modul-bawaan/">
+      
+      
+        <link rel="next" href="../19-events-streams/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Proses dan Lingkungan - Belajar JavaScript dan Node.js</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tujuan-pembelajaran" class="md-skip">
+          Lewati ke isi
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Belajar JavaScript dan Node.js" class="md-header__button md-logo" aria-label="Belajar JavaScript dan Node.js" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Belajar JavaScript dan Node.js
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Proses dan Lingkungan
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: system (click for light)"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Theme: system (click for light)" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: light (click for dark)"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Theme: light (click for dark)" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Theme: dark (click for system)"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Theme: dark (click for system)" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cari" placeholder="Cari" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cari">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Kosongkan" aria-label="Kosongkan" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Mempersiapkan pencarian
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigasi" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Belajar JavaScript dan Node.js" class="md-nav__button md-logo" aria-label="Belajar JavaScript dan Node.js" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Belajar JavaScript dan Node.js
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../javascript/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JavaScript Dasar
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JavaScript Dasar
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/01-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/02-operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operators & Expressions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/03-strings-numbers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings & Numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/04-conditionals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/05-loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/06-functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/07-scope-hoisting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scope & Hoisting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/08-arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/09-objects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/10-error-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Handling & Debugging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/11-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/12-asynchronous/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asynchronous JavaScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/13-classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes & OOP Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../javascript/14-proyek-akhir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyek Akhir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node.js
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Node.js
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-pengenalan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pengenalan Node.js
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-npm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    npm dan package.json
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-modul-bawaan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modul Bawaan Inti
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proses dan Lingkungan
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proses dan Lingkungan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tujuan-pembelajaran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tujuan pembelajaran
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pendahuluan-program-hidup-di-dalam-lingkungan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pendahuluan: program hidup di dalam lingkungan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variabel-lingkungan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variabel lingkungan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Variabel lingkungan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mengatur-variabel-lingkungan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mengatur variabel lingkungan
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#berkas-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Berkas .env
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stdin-stdout-dan-stderr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stdin, stdout, dan stderr
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#membaca-masukan-pengguna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Membaca masukan pengguna
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Membaca masukan pengguna">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#satu-pertanyaan-dengan-readline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Satu pertanyaan dengan readline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banyak-baris-for-await-dan-rlprompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Banyak baris: for await dan rl.prompt()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#membaca-seluruh-masukan-dari-pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Membaca seluruh masukan dari pipe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interaktif-atau-dari-pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interaktif atau dari pipe?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sinyal-dan-menutup-program-dengan-rapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sinyal dan menutup program dengan rapi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-exit-dan-beforeexit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event exit dan beforeExit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#menangani-error-yang-lolos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menangani error yang lolos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contoh-praktis-menjumlahkan-angka-dari-masukan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contoh praktis: menjumlahkan angka dari masukan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kesalahan-umum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kesalahan umum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kesalahan umum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-mengira-variabel-lingkungan-bukan-teks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Mengira variabel lingkungan bukan teks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-memasukkan-env-ke-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Memasukkan .env ke Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-berkas-env-tidak-ditemukan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Berkas .env tidak ditemukan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-beberapa-rlquestion-dengan-masukan-dari-pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Beberapa rl.question dengan masukan dari pipe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-lupa-rlclose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Lupa rl.close()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-pekerjaan-asinkron-di-dalam-event-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Pekerjaan asinkron di dalam event exit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-mencampur-hasil-dan-pesan-error-di-stdout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Mencampur hasil dan pesan error di stdout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-menyimpan-rahasia-di-dalam-kode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Menyimpan rahasia di dalam kode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-mengabaikan-exit-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Mengabaikan exit code
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ringkasan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ringkasan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latihan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latihan-1-tipe-variabel-lingkungan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 1: Tipe variabel lingkungan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-2-konfigurasi-dengan-nilai-bawaan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 2: Konfigurasi dengan nilai bawaan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-3-memisahkan-stdout-dan-stderr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 3: Memisahkan stdout dan stderr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-4-validasi-umur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 4: Validasi umur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-5-menghitung-kata-dari-pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 5: Menghitung kata dari pipe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-6-pesan-penutup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 6: Pesan penutup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-7-hitung-tick-sampai-ctrl-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 7: Hitung tick sampai Ctrl + C
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-events-streams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events dan Streams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-http/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server HTTP Dasar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-express/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Express
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../22-rest-api-tes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST API dan Pengujian
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../23-proyek-akhir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyek Akhir
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Daftar isi">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Daftar isi
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tujuan-pembelajaran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tujuan pembelajaran
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pendahuluan-program-hidup-di-dalam-lingkungan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pendahuluan: program hidup di dalam lingkungan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variabel-lingkungan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variabel lingkungan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Variabel lingkungan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mengatur-variabel-lingkungan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mengatur variabel lingkungan
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#berkas-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Berkas .env
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stdin-stdout-dan-stderr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stdin, stdout, dan stderr
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#membaca-masukan-pengguna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Membaca masukan pengguna
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Membaca masukan pengguna">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#satu-pertanyaan-dengan-readline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Satu pertanyaan dengan readline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#banyak-baris-for-await-dan-rlprompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Banyak baris: for await dan rl.prompt()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#membaca-seluruh-masukan-dari-pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Membaca seluruh masukan dari pipe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interaktif-atau-dari-pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interaktif atau dari pipe?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sinyal-dan-menutup-program-dengan-rapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sinyal dan menutup program dengan rapi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-exit-dan-beforeexit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event exit dan beforeExit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#menangani-error-yang-lolos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menangani error yang lolos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contoh-praktis-menjumlahkan-angka-dari-masukan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contoh praktis: menjumlahkan angka dari masukan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kesalahan-umum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kesalahan umum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kesalahan umum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-mengira-variabel-lingkungan-bukan-teks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Mengira variabel lingkungan bukan teks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-memasukkan-env-ke-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Memasukkan .env ke Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-berkas-env-tidak-ditemukan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Berkas .env tidak ditemukan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-beberapa-rlquestion-dengan-masukan-dari-pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Beberapa rl.question dengan masukan dari pipe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-lupa-rlclose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Lupa rl.close()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-pekerjaan-asinkron-di-dalam-event-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Pekerjaan asinkron di dalam event exit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-mencampur-hasil-dan-pesan-error-di-stdout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Mencampur hasil dan pesan error di stdout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-menyimpan-rahasia-di-dalam-kode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Menyimpan rahasia di dalam kode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-mengabaikan-exit-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Mengabaikan exit code
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ringkasan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ringkasan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#latihan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latihan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latihan-1-tipe-variabel-lingkungan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 1: Tipe variabel lingkungan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-2-konfigurasi-dengan-nilai-bawaan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 2: Konfigurasi dengan nilai bawaan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-3-memisahkan-stdout-dan-stderr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 3: Memisahkan stdout dan stderr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-4-validasi-umur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 4: Validasi umur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-5-menghitung-kata-dari-pipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 5: Menghitung kata dari pipe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-6-pesan-penutup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 6: Pesan penutup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latihan-7-hitung-tick-sampai-ctrl-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latihan 7: Hitung tick sampai Ctrl + C
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigasi" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Node.js
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Proses dan Lingkungan</h1>
+
+<h2 id="tujuan-pembelajaran">Tujuan pembelajaran<a class="headerlink" href="#tujuan-pembelajaran" title="Permanent link">&para;</a></h2>
+<p>Setelah mempelajari bab ini, kamu dapat:</p>
+<ul>
+<li>Membaca konfigurasi dari variabel lingkungan (<code>process.env</code>) dan berkas <code>.env</code>.</li>
+<li>Menjelaskan bahwa semua nilai variabel lingkungan berupa teks, dan mengubahnya dengan benar.</li>
+<li>Membedakan <em>stdin</em>, <em>stdout</em>, dan <em>stderr</em>, serta mengalihkannya dari terminal.</li>
+<li>Membaca masukan pengguna dengan <code>node:readline</code>, baik interaktif maupun dari pipe.</li>
+<li>Menangani sinyal seperti <code>SIGINT</code> (Ctrl + C) untuk menutup program dengan rapi.</li>
+<li>Memakai event <code>exit</code> dan <code>beforeExit</code>, serta penangkap error global.</li>
+<li>Menulis alat baris perintah yang bersikap baik terhadap program lain (output bersih, exit code benar).</li>
+</ul>
+<p>Bab ini memakai bab 12 (async), bab 14 (argumen dan exit code), bab 15 (<code>process</code>), dan bab 17 (<code>parseArgs</code>). Semua contoh dijalankan dari folder <code>node-belajar</code>.</p>
+<h2 id="pendahuluan-program-hidup-di-dalam-lingkungan">Pendahuluan: program hidup di dalam lingkungan<a class="headerlink" href="#pendahuluan-program-hidup-di-dalam-lingkungan" title="Permanent link">&para;</a></h2>
+<p>Sebuah program tidak berjalan sendirian. Ia dijalankan oleh seseorang atau program lain, di komputer dengan pengaturan tertentu, dan harus berkomunikasi dengan sekitarnya. Bayangkan seorang pegawai di kantor:</p>
+<table>
+<thead>
+<tr>
+<th>Di kantor</th>
+<th>Di program Node.js</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Memo pengaturan yang ditempel di dinding (alamat server, mode kerja)</td>
+<td><strong>Variabel lingkungan</strong> (<code>process.env</code>)</td>
+</tr>
+<tr>
+<td>Kotak surat masuk</td>
+<td><strong>stdin</strong> (masukan standar)</td>
+</tr>
+<tr>
+<td>Kotak surat keluar</td>
+<td><strong>stdout</strong> (keluaran standar)</td>
+</tr>
+<tr>
+<td>Kotak pengaduan</td>
+<td><strong>stderr</strong> (keluaran error)</td>
+</tr>
+<tr>
+<td>Alarm kebakaran yang menyuruh semua orang keluar dengan tertib</td>
+<td><strong>Sinyal</strong> (<code>SIGINT</code>, <code>SIGTERM</code>)</td>
+</tr>
+<tr>
+<td>Laporan akhir hari: "beres" atau "ada masalah"</td>
+<td><strong>Exit code</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Alat baris perintah yang baik memanfaatkan semuanya. Bab 14 sudah menyentuh sebagian (argumen dan exit code). Bab ini melengkapinya.</p>
+<h2 id="variabel-lingkungan">Variabel lingkungan<a class="headerlink" href="#variabel-lingkungan" title="Permanent link">&para;</a></h2>
+<p><strong>Variabel lingkungan</strong> adalah pasangan nama dan nilai yang disimpan sistem operasi dan diwariskan ke setiap program yang dijalankan. Contohnya <code>PATH</code> (daftar folder tempat program dicari). Di Node.js, semuanya ada di objek <strong><code>process.env</code></strong>. Simpan sebagai <code>config.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">config.js</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">3000</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">DEBUG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DEBUG</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">"true"</span><span class="p">;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">LINGKUNGAN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">"development"</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">({</span><span class="w"> </span><span class="nx">PORT</span><span class="p">,</span><span class="w"> </span><span class="nx">DEBUG</span><span class="p">,</span><span class="w"> </span><span class="nx">LINGKUNGAN</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PATH</span><span class="p">,</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">TIDAK_ADA</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>node<span class="w"> </span>config.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>{ PORT: 3000, DEBUG: false, LINGKUNGAN: 'development' }
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>string undefined
+</span></code></pre></div>
+<p>Fungsi program ini adalah membaca <strong>konfigurasi dari luar kode</strong>: nomor port, mode debug, dan jenis lingkungan. Kode yang sama bisa berjalan di laptopmu dan di server, dengan pengaturan berbeda, tanpa mengubah satu baris pun.</p>
+<p>Hal-hal yang perlu dipahami tentang <code>process.env</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Sifat</th>
+<th>Penjelasan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nilainya selalu <strong>teks</strong></td>
+<td><code>PORT=4000</code> menjadi <code>"4000"</code>, bukan angka <code>4000</code>. Ubah dengan <code>Number(...)</code></td>
+</tr>
+<tr>
+<td>Yang tidak ada bernilai <code>undefined</code></td>
+<td>Karena itu pola <code>Number(process.env.PORT) \|\| 3000</code> memberi nilai bawaan</td>
+</tr>
+<tr>
+<td>Tidak ada tipe boolean</td>
+<td><code>DEBUG=true</code> menjadi <code>"true"</code>. Bandingkan dengan <code>=== "true"</code></td>
+</tr>
+</tbody>
+</table>
+<p>Pola <code>Number(x) || 3000</code> memanfaatkan <code>Number(undefined)</code> yang menghasilkan <code>NaN</code> (falsy), sehingga <code>||</code> memilih 3000 (bab 3 dan 4).</p>
+<h3 id="mengatur-variabel-lingkungan">Mengatur variabel lingkungan<a class="headerlink" href="#mengatur-variabel-lingkungan" title="Permanent link">&para;</a></h3>
+<p>Cara memberi nilai saat menjalankan program berbeda di tiap terminal:</p>
+<table>
+<thead>
+<tr>
+<th>Terminal</th>
+<th>Perintah</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Git Bash, macOS, Linux</td>
+<td><code>PORT=4000 node config.js</code></td>
+</tr>
+<tr>
+<td>PowerShell</td>
+<td><code>$env:PORT = "4000"; node config.js</code></td>
+</tr>
+<tr>
+<td>Command Prompt (cmd)</td>
+<td><code>set PORT=4000</code> lalu <code>node config.js</code></td>
+</tr>
+</tbody>
+</table>
+<p>Karena rumit dan berbeda-beda, cara yang lebih nyaman adalah berkas <code>.env</code> (dibahas berikut).</p>
+<h2 id="berkas-env">Berkas <code>.env</code><a class="headerlink" href="#berkas-env" title="Permanent link">&para;</a></h2>
+<p>Berkas <code>.env</code> menyimpan variabel lingkungan untuk proyekmu, satu per baris dengan format <code>NAMA=nilai</code>. Node.js bisa memuatnya langsung dengan opsi <strong><code>--env-file</code></strong>. Buat berkas <code>.env</code> di folder <code>node-belajar</code>:</p>
+<div class="language-text highlight"><span class="filename">.env</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a># Pengaturan aplikasi
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>PORT=4000
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>DEBUG=true
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>NODE_ENV=production
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>KUNCI="rahasia dengan spasi"
+</span></code></pre></div>
+<p>Jalankan dengan opsi <code>--env-file</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>node<span class="w"> </span>--env-file<span class="o">=</span>.env<span class="w"> </span>config.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>{ PORT: 4000, DEBUG: true, LINGKUNGAN: 'production' }
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>string undefined
+</span></code></pre></div>
+<p>Aturan penulisan <code>.env</code>:</p>
+<ul>
+<li>Satu pasangan per baris: <code>NAMA=nilai</code>. Tanpa spasi di sekitar tanda <code>=</code>.</li>
+<li>Baris yang diawali <code>#</code> adalah komentar.</li>
+<li>Nilai yang mengandung spasi ditulis dengan tanda kutip.</li>
+</ul>
+<p>Beberapa variasi yang berguna:</p>
+<table>
+<thead>
+<tr>
+<th>Perintah</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>node --env-file=.env app.js</code></td>
+<td>Memuat <code>.env</code>. Gagal dengan exit code 9 jika berkasnya tidak ada</td>
+</tr>
+<tr>
+<td><code>node --env-file-if-exists=.env app.js</code></td>
+<td>Memuat jika ada, melanjutkan tanpa error jika tidak ada</td>
+</tr>
+<tr>
+<td><code>process.loadEnvFile(".env")</code></td>
+<td>Memuat dari dalam kode, di tengah program</td>
+</tr>
+<tr>
+<td><code>util.parseEnv(teks)</code></td>
+<td>Mengurai teks berformat <code>.env</code> menjadi objek, tanpa mengubah <code>process.env</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Jangan masukkan <code>.env</code> ke Git</p>
+<p>Berkas <code>.env</code> biasanya berisi rahasia: kata sandi database, kunci API, token. Tulis <code>.env</code> di <code>.gitignore</code>. Sebagai gantinya, simpan berkas <code>.env.example</code> di Git yang berisi nama variabelnya saja (tanpa nilai rahasia) supaya orang lain tahu apa yang harus mereka isi.</p>
+</div>
+<h2 id="stdin-stdout-dan-stderr">stdin, stdout, dan stderr<a class="headerlink" href="#stdin-stdout-dan-stderr" title="Permanent link">&para;</a></h2>
+<p>Setiap program Node.js punya tiga "saluran" standar:</p>
+<table>
+<thead>
+<tr>
+<th>Saluran</th>
+<th>Objek</th>
+<th>Arah</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>stdin</strong></td>
+<td><code>process.stdin</code></td>
+<td>masuk</td>
+<td>Masukan, dari keyboard atau dari program lain lewat pipe</td>
+</tr>
+<tr>
+<td><strong>stdout</strong></td>
+<td><code>process.stdout</code></td>
+<td>keluar</td>
+<td>Hasil normal program</td>
+</tr>
+<tr>
+<td><strong>stderr</strong></td>
+<td><code>process.stderr</code></td>
+<td>keluar</td>
+<td>Pesan error dan peringatan</td>
+</tr>
+</tbody>
+</table>
+<p>Kamu sudah memakainya: <code>console.log</code> menulis ke stdout, dan <code>console.error</code> menulis ke stderr. Di terminal keduanya tampak di layar yang sama, tetapi sebenarnya dua jalur terpisah. Pemisahan itu berguna karena keluaran bisa dialihkan sendiri-sendiri. Simpan sebagai <code>dua-saluran.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">dua-saluran.js</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"hasil normal"</span><span class="p">);</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"pesan error"</span><span class="p">);</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"tanpa baris baru"</span><span class="p">);</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"\n"</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>node<span class="w"> </span>dua-saluran.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>hasil normal
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>pesan error
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>tanpa baris baru
+</span></code></pre></div>
+<p>Sekarang alihkan stdout ke berkas dengan <code>&gt;</code>, dan stderr dengan <code>2&gt;</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>node<span class="w"> </span>dua-saluran.js<span class="w"> </span>&gt;<span class="w"> </span>hasil.txt<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>galat.txt
+</span></code></pre></div>
+<p>Perintah itu tidak menampilkan apa pun di layar. Isi kedua berkas:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cat<span class="w"> </span>hasil.txt
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>cat<span class="w"> </span>galat.txt
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>hasil normal
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>tanpa baris baru
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>pesan error
+</span></code></pre></div>
+<p><code>hasil.txt</code> hanya berisi keluaran normal, dan <code>galat.txt</code> hanya pesan error. (Untuk melihat isi berkas: <code>cat</code> di Git Bash, macOS, Linux, <code>Get-Content</code> di PowerShell, dan <code>type</code> di cmd.)</p>
+<p><code>process.stdout.write(teks)</code> mirip <code>console.log</code>, tetapi <strong>tidak menambahkan baris baru</strong>. Cocok untuk menulis di baris yang sama, misalnya indikator kemajuan.</p>
+<div class="admonition tip">
+<p class="admonition-title">Aturan penting untuk alat baris perintah</p>
+<p>Hasil yang akan dipakai program lain harus ke <strong>stdout</strong>, sedangkan pesan untuk manusia (peringatan, kesalahan, log) ke <strong>stderr</strong>. Dengan begitu <code>node alat.js &gt; hasil.txt</code> tidak mencampur pesan error ke dalam hasil.</p>
+</div>
+<h2 id="membaca-masukan-pengguna">Membaca masukan pengguna<a class="headerlink" href="#membaca-masukan-pengguna" title="Permanent link">&para;</a></h2>
+<h3 id="satu-pertanyaan-dengan-readline">Satu pertanyaan dengan <code>readline</code><a class="headerlink" href="#satu-pertanyaan-dengan-readline" title="Permanent link">&para;</a></h3>
+<p>Modul <code>node:readline/promises</code> membaca masukan baris demi baris. Simpan sebagai <code>tanya.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">tanya.js</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createInterface</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:readline/promises"</span><span class="p">;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">rl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createInterface</span><span class="p">({</span><span class="w"> </span><span class="nx">input</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span><span class="p">,</span><span class="w"> </span><span class="nx">output</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="kd">const</span><span class="w"> </span><span class="nx">nama</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">rl</span><span class="p">.</span><span class="nx">question</span><span class="p">(</span><span class="s2">"Nama kamu? "</span><span class="p">);</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Halo, </span><span class="si">${</span><span class="nx">nama</span><span class="si">}</span><span class="sb">!`</span><span class="p">);</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="nx">rl</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+</span></code></pre></div>
+<p>Jalankan secara interaktif dengan <code>node tanya.js</code>. Kamu akan melihat pertanyaan, mengetik jawaban, lalu menekan Enter:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Nama kamu? Budi
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>Halo, Budi!
+</span></code></pre></div>
+<p>Untuk mencobanya tanpa mengetik, kirim jawabannya lewat <strong>pipe</strong> (<code>|</code>), yang menyambungkan stdout satu program ke stdin program lain:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">echo</span><span class="w"> </span>Budi<span class="w"> </span><span class="p">|</span><span class="w"> </span>node<span class="w"> </span>tanya.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Nama kamu? Halo, Budi!
+</span></code></pre></div>
+<p>(Pada pipe, jawaban tidak tampil di layar karena bukan diketik, sehingga <code>Halo, Budi!</code> menyambung di baris yang sama.)</p>
+<p>Penjelasan kode:</p>
+<table>
+<thead>
+<tr>
+<th>Kode</th>
+<th>Artinya</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>createInterface({ input, output })</code></td>
+<td>Membuat pembaca baris dari stdin yang menulis pertanyaan ke stdout</td>
+</tr>
+<tr>
+<td><code>await rl.question("...")</code></td>
+<td>Menampilkan pertanyaan lalu menunggu pengguna menekan Enter. Menghasilkan Promise berisi jawaban (teks)</td>
+</tr>
+<tr>
+<td><code>rl.close()</code></td>
+<td>Menutup pembaca. <strong>Wajib</strong>, agar program bisa berhenti</td>
+</tr>
+</tbody>
+</table>
+<p>Dua pertanyaan berurutan bekerja dengan baik saat diketik langsung:</p>
+<div class="language-javascript highlight"><span class="filename">kuis.js</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createInterface</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:readline/promises"</span><span class="p">;</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">rl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createInterface</span><span class="p">({</span><span class="w"> </span><span class="nx">input</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span><span class="p">,</span><span class="w"> </span><span class="nx">output</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="kd">const</span><span class="w"> </span><span class="nx">nama</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">rl</span><span class="p">.</span><span class="nx">question</span><span class="p">(</span><span class="s2">"Nama? "</span><span class="p">);</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="kd">const</span><span class="w"> </span><span class="nx">umur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">rl</span><span class="p">.</span><span class="nx">question</span><span class="p">(</span><span class="s2">"Umur? "</span><span class="p">));</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">nama</span><span class="si">}</span><span class="sb">, tahun depan kamu </span><span class="si">${</span><span class="nx">umur</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="si">}</span><span class="sb"> tahun.`</span><span class="p">);</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="nx">rl</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+</span></code></pre></div>
+<p>Sesi interaktif (yang kamu ketik ada setelah tanda tanya):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Nama? Budi
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Umur? 20
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>Budi, tahun depan kamu 21 tahun.
+</span></code></pre></div>
+<p>Jawaban selalu berupa <strong>teks</strong>, sehingga umur diubah dengan <code>Number(...)</code> (bab 3).</p>
+<h3 id="banyak-baris-for-await-dan-rlprompt">Banyak baris: <code>for await</code> dan <code>rl.prompt()</code><a class="headerlink" href="#banyak-baris-for-await-dan-rlprompt" title="Permanent link">&para;</a></h3>
+<p><code>rl.question</code> cocok untuk satu atau dua pertanyaan. Untuk program yang membaca baris terus-menerus (menu, kalkulator, perintah berulang), gunakan pola <code>for await (const baris of rl)</code>. Simpan sebagai <code>menu.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">menu.js</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createInterface</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:readline"</span><span class="p">;</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">rl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createInterface</span><span class="p">({</span><span class="w"> </span><span class="nx">input</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span><span class="p">,</span><span class="w"> </span><span class="nx">output</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="kd">let</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="nx">rl</span><span class="p">.</span><span class="nx">setPrompt</span><span class="p">(</span><span class="s2">"Jumlah (kosong = selesai)? "</span><span class="p">);</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="nx">rl</span><span class="p">.</span><span class="nx">prompt</span><span class="p">();</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="k">for</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">baris</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">rl</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">masukan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">baris</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">masukan</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">angka</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="nx">masukan</span><span class="p">);</span>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">angka</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Bukan angka, diabaikan."</span><span class="p">);</span>
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">    </span><span class="nx">total</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">angka</span><span class="p">;</span>
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Total sementara: </span><span class="si">${</span><span class="nx">total</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="w">  </span><span class="nx">rl</span><span class="p">.</span><span class="nx">prompt</span><span class="p">();</span>
+</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="p">}</span>
+</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>
+</span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Total akhir: </span><span class="si">${</span><span class="nx">total</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a><span class="nx">rl</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+</span></code></pre></div>
+<p>Mencobanya secara interaktif memberi tampilan seperti ini (yang kamu ketik ada setelah tanda tanya):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Jumlah (kosong = selesai)? 100
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Total sementara: 100
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>Jumlah (kosong = selesai)? abc
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>Bukan angka, diabaikan.
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>Jumlah (kosong = selesai)? 250
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>Total sementara: 350
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>Jumlah (kosong = selesai)? 
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>Total akhir: 350
+</span></code></pre></div>
+<p>Dan dengan pipe (sehingga bisa diulang persis):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">printf</span><span class="w"> </span><span class="s1">'100\nabc\n250\n\n'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>node<span class="w"> </span>menu.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Jumlah (kosong = selesai)? Total sementara: 100
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>Jumlah (kosong = selesai)? Bukan angka, diabaikan.
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>Jumlah (kosong = selesai)? Total sementara: 350
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>Jumlah (kosong = selesai)? Total akhir: 350
+</span></code></pre></div>
+<p>Penjelasan:</p>
+<ul>
+<li><code>rl.setPrompt(...)</code> menentukan teks petunjuk, dan <code>rl.prompt()</code> menampilkannya.</li>
+<li><code>for await (const baris of rl)</code> menerima setiap baris yang diketik (atau dikirim lewat pipe) satu per satu, dan berakhir ketika masukan habis atau kita <code>break</code>.</li>
+<li>Pola ini bekerja baik secara interaktif <strong>maupun</strong> lewat pipe (lihat kesalahan umum nomor 4 untuk alasan tidak memakai <code>rl.question</code> berulang).</li>
+</ul>
+<h3 id="membaca-seluruh-masukan-dari-pipe">Membaca seluruh masukan dari pipe<a class="headerlink" href="#membaca-seluruh-masukan-dari-pipe" title="Permanent link">&para;</a></h3>
+<p>Banyak alat Unix menerima data dari alat lain lewat pipe. Simpan sebagai <code>hitung-kata.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">hitung-kata.js</span><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">teks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">for</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">bagian</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">  </span><span class="nx">teks</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">bagian</span><span class="p">;</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="p">}</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="kd">const</span><span class="w"> </span><span class="nx">kata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">teks</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">split</span><span class="p">(</span><span class="s2">" "</span><span class="p">);</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">kata</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> kata`</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">echo</span><span class="w"> </span>satu<span class="w"> </span>dua<span class="w"> </span>tiga<span class="w"> </span><span class="p">|</span><span class="w"> </span>node<span class="w"> </span>hitung-kata.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>3 kata
+</span></code></pre></div>
+<p><code>process.stdin</code> sendiri adalah aliran data (dibahas di bab 19), yang bisa dibaca dengan <code>for await</code>. Setiap potongan data yang datang ditambahkan ke <code>teks</code> sampai aliran selesai.</p>
+<h3 id="interaktif-atau-dari-pipe">Interaktif atau dari pipe?<a class="headerlink" href="#interaktif-atau-dari-pipe" title="Permanent link">&para;</a></h3>
+<p>Program sering perlu tahu apakah ada manusia di depannya. <code>process.stdin.isTTY</code> bernilai <code>true</code> jika masukan berasal dari terminal interaktif, dan <code>undefined</code> jika berasal dari pipe atau berkas. Simpan sebagai <code>mode.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">mode.js</span><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span><span class="p">.</span><span class="nx">isTTY</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">"interaktif"</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">"dari pipe"</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nb">echo</span><span class="w"> </span>x<span class="w"> </span><span class="p">|</span><span class="w"> </span>node<span class="w"> </span>mode.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>dari pipe
+</span></code></pre></div>
+<p>Dengan <code>node mode.js</code> langsung di terminal, hasilnya <code>interaktif</code>. Berguna misalnya untuk menampilkan pertanyaan hanya jika ada manusia, dan membaca diam-diam jika tidak.</p>
+<h2 id="sinyal-dan-menutup-program-dengan-rapi">Sinyal dan menutup program dengan rapi<a class="headerlink" href="#sinyal-dan-menutup-program-dengan-rapi" title="Permanent link">&para;</a></h2>
+<p>Saat kamu menekan <code>Ctrl + C</code>, sistem operasi mengirim <strong>sinyal</strong> <code>SIGINT</code> (<em>signal interrupt</em>) ke program. Secara bawaan Node.js langsung berhenti. Tetapi program yang punya pekerjaan setengah jalan, misalnya berkas yang sedang ditulis atau koneksi yang terbuka, sebaiknya menutup semuanya dulu. Caranya mendengarkan sinyal itu dengan <code>process.on</code>.</p>
+<p>Dua sinyal yang paling penting:</p>
+<table>
+<thead>
+<tr>
+<th>Sinyal</th>
+<th>Datang dari</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SIGINT</code></td>
+<td>Pengguna menekan <code>Ctrl + C</code> di terminal</td>
+</tr>
+<tr>
+<td><code>SIGTERM</code></td>
+<td>Sistem atau pengelola proses meminta program berhenti baik-baik (misalnya saat server dimatikan)</td>
+</tr>
+</tbody>
+</table>
+<p>Simpan sebagai <code>tutup-rapi.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">tutup-rapi.js</span><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">tick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">timer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">  </span><span class="nx">tick</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"tick"</span><span class="p">,</span><span class="w"> </span><span class="nx">tick</span><span class="p">);</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="p">},</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="kd">function</span><span class="w"> </span><span class="nx">tutup</span><span class="p">(</span><span class="nx">sinyal</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`\nMenerima </span><span class="si">${</span><span class="nx">sinyal</span><span class="si">}</span><span class="sb">, membersihkan...`</span><span class="p">);</span>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">  </span><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"selesai rapi"</span><span class="p">);</span>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="p">}</span>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="nx">process</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"SIGINT"</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">tutup</span><span class="p">(</span><span class="s2">"SIGINT"</span><span class="p">));</span>
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="nx">process</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"SIGTERM"</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">tutup</span><span class="p">(</span><span class="s2">"SIGTERM"</span><span class="p">));</span>
+</span><span id="__span-28-16"><a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>
+</span><span id="__span-28-17"><a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s2">"SIGINT"</span><span class="p">),</span><span class="w"> </span><span class="mf">250</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>node<span class="w"> </span>tutup-rapi.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>tick 1
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>tick 2
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>Menerima SIGINT, membersihkan...
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>selesai rapi
+</span></code></pre></div>
+<p>Penjelasan:</p>
+<ol>
+<li><code>setInterval</code> mencetak <code>tick</code> setiap 100 ms. Tanpa penanganan, program berjalan terus.</li>
+<li><code>process.on("SIGINT", fungsi)</code> mendaftarkan fungsi yang dipanggil ketika sinyal datang. Fungsi <code>tutup</code> membersihkan (di sini: <code>clearInterval</code>). Setelah interval dihentikan dan tidak ada pekerjaan tertunda, program berhenti sendiri (bab 15).</li>
+<li>Baris terakhir (<code>process.emit("SIGINT")</code>) hanya <strong>simulasi</strong> supaya contoh ini berhenti tanpa kamu menekan <code>Ctrl + C</code>. Pada program sungguhan, baris itu dihapus, dan kamu yang menekan <code>Ctrl + C</code> kapan pun. Cobalah: hapus baris itu, jalankan, lalu tekan <code>Ctrl + C</code> setelah beberapa tick.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Sinyal di Windows</p>
+<p>Windows tidak mengenal sistem sinyal seperti macOS dan Linux. Pada Windows, <code>SIGINT</code> (dari <code>Ctrl + C</code>) tetap bekerja, tetapi <code>SIGTERM</code> tidak bisa dikirim dari program lain. Kode di atas tetap aman dijalankan di semua sistem.</p>
+</div>
+<h2 id="event-exit-dan-beforeexit">Event <code>exit</code> dan <code>beforeExit</code><a class="headerlink" href="#event-exit-dan-beforeexit" title="Permanent link">&para;</a></h2>
+<p>Node.js memberi dua kesempatan sebelum program benar-benar berhenti. Simpan sebagai <code>siklus.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">siklus.js</span><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nx">process</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"beforeExit"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">kode</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`beforeExit, kode </span><span class="si">${</span><span class="nx">kode</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="p">});</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="nx">process</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"exit"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">kode</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`exit, kode </span><span class="si">${</span><span class="nx">kode</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="p">});</span>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"mulai"</span><span class="p">);</span>
+</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"timer"</span><span class="p">),</span><span class="w"> </span><span class="mf">20</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>node<span class="w"> </span>siklus.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>mulai
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>timer
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>beforeExit, kode 0
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>exit, kode 0
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Kapan</th>
+<th>Bisa menjadwalkan pekerjaan baru?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>beforeExit</code></td>
+<td>Ketika tidak ada lagi pekerjaan tertunda, sesaat sebelum berhenti</td>
+<td>Ya. Jika kamu menjadwalkan sesuatu, program lanjut berjalan</td>
+</tr>
+<tr>
+<td><code>exit</code></td>
+<td>Tepat saat proses akan berhenti (termasuk setelah <code>process.exit()</code>)</td>
+<td><strong>Tidak.</strong> Hanya kode <strong>sinkron</strong> yang dijalankan</td>
+</tr>
+</tbody>
+</table>
+<p>Karena <code>exit</code> hanya menjalankan kode sinkron, timer atau <code>await</code> di dalamnya tidak akan sempat berjalan. Simpan sebagai <code>exit-async.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">exit-async.js</span><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nx">process</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"exit"</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"handler exit"</span><span class="p">);</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"TIDAK PERNAH TERCETAK"</span><span class="p">),</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="p">});</span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"selesai"</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>node<span class="w"> </span>exit-async.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>selesai
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>handler exit
+</span></code></pre></div>
+<p>Event <code>exit</code> cocok untuk pekerjaan beres-beres yang cepat dan sinkron, misalnya mencetak pesan penutup atau menulis log terakhir.</p>
+<h2 id="menangani-error-yang-lolos">Menangani error yang lolos<a class="headerlink" href="#menangani-error-yang-lolos" title="Permanent link">&para;</a></h2>
+<p>Di bab 10 kamu belajar <code>try...catch</code>. Tetapi error juga bisa lolos dari semua <code>catch</code>: pelemparan di dalam timer, atau Promise yang ditolak tanpa penanganan (bab 12). Node.js menyediakan dua penangkap terakhir. Simpan sebagai <code>penangkap.js</code>:</p>
+<div class="language-javascript highlight"><span class="filename">penangkap.js</span><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nx">process</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"uncaughtException"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Error tidak tertangkap:"</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exitCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="p">});</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="nx">process</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"unhandledRejection"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">alasan</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Promise ditolak tanpa penanganan:"</span><span class="p">,</span><span class="w"> </span><span class="nx">alasan</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exitCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a><span class="p">});</span>
+</span><span id="__span-37-10"><a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a>
+</span><span id="__span-37-11"><a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-37-12"><a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a><span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">"ledakan di timer"</span><span class="p">);</span>
+</span><span id="__span-37-13"><a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a><span class="p">},</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+</span><span id="__span-37-14"><a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a>
+</span><span id="__span-37-15"><a id="__codelineno-37-15" name="__codelineno-37-15" href="#__codelineno-37-15"></a><span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">"gagal diam-diam"</span><span class="p">));</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>node<span class="w"> </span>penangkap.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>Promise ditolak tanpa penanganan: gagal diam-diam
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>Error tidak tertangkap: ledakan di timer
+</span></code></pre></div>
+<p>Tanpa penangkap ini, kedua kejadian menghentikan program dengan menampilkan stack trace. Penangkap global bukan pengganti <code>try...catch</code>, melainkan jaring pengaman terakhir untuk <strong>mencatat</strong> apa yang terjadi dan menutup program dengan exit code yang benar. Setelah <code>uncaughtException</code>, keadaan program bisa tidak konsisten; kebiasaan yang aman adalah mencatat error lalu menghentikan program, bukan melanjutkan seolah tidak terjadi apa-apa.</p>
+<h2 id="contoh-praktis-menjumlahkan-angka-dari-masukan">Contoh praktis: menjumlahkan angka dari masukan<a class="headerlink" href="#contoh-praktis-menjumlahkan-angka-dari-masukan" title="Permanent link">&para;</a></h2>
+<p>Kita gabungkan variabel lingkungan, stdin, stderr, dan exit code menjadi satu alat. Program membaca angka satu per baris dari stdin, melewati baris yang bukan angka (dengan peringatan ke stderr), lalu mencetak total ke stdout:</p>
+<div class="language-javascript highlight"><span class="filename">jumlahkan.js</span><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createInterface</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"node:readline"</span><span class="p">;</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">mataUang</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MATA_UANG</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">"Rp"</span><span class="p">;</span>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">rl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createInterface</span><span class="p">({</span><span class="w"> </span><span class="nx">input</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="kd">let</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="kd">let</span><span class="w"> </span><span class="nx">valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>
+</span><span id="__span-40-9"><a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a><span class="k">for</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">baris</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">rl</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-40-10"><a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">angka</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="nx">baris</span><span class="p">);</span>
+</span><span id="__span-40-11"><a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">baris</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">angka</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-40-12"><a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`Dilewati: "</span><span class="si">${</span><span class="nx">baris</span><span class="si">}</span><span class="sb">"`</span><span class="p">);</span>
+</span><span id="__span-40-13"><a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a><span class="w">    </span><span class="k">continue</span><span class="p">;</span>
+</span><span id="__span-40-14"><a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-40-15"><a id="__codelineno-40-15" name="__codelineno-40-15" href="#__codelineno-40-15"></a><span class="w">  </span><span class="nx">total</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">angka</span><span class="p">;</span>
+</span><span id="__span-40-16"><a id="__codelineno-40-16" name="__codelineno-40-16" href="#__codelineno-40-16"></a><span class="w">  </span><span class="nx">valid</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-40-17"><a id="__codelineno-40-17" name="__codelineno-40-17" href="#__codelineno-40-17"></a><span class="p">}</span>
+</span><span id="__span-40-18"><a id="__codelineno-40-18" name="__codelineno-40-18" href="#__codelineno-40-18"></a>
+</span><span id="__span-40-19"><a id="__codelineno-40-19" name="__codelineno-40-19" href="#__codelineno-40-19"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">valid</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-40-20"><a id="__codelineno-40-20" name="__codelineno-40-20" href="#__codelineno-40-20"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Tidak ada angka yang valid."</span><span class="p">);</span>
+</span><span id="__span-40-21"><a id="__codelineno-40-21" name="__codelineno-40-21" href="#__codelineno-40-21"></a><span class="w">  </span><span class="nx">process</span><span class="p">.</span><span class="nx">exitCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+</span><span id="__span-40-22"><a id="__codelineno-40-22" name="__codelineno-40-22" href="#__codelineno-40-22"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-40-23"><a id="__codelineno-40-23" name="__codelineno-40-23" href="#__codelineno-40-23"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Total </span><span class="si">${</span><span class="nx">valid</span><span class="si">}</span><span class="sb"> angka: </span><span class="si">${</span><span class="nx">mataUang</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">total</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span><span id="__span-40-24"><a id="__codelineno-40-24" name="__codelineno-40-24" href="#__codelineno-40-24"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Siapkan berkas masukan dan berkas konfigurasi:</p>
+<div class="language-text highlight"><span class="filename">angka.txt</span><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>100
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>250
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>abc
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>50
+</span></code></pre></div>
+<div class="language-text highlight"><span class="filename">.env.uang</span><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>MATA_UANG=IDR
+</span></code></pre></div>
+<p>Kirim isi <code>angka.txt</code> ke program lewat pipe (<code>cat</code> di Git Bash, macOS, Linux; di PowerShell gunakan <code>Get-Content angka.txt | node jumlahkan.js</code>):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>cat<span class="w"> </span>angka.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>node<span class="w"> </span>jumlahkan.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>Dilewati: "abc"
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>Total 3 angka: Rp 400
+</span></code></pre></div>
+<p>Sekarang ganti mata uang lewat variabel lingkungan:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>cat<span class="w"> </span>angka.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>node<span class="w"> </span>--env-file<span class="o">=</span>.env.uang<span class="w"> </span>jumlahkan.js
+</span></code></pre></div>
+<p>Output (dipersingkat):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>Total 3 angka: IDR 400
+</span></code></pre></div>
+<p>(Baris <code>Dilewati: "abc"</code> tetap muncul di stderr; yang ditampilkan hanya stdout.) Terakhir, masukan tanpa satu pun angka yang valid:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="nb">echo</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>node<span class="w"> </span>jumlahkan.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>Dilewati: ""
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>Tidak ada angka yang valid.
+</span></code></pre></div>
+<p>Program ini bersikap baik terhadap lingkungannya:</p>
+<ul>
+<li>Hasil (<code>Total ...</code>) ke stdout, peringatan dan error ke stderr, sehingga <code>node jumlahkan.js &lt; angka.txt &gt; hasil.txt</code> hanya menyimpan hasilnya.</li>
+<li>Mata uang bisa diubah tanpa mengedit kode, lewat <code>MATA_UANG</code>.</li>
+<li>Exit code 1 saat gagal, sehingga program lain bisa tahu bahwa masukannya bermasalah.</li>
+<li>Bekerja dengan masukan dari pipe maupun yang diketik langsung.</li>
+</ul>
+<h2 id="kesalahan-umum">Kesalahan umum<a class="headerlink" href="#kesalahan-umum" title="Permanent link">&para;</a></h2>
+<h3 id="1-mengira-variabel-lingkungan-bukan-teks">1. Mengira variabel lingkungan bukan teks<a class="headerlink" href="#1-mengira-variabel-lingkungan-bukan-teks" title="Permanent link">&para;</a></h3>
+<p>Simpan sebagai <code>debug-salah.js</code> dan buat <code>.env.debug</code>:</p>
+<div class="language-text highlight"><span class="filename">.env.debug</span><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>DEBUG=false
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>PORT=4000
+</span></code></pre></div>
+<div class="language-javascript highlight"><span class="filename">debug-salah.js</span><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DEBUG</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"mode debug AKTIF"</span><span class="p">);</span>
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"mode debug mati"</span><span class="p">);</span>
+</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="p">}</span>
+</span><span id="__span-50-6"><a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a>
+</span><span id="__span-50-7"><a id="__codelineno-50-7" name="__codelineno-50-7" href="#__codelineno-50-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>node<span class="w"> </span>--env-file<span class="o">=</span>.env.debug<span class="w"> </span>debug-salah.js
+</span></code></pre></div>
+<p>Output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>mode debug AKTIF
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>40001 4001
+</span></code></pre></div>
+<p><code>DEBUG=false</code> bernilai teks <code>"false"</code>, yang <strong>truthy</strong> (bab 4), sehingga mode debug justru aktif. Begitu juga <code>PORT + 1</code> menyambung teks menjadi <code>"40001"</code>. <strong>Perbaikan:</strong> bandingkan secara eksplisit (<code>process.env.DEBUG === "true"</code>) dan ubah angka dengan <code>Number(...)</code>.</p>
+<h3 id="2-memasukkan-env-ke-git">2. Memasukkan <code>.env</code> ke Git<a class="headerlink" href="#2-memasukkan-env-ke-git" title="Permanent link">&para;</a></h3>
+<p>Rahasia yang sudah terlanjur masuk ke riwayat Git sulit dihapus dengan bersih. Tulis <code>.env</code> di <code>.gitignore</code> sejak awal.</p>
+<h3 id="3-berkas-env-tidak-ditemukan">3. Berkas <code>.env</code> tidak ditemukan<a class="headerlink" href="#3-berkas-env-tidak-ditemukan" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>node<span class="w"> </span>--env-file<span class="o">=</span>tidak-ada.env<span class="w"> </span>config.js
+</span></code></pre></div>
+<p>Output (dipersingkat):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>node.exe: tidak-ada.env: not found
+</span></code></pre></div>
+<p>Node.js berhenti dengan exit code 9 (nama programnya di pesan tergantung sistemmu). Gunakan <code>--env-file-if-exists</code> jika berkasnya memang opsional.</p>
+<h3 id="4-beberapa-rlquestion-dengan-masukan-dari-pipe">4. Beberapa <code>rl.question</code> dengan masukan dari pipe<a class="headerlink" href="#4-beberapa-rlquestion-dengan-masukan-dari-pipe" title="Permanent link">&para;</a></h3>
+<p>Jawaban yang dikirim lewat pipe sudah masuk semua sebelum pertanyaan kedua diajukan, sehingga pertanyaan kedua menunggu selamanya. Jalankan <code>kuis.js</code> dengan hanya satu baris masukan:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="nb">echo</span><span class="w"> </span>Budi<span class="w"> </span><span class="p">|</span><span class="w"> </span>node<span class="w"> </span>kuis.js
+</span></code></pre></div>
+<p>Output (dipersingkat):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>Warning: Detected unsettled top-level await
+</span></code></pre></div>
+<p>Program berhenti dengan exit code 13 karena menunggu jawaban kedua yang tidak pernah datang. Untuk banyak pertanyaan secara interaktif, <code>rl.question</code> aman. Untuk masukan yang bisa datang dari pipe atau berkas, pakai pola <code>for await (const baris of rl)</code>.</p>
+<h3 id="5-lupa-rlclose">5. Lupa <code>rl.close()</code><a class="headerlink" href="#5-lupa-rlclose" title="Permanent link">&para;</a></h3>
+<p>Tanpa <code>rl.close()</code>, stdin tetap terbuka dan program tidak berhenti sendiri di terminal interaktif. Selalu tutup <code>readline</code> setelah selesai.</p>
+<h3 id="6-pekerjaan-asinkron-di-dalam-event-exit">6. Pekerjaan asinkron di dalam event <code>exit</code><a class="headerlink" href="#6-pekerjaan-asinkron-di-dalam-event-exit" title="Permanent link">&para;</a></h3>
+<p>Seperti pada <code>exit-async.js</code>: yang dijalankan di <code>exit</code> hanya kode sinkron. Pekerjaan asinkron untuk beres-beres harus dilakukan sebelumnya, misalnya di handler <code>SIGINT</code> atau <code>beforeExit</code>.</p>
+<h3 id="7-mencampur-hasil-dan-pesan-error-di-stdout">7. Mencampur hasil dan pesan error di stdout<a class="headerlink" href="#7-mencampur-hasil-dan-pesan-error-di-stdout" title="Permanent link">&para;</a></h3>
+<p>Jika alatmu mencetak peringatan dengan <code>console.log</code>, hasilnya tercampur saat dialihkan ke berkas atau dipakai program lain. Pesan untuk manusia ke <code>console.error</code>.</p>
+<h3 id="8-menyimpan-rahasia-di-dalam-kode">8. Menyimpan rahasia di dalam kode<a class="headerlink" href="#8-menyimpan-rahasia-di-dalam-kode" title="Permanent link">&para;</a></h3>
+<p>Kata sandi atau kunci API yang ditulis langsung di file <code>.js</code> ikut ke Git dan terbaca siapa saja. Letakkan di <code>.env</code> atau variabel lingkungan.</p>
+<h3 id="9-mengabaikan-exit-code">9. Mengabaikan exit code<a class="headerlink" href="#9-mengabaikan-exit-code" title="Permanent link">&para;</a></h3>
+<p>Program yang gagal tetapi keluar dengan kode 0 menipu skrip otomasi yang mengira semuanya sukses. Atur <code>process.exitCode = 1</code> untuk kegagalan.</p>
+<h2 id="ringkasan">Ringkasan<a class="headerlink" href="#ringkasan" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><code>process.env</code></strong> menyimpan variabel lingkungan. Semua nilainya <strong>teks</strong> atau <code>undefined</code>: ubah dengan <code>Number(...)</code> dan bandingkan boolean secara eksplisit (<code>=== "true"</code>).</li>
+<li>Berkas <strong><code>.env</code></strong> + <code>node --env-file=.env</code> memuat konfigurasi tanpa pengaturan terminal. Jangan masukkan <code>.env</code> ke Git; sediakan <code>.env.example</code>.</li>
+<li><strong>stdout</strong> untuk hasil, <strong>stderr</strong> untuk pesan error. Keduanya bisa dialihkan terpisah (<code>&gt;</code> dan <code>2&gt;</code>). <code>process.stdout.write</code> tidak menambah baris baru.</li>
+<li><strong>stdin</strong> dibaca dengan <code>node:readline</code>: <code>rl.question</code> untuk satu atau dua pertanyaan interaktif, dan <code>for await (const baris of rl)</code> untuk banyak baris dari terminal maupun pipe. Selalu <code>rl.close()</code>.</li>
+<li><code>process.stdin.isTTY</code> membedakan masukan interaktif dari pipe.</li>
+<li><strong>Sinyal</strong>: dengarkan <code>SIGINT</code> (Ctrl + C) dan <code>SIGTERM</code> dengan <code>process.on</code> untuk menutup program dengan rapi.</li>
+<li><code>exit</code> hanya menjalankan kode sinkron; <code>beforeExit</code> masih bisa menjadwalkan pekerjaan.</li>
+<li><code>uncaughtException</code> dan <code>unhandledRejection</code> adalah jaring pengaman terakhir untuk mencatat error, bukan pengganti <code>try...catch</code>.</li>
+<li>Alat baris perintah yang baik: konfigurasi lewat lingkungan, hasil ke stdout, error ke stderr, exit code benar.</li>
+</ul>
+<h2 id="latihan">Latihan<a class="headerlink" href="#latihan" title="Permanent link">&para;</a></h2>
+<p>Kerjakan sendiri dulu sebelum melihat jawaban. Latihan dijalankan dari folder <code>node-belajar</code>.</p>
+<h3 id="latihan-1-tipe-variabel-lingkungan">Latihan 1: Tipe variabel lingkungan<a class="headerlink" href="#latihan-1-tipe-variabel-lingkungan" title="Permanent link">&para;</a></h3>
+<p>Setelah baris <code>process.env.JUMLAH = 5;</code>, apa hasil <code>typeof process.env.JUMLAH</code>? Tebak dulu.</p>
+<details class="success">
+<summary>Jawaban</summary>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">JUMLAH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+</span><span id="__span-57-2"><a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">JUMLAH</span><span class="p">,</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">JUMLAH</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>string 51
+</span></code></pre></div>
+<p>Node.js mengubah semua nilai <code>process.env</code> menjadi teks, sehingga <code>"5" + 1</code> menyambung menjadi <code>"51"</code>.</p>
+</details>
+<h3 id="latihan-2-konfigurasi-dengan-nilai-bawaan">Latihan 2: Konfigurasi dengan nilai bawaan<a class="headerlink" href="#latihan-2-konfigurasi-dengan-nilai-bawaan" title="Permanent link">&para;</a></h3>
+<p>Tulis <code>salam.js</code> yang membaca <code>NAMA</code> dari variabel lingkungan (bawaan <code>"teman"</code>) dan mencetak <code>Halo, &lt;nama&gt;!</code>. Jalankan tanpa <code>.env</code>, lalu dengan berkas <code>.env.nama</code> berisi <code>NAMA=Sari</code>.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<div class="language-javascript highlight"><span class="filename">salam.js</span><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">nama</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NAMA</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">"teman"</span><span class="p">;</span>
+</span><span id="__span-59-2"><a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Halo, </span><span class="si">${</span><span class="nx">nama</span><span class="si">}</span><span class="sb">!`</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-text highlight"><span class="filename">.env.nama</span><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>NAMA=Sari
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>node<span class="w"> </span>salam.js
+</span><span id="__span-61-2"><a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>node<span class="w"> </span>--env-file<span class="o">=</span>.env.nama<span class="w"> </span>salam.js
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>Halo, teman!
+</span><span id="__span-62-2"><a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>Halo, Sari!
+</span></code></pre></div>
+</details>
+<h3 id="latihan-3-memisahkan-stdout-dan-stderr">Latihan 3: Memisahkan stdout dan stderr<a class="headerlink" href="#latihan-3-memisahkan-stdout-dan-stderr" title="Permanent link">&para;</a></h3>
+<p>Dari <code>node -e "console.log('hasil'); console.error('galat')"</code>, alihkan hanya stdout ke berkas <code>h.txt</code>. Apa yang tampil di layar, dan apa isi <code>h.txt</code>?</p>
+<details class="success">
+<summary>Jawaban</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>node<span class="w"> </span>-e<span class="w"> </span><span class="s2">"console.log('hasil'); console.error('galat')"</span><span class="w"> </span>&gt;<span class="w"> </span>h.txt
+</span><span id="__span-63-2"><a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>cat<span class="w"> </span>h.txt
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-64-1"><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>galat
+</span><span id="__span-64-2"><a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>hasil
+</span></code></pre></div>
+<p>Baris pertama (<code>galat</code>) tampil di layar karena stderr tidak dialihkan. Baris kedua (<code>hasil</code>) adalah isi <code>h.txt</code>.</p>
+</details>
+<h3 id="latihan-4-validasi-umur">Latihan 4: Validasi umur<a class="headerlink" href="#latihan-4-validasi-umur" title="Permanent link">&para;</a></h3>
+<p>Buat fungsi <code>pesanUmur(nama, umurTeks)</code> yang mengembalikan <code>Umur harus angka.</code> jika <code>umurTeks</code> kosong atau bukan angka, dan selain itu kalimat <code>&lt;nama&gt;, tahun depan kamu &lt;umur + 1&gt; tahun.</code> seperti di <code>kuis.js</code>. Pisahkan logika ini dari <code>readline</code> supaya bisa diuji tanpa mengetik, lalu uji dengan <code>"20"</code>, <code>"dua puluh"</code>, dan teks kosong.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<p>Fungsinya dipisahkan dari <code>readline</code> agar mudah diuji tanpa mengetik:
+<div class="language-javascript highlight"><span class="filename">umur.js</span><pre><span></span><code><span id="__span-65-1"><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">pesanUmur</span><span class="p">(</span><span class="nx">nama</span><span class="p">,</span><span class="w"> </span><span class="nx">umurTeks</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-65-2"><a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">umur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="nx">umurTeks</span><span class="p">);</span>
+</span><span id="__span-65-3"><a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">umurTeks</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">umur</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-65-4"><a id="__codelineno-65-4" name="__codelineno-65-4" href="#__codelineno-65-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s2">"Umur harus angka."</span><span class="p">;</span>
+</span><span id="__span-65-5"><a id="__codelineno-65-5" name="__codelineno-65-5" href="#__codelineno-65-5"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-65-6"><a id="__codelineno-65-6" name="__codelineno-65-6" href="#__codelineno-65-6"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">nama</span><span class="si">}</span><span class="sb">, tahun depan kamu </span><span class="si">${</span><span class="nx">umur</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="si">}</span><span class="sb"> tahun.`</span><span class="p">;</span>
+</span><span id="__span-65-7"><a id="__codelineno-65-7" name="__codelineno-65-7" href="#__codelineno-65-7"></a><span class="p">}</span>
+</span><span id="__span-65-8"><a id="__codelineno-65-8" name="__codelineno-65-8" href="#__codelineno-65-8"></a>
+</span><span id="__span-65-9"><a id="__codelineno-65-9" name="__codelineno-65-9" href="#__codelineno-65-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pesanUmur</span><span class="p">(</span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="s2">"20"</span><span class="p">));</span>
+</span><span id="__span-65-10"><a id="__codelineno-65-10" name="__codelineno-65-10" href="#__codelineno-65-10"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pesanUmur</span><span class="p">(</span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dua puluh"</span><span class="p">));</span>
+</span><span id="__span-65-11"><a id="__codelineno-65-11" name="__codelineno-65-11" href="#__codelineno-65-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pesanUmur</span><span class="p">(</span><span class="s2">"Budi"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">));</span>
+</span></code></pre></div></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-66-1"><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>node<span class="w"> </span>umur.js
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-67-1"><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>Budi, tahun depan kamu 21 tahun.
+</span><span id="__span-67-2"><a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a>Umur harus angka.
+</span><span id="__span-67-3"><a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a>Umur harus angka.
+</span></code></pre></div>
+<p>Dengan logika terpisah dari <code>readline</code>, program interaktifnya tinggal memanggil <code>pesanUmur(nama, await rl.question("Umur? "))</code>.</p>
+</details>
+<h3 id="latihan-5-menghitung-kata-dari-pipe">Latihan 5: Menghitung kata dari pipe<a class="headerlink" href="#latihan-5-menghitung-kata-dari-pipe" title="Permanent link">&para;</a></h3>
+<p>Pakai <code>hitung-kata.js</code> untuk menghitung kata pada teks <code>belajar node itu seru</code>.</p>
+<details class="success">
+<summary>Jawaban</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-68-1"><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="nb">echo</span><span class="w"> </span>belajar<span class="w"> </span>node<span class="w"> </span>itu<span class="w"> </span>seru<span class="w"> </span><span class="p">|</span><span class="w"> </span>node<span class="w"> </span>hitung-kata.js
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-69-1"><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a>4 kata
+</span></code></pre></div>
+</details>
+<h3 id="latihan-6-pesan-penutup">Latihan 6: Pesan penutup<a class="headerlink" href="#latihan-6-pesan-penutup" title="Permanent link">&para;</a></h3>
+<p>Buat <code>pamit.js</code> yang mencetak <code>bekerja...</code>, lalu mencetak <code>sampai jumpa (kode 0)</code> ketika program berhenti, memakai event <code>exit</code>.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<div class="language-javascript highlight"><span class="filename">pamit.js</span><pre><span></span><code><span id="__span-70-1"><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="nx">process</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"exit"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">kode</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`sampai jumpa (kode </span><span class="si">${</span><span class="nx">kode</span><span class="si">}</span><span class="sb">)`</span><span class="p">));</span>
+</span><span id="__span-70-2"><a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"bekerja..."</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-71-1"><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a>node<span class="w"> </span>pamit.js
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-72-1"><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a>bekerja...
+</span><span id="__span-72-2"><a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a>sampai jumpa (kode 0)
+</span></code></pre></div>
+</details>
+<h3 id="latihan-7-hitung-tick-sampai-ctrl-c">Latihan 7: Hitung tick sampai Ctrl + C<a class="headerlink" href="#latihan-7-hitung-tick-sampai-ctrl-c" title="Permanent link">&para;</a></h3>
+<p>Buat program yang mencetak nomor tick setiap 100 ms. Saat menerima <code>SIGINT</code>, ia menghentikan interval dan mencetak <code>berhenti setelah N tick</code>. Simulasikan <code>Ctrl + C</code> dengan <code>process.emit("SIGINT")</code> setelah 250 ms.</p>
+<details class="success">
+<summary>Contoh jawaban</summary>
+<div class="language-javascript highlight"><span class="filename">hitung-tick.js</span><pre><span></span><code><span id="__span-73-1"><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">tick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-73-2"><a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a>
+</span><span id="__span-73-3"><a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">timer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-73-4"><a id="__codelineno-73-4" name="__codelineno-73-4" href="#__codelineno-73-4"></a><span class="w">  </span><span class="nx">tick</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-73-5"><a id="__codelineno-73-5" name="__codelineno-73-5" href="#__codelineno-73-5"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"tick"</span><span class="p">,</span><span class="w"> </span><span class="nx">tick</span><span class="p">);</span>
+</span><span id="__span-73-6"><a id="__codelineno-73-6" name="__codelineno-73-6" href="#__codelineno-73-6"></a><span class="p">},</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+</span><span id="__span-73-7"><a id="__codelineno-73-7" name="__codelineno-73-7" href="#__codelineno-73-7"></a>
+</span><span id="__span-73-8"><a id="__codelineno-73-8" name="__codelineno-73-8" href="#__codelineno-73-8"></a><span class="nx">process</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"SIGINT"</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-73-9"><a id="__codelineno-73-9" name="__codelineno-73-9" href="#__codelineno-73-9"></a><span class="w">  </span><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+</span><span id="__span-73-10"><a id="__codelineno-73-10" name="__codelineno-73-10" href="#__codelineno-73-10"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`berhenti setelah </span><span class="si">${</span><span class="nx">tick</span><span class="si">}</span><span class="sb"> tick`</span><span class="p">);</span>
+</span><span id="__span-73-11"><a id="__codelineno-73-11" name="__codelineno-73-11" href="#__codelineno-73-11"></a><span class="p">});</span>
+</span><span id="__span-73-12"><a id="__codelineno-73-12" name="__codelineno-73-12" href="#__codelineno-73-12"></a>
+</span><span id="__span-73-13"><a id="__codelineno-73-13" name="__codelineno-73-13" href="#__codelineno-73-13"></a><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s2">"SIGINT"</span><span class="p">),</span><span class="w"> </span><span class="mf">250</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-74-1"><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a>node<span class="w"> </span>hitung-tick.js
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-75-1"><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a>tick 1
+</span><span id="__span-75-2"><a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a>tick 2
+</span><span id="__span-75-3"><a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a>berhenti setelah 2 tick
+</span></code></pre></div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Kembali ke atas
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../17-modul-bawaan/" class="md-footer__link md-footer__link--prev" aria-label="Sebelumnya: Modul Bawaan Inti">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Sebelumnya
+              </span>
+              <div class="md-ellipsis">
+                Modul Bawaan Inti
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../19-events-streams/" class="md-footer__link md-footer__link--next" aria-label="Selanjutnya: Events dan Streams">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Selanjutnya
+              </span>
+              <div class="md-ellipsis">
+                Events dan Streams
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.path", "navigation.footer", "navigation.top", "navigation.tracking", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Tersalin ke clipboard", "clipboard.copy": "Salin ke clipboard", "search.result.more.one": "1 lagi di halaman ini", "search.result.more.other": "# lagi di halaman ini", "search.result.none": "Tidak ada dokumen yang sesuai", "search.result.one": "1 dokumen ditemukan", "search.result.other": "# dokumen ditemukan", "search.result.placeholder": "Ketik untuk mulai pencarian", "search.result.term.missing": "Tidak ada", "select.version": "Pilih versi"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/vendor/mermaid/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-config.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
